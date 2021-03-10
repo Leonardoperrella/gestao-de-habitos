@@ -1,11 +1,7 @@
-import FormRegister from "./components/FormRegister";
+import Routes from "./routes";
 
 function App() {
-  return (
-    <div>
-      <FormRegister />
-    </div>
-  );
+  return <Routes />;
 }
 
 export default App;
