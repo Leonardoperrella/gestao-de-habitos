@@ -8,7 +8,7 @@ import * as yup from "yup";
 
 const FormRegister = () => {
   const history = useHistory();
-  const [registerError, setregisterError] = useState({});
+  const [registerError, setRegisterError] = useState({});
   const schema = yup.object().shape({
     username: yup.string().required("Field Required"),
     password: yup.string().required("Field Required"),
@@ -26,7 +26,7 @@ const FormRegister = () => {
         reset();
         history.push("/");
       })
-      .catch((e) => setregisterError(e.response));
+      .catch((e) => setRegisterError(e.response));
   };
 
   return (
