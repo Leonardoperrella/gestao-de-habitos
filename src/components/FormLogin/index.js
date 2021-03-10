@@ -1,9 +1,15 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, TextField } from "@material-ui/core";
+import api from "../../services/api";
 import * as yup from "yup";
+import jwt_decode from "jwt-decode";
 
 const FormLogin = () => {
+  const history = useHistory();
+  const [loginError, setLoginError] = useState({});
   const schema = yup.object().shape({
     username: yup.string().required("Field Required"),
     password: yup.string().required("Field Required"),
@@ -13,9 +19,23 @@ const FormLogin = () => {
     resolver: yupResolver(schema),
   });
 
+  const handleForm = (data) => {
+    api
+      .post("/sessions/", data)
+      .then((response) => {
+        const { user_id } = jwt_decode(response.data.access);
+        localStorage.clear();
+        localStorage.setItem("token", JSON.stringify(response.data.access));
+        localStorage.setItem("user_id", JSON.stringify(user_id));
+        reset();
+        history.push("/home");
+      })
+      .catch((e) => setLoginError(e.response));
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit(handleForm)}>
         <div>
           <TextField
             required
