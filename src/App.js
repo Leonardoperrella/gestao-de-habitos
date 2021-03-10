@@ -1,12 +1,12 @@
-import FormUserInput from "./components/FormUserInput";
-import GlobalStyles from "./components/styles/GlobalStyles";
+import Routes from "./routes";
+import GlobalStyles from "./styles/GlobalStyles";
 
 function App() {
   return (
-    <div>
+    <>
       <GlobalStyles />
-      <FormUserInput>UserName</FormUserInput>
-    </div>
+      <Routes />
+    </>
   );
 }
 
