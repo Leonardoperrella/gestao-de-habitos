@@ -1,8 +1,8 @@
-import React from "react";
+import { useState } from "react";
 import { ContainerInput, Input, Label, Span } from "./style";
 
 const FormUserInput = ({ children }) => {
-  const [activeInput, setActiveInput] = React.useState(false);
+  const [activeInput, setActiveInput] = useState(false);
 
   const handleChange = ({ target }) => {
     if (target.value !== "") {
