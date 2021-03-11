@@ -4,6 +4,7 @@ export const Label = styled.label``;
 
 export const ContainerInput = styled.div`
   position: relative;
+  margin: 1rem 0 1.7rem 0;
 `;
 
 export const Input = styled.input`
@@ -14,7 +15,7 @@ export const Input = styled.input`
   font-size: 1rem;
   padding-left: 0.5rem;
   background-color: #e8f0fe;
-  border: 2px solid #b7bfcc;
+  border: 2px solid ${({ error }) => (error ? "red" : "#b7bfcc")};
   padding-top: 0.3rem;
 `;
 
@@ -24,8 +25,16 @@ export const Span = styled.span`
   top: ${({ activeInput }) => (activeInput ? "12px" : "50%")};
   left: 0.8rem;
   transform: translateY(-50%);
-  color: ${({ activeInput }) => (activeInput ? "#616161" : "#252525")};
+  color: ${({ error }) => (error ? "red" : "#252525")};
 
   font-size: ${({ activeInput }) => (activeInput ? ".8rem" : "1rem")};
   font-family: "Roboto", sans-serif;
+`;
+
+export const MessageError = styled.p`
+  position: absolute;
+  color: red;
+  left: 0.5rem;
+  bottom: -2.1rem;
+  font-size: 0.875rem;
 `;
