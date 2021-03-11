@@ -1,9 +1,19 @@
-import Menu from "../../components/Menu";
+import Background from "../../Images/BackgroundLoginRegister.jpg";
+import GlobalContainer from "../../components/GlobalContainer";
+import BackGroundImage from "../../components/BackGroundImage";
+import GlobalWrap from "../../components/GlobalWrap";
+import FormUser from "../../components/FormUser";
+import FormUserInput from "../../components/FormUserInput";
 
 const Register = () => {
   return (
     <div>
-      <Menu />
+      <GlobalContainer>
+        <BackGroundImage image={Background} />
+        <GlobalWrap>
+          <FormUser isRegistering></FormUser>
+        </GlobalWrap>
+      </GlobalContainer>
     </div>
   );
 };
