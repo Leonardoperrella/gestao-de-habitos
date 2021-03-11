@@ -1,14 +1,23 @@
 import styled from "styled-components";
-import { TextField, Link } from "@material-ui/core";
+import { Link } from "@material-ui/core";
 import { ImArrowRight2 } from "react-icons/im";
 
 export const FormTitle = styled.h1`
   text-align: center;
 `;
 
-export const Input = styled(TextField)`
-  width: 76vw;
-  margin: 12px 0 !important;
+export const SquareRed = styled.div`
+  width: 11px;
+  height: 11px;
+  background-color: #d24d57;
+  transform: translate(10px, 18px);
+`;
+export const SquareGrey = styled.div`
+  width: 11px;
+  height: 11px;
+  background-color: #b7b9bc;
+  transform: translate(-15px, -16px);
+  margin-left: auto;
 `;
 
 export const Form = styled.form`

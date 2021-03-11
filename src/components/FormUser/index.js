@@ -1,6 +1,7 @@
 import {
   FormTitle,
-  Input,
+  SquareRed,
+  SquareGrey,
   Form,
   ButtonSubmit,
   ButtonIcon,
@@ -9,37 +10,17 @@ import {
   ContainerLink,
 } from "./style";
 
-const FormUser = () => {
+const FormUser = ({ children }) => {
   return (
     <div>
       <div>
-        <div />
+        <SquareRed />
         <FormTitle>WE ARE VALORANT</FormTitle>
-        <div />
+        <SquareGrey />
       </div>
 
       <div>
-        <Form>
-          <Input
-            name="name"
-            placeholder="Username"
-            variant="outlined"
-            id="outlined-basic"
-          />
-          <Input
-            name="password"
-            placeholder="Password"
-            type="password"
-            variant="outlined"
-            id="outlined-basic"
-          />
-          <Input
-            name="email"
-            placeholder="Email"
-            variant="outlined"
-            id="outlined-basic"
-          />
-        </Form>
+        <Form> {children} </Form>
       </div>
 
       <ButtonSubmit>
