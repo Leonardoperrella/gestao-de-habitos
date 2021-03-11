@@ -1,4 +1,4 @@
-import FormUser from "./components/formUser";
+import FormUser from "./components/FormUser";
 
 function App() {
   return (
