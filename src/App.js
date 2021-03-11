@@ -1,18 +1,13 @@
-<<<<<<< HEAD
 import Routes from "./routes";
-
-function App() {
-  return <Routes />;
-=======
-import FormUser from "./components/formUser";
+import GlobalStyles from "./styles/GlobalStyles";
 
 function App() {
   return (
-    <div>
-      <FormUser />
-    </div>
+    <>
+      <GlobalStyles />
+      <Routes />
+    </>
   );
->>>>>>> feature/FormUser
 }
 
 export default App;
