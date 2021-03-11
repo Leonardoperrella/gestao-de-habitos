@@ -3,6 +3,7 @@ import Habits from "../pages/Habits";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import AddHabit from "../pages/AddHabit";
 
 const Routes = () => {
   return (
@@ -15,6 +16,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/register">
         <Register />
+      </Route>
+      <Route exact path="/add-habit">
+        <AddHabit />
       </Route>
       <Route exact path="/habits">
         <Habits />
