@@ -7,8 +7,8 @@ export const ContainerCard = styled.div`
 `;
 
 export const CardHabit = styled.div`
-  width: 288px;
-  height: 148px;
+  width: 89vw;
+  height: 24vh;
   border-radius: 8px;
-  margin-top: 15px;
+  margin-top: 13px;
 `;
