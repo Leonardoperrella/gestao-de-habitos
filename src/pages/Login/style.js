@@ -4,6 +4,7 @@ export const FooterLogin = styled.footer`
   display: flex;
   justify-content: space-between;
   margin-top: 1.4rem;
+  width: 100%;
 
   button {
     cursor: pointer;
