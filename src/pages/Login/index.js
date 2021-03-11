@@ -1,12 +1,14 @@
-import { LoginContainer, LoginImage, LoginWrap } from "./style";
 import Background from "../../Images/BackgroundLoginRegister.jpg";
+import GlobalContainer from "../../components/GlobalContainer";
+import BackGroundImage from "../../components/BackGroundImage";
+import GlobalWrap from "../../components/GlobalWrap";
 
 const Login = () => {
   return (
-    <LoginContainer>
-      <LoginImage image={Background} />
-      <LoginWrap></LoginWrap>
-    </LoginContainer>
+    <GlobalContainer>
+      <BackGroundImage image={Background} />
+      <GlobalWrap></GlobalWrap>
+    </GlobalContainer>
   );
 };
 
