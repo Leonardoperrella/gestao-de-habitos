@@ -10,7 +10,7 @@ import {
   ContainerLink,
 } from "./style";
 
-const FormUser = ({ children }) => {
+const FormUser = ({ children, isRegistering }) => {
   return (
     <div>
       <div>
@@ -28,8 +28,8 @@ const FormUser = ({ children }) => {
       </ButtonSubmit>
 
       <ContainerLink>
-        <LinkRegister>Register</LinkRegister>
-        <LinkSingIn>Sing in</LinkSingIn>
+        <LinkRegister>{isRegistering ? "Register" : "Sing in"}</LinkRegister>
+        <LinkSingIn>{isRegistering ? "Sing in" : "Register"}</LinkSingIn>
       </ContainerLink>
     </div>
   );

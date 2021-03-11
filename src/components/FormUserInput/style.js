@@ -17,6 +17,7 @@ export const Input = styled.input`
   background-color: #e8f0fe;
   border: 2px solid ${({ error }) => (error ? "red" : "#b7bfcc")};
   padding-top: 0.3rem;
+  outline: none;
 `;
 
 export const Span = styled.span`
