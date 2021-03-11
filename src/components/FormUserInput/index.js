@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ContainerInput, Input, Label, Span } from "./style";
+import { ContainerInput, Input, Label, Span, SpanError } from "./style";
 
-const FormUserInput = ({ children }) => {
+const FormUserInput = ({ children, error, helperText }) => {
   const [activeInput, setActiveInput] = useState(false);
 
   const handleChange = ({ target }) => {
@@ -33,6 +33,7 @@ const FormUserInput = ({ children }) => {
           onBlur={handleBlur}
         />
       </Label>
+      <SpanError error={error}>{helperText}</SpanError>;
     </ContainerInput>
   );
 };
