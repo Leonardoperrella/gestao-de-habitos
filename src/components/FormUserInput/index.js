@@ -38,6 +38,7 @@ const FormUserInput = ({ children, error, inputRef, name, type }) => {
           error={error}
           name={name}
         />
+        <MessageError error={error}>{error.message}</MessageError>
       </Label>
       {error && <MessageError>{error.message}</MessageError>}
     </ContainerInput>
