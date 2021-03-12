@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AddHabit from "../pages/AddHabit";
 import EditHabit from "../pages/EditHabit";
+import AddGroup from "../pages/AddGroup";
 
 const Routes = () => {
   return (
@@ -26,6 +27,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/edit-habit">
         <EditHabit />
+      </Route>
+      <Route exact path="/add-group">
+        <AddGroup />
       </Route>
     </Switch>
   );
