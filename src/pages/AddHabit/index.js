@@ -43,12 +43,7 @@ const AddHabit = () => {
       <BackGroundImage image={Background} />
       <GlobalWrap>
         <form onSubmit={handleSubmit(handleForm)}>
-          <FormUserInput
-            name="title"
-            register={register}
-            error={!!errors.title}
-            helperText={errors.title?.message}
-          >
+          <FormUserInput name="title" inputRef={register} error={errors.title}>
             Title
           </FormUserInput>
           <ButtonSubmit>

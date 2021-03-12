@@ -10,7 +10,7 @@ const Login = () => {
     <GlobalContainer>
       <BackGroundImage image={Background} />
       <GlobalWrap>
-        <h1>WE ARE VALORANT</h1>
+        <h1>WE ARE HABITORANT</h1>
         <FormLogin />
         <FooterLogin>
           <button>Register</button>

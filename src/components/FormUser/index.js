@@ -1,7 +1,7 @@
 import {
   FormTitle,
-  SquareRed,
-  SquareGrey,
+  Square,
+  SquareInverse,
   Form,
   ButtonSubmit,
   ButtonIcon,
@@ -9,14 +9,15 @@ import {
   LinkSingIn,
   ContainerLink,
 } from "./style";
+import { COLORS } from "../../style";
 
 const FormUser = ({ children, isRegistering }) => {
   return (
     <div>
       <div>
-        <SquareRed />
-        <FormTitle>WE ARE VALORANT</FormTitle>
-        <SquareGrey />
+        <Square color={COLORS.highlight} />
+        <SquareInverse color={COLORS.gray} />
+        <FormTitle>WE ARE HABITORANT</FormTitle>
       </div>
 
       <div>
