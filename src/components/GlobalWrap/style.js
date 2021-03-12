@@ -4,7 +4,7 @@ export const GlobalnWrapStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  padding-bottom: 150px;
   h1 {
     text-transform: uppercase;
     color: #252525;
