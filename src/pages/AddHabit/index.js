@@ -42,19 +42,11 @@ const AddHabit = () => {
     { value: "Monthly", content: "Hard" },
   ];
 
-  const how_much_achieved = [
-    { value: 25, content: "25%" },
-    { value: 50, content: "50%" },
-    { value: 75, content: "75%" },
-    { value: 100, content: "100%" },
-  ];
-
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
     category: yup.string().required("Field Required"),
     difficulty: yup.string().required("Field Required"),
     frequency: yup.string().required("Field Required"),
-    how_much_achieved: yup.number().required("Field Required"),
   });
 
   const { register, handleSubmit, errors, reset } = useForm({
@@ -62,7 +54,7 @@ const AddHabit = () => {
   });
 
   const handleForm = (data) => {
-    data = { ...data, user: user_id, achieved: false };
+    data = { ...data, user: user_id, achieved: false, how_much_achieved: 0 };
     api
       .post("/habits/", data, {
         headers: { Authorization: `Bearer ${token}` },
@@ -107,13 +99,6 @@ const AddHabit = () => {
               error={errors.frequency}
             >
               {frequency}
-            </FormActionSelect>
-            <FormActionSelect
-              name="how_much_achieved"
-              inputRef={register}
-              error={errors.how_much_achieved}
-            >
-              {how_much_achieved}
             </FormActionSelect>
           </FormAction>
         </GlobalWrap>
