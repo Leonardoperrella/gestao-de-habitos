@@ -24,7 +24,7 @@ const Menu = () => {
         <MenuIcon edge="end">
           <Person />
         </MenuIcon>
-        <MenuIcon color="black">
+        <MenuIcon>
           <Search />
         </MenuIcon>
       </MenuIconsWrap>
