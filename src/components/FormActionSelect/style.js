@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const ContainerSelect = styled.div`
-  width: 300px;
-`;
+import { ContainerInput } from "../FormUserInput/style";
+
+export const ContainerSelect = styled(ContainerInput)``;
 
 export const Select = styled.select`
   box-sizing: border-box;
