@@ -32,7 +32,7 @@ export const ButtonSubmit = styled.button`
   box-shadow: 1px 5px 5px #943b41;
   border: none;
   border-radius: 10%;
-  margin: 15px 35px;
+  margin: 5px 30px;
 `;
 
 export const ButtonIcon = styled(ImArrowRight2)`
