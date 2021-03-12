@@ -12,8 +12,8 @@ export const Select = styled.select`
 
   font-size: 1rem;
   padding-left: 0.5rem;
-  background-color: #f9f9f9;
-  border: 2px solid #e8f0fe;
+  background-color: #e8f0fe;
+  border: 2px solid #b7bfcc;
   padding-top: 0.3rem;
 
   -webkit-appearance: none;
