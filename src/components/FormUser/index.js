@@ -11,7 +11,7 @@ import {
 } from "./style";
 import { COLORS } from "../../style";
 
-const FormUser = ({ children, isRegistering }) => {
+const FormUser = ({ children, isRegistering, handleSubmit }) => {
   return (
     <div>
       <div>
@@ -21,12 +21,14 @@ const FormUser = ({ children, isRegistering }) => {
       </div>
 
       <div>
-        <Form> {children} </Form>
-      </div>
+        <Form onSubmit={handleSubmit}>
+          {children}
 
-      <ButtonSubmit>
-        <ButtonIcon />
-      </ButtonSubmit>
+          <ButtonSubmit>
+            <ButtonIcon />
+          </ButtonSubmit>
+        </Form>
+      </div>
 
       <ContainerLink>
         <LinkRegister>{isRegistering ? "Register" : "Sing in"}</LinkRegister>
