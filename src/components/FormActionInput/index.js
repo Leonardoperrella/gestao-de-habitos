@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { ContainerInput, Input, Label, Span, MessageError } from "./style";
+import React from "react";
+import { ContainerInput, Input, Label, Span } from "./style";
 
-const FormUserInput = ({ children, error, inputRef, name, type }) => {
-  const [activeInput, setActiveInput] = useState(false);
+const FormActionInput = ({ children }) => {
+  const [activeInput, setActiveInput] = React.useState(false);
 
   const handleChange = ({ target }) => {
     if (target.value !== "") {
@@ -21,27 +21,19 @@ const FormUserInput = ({ children, error, inputRef, name, type }) => {
   const handleFocus = () => {
     setActiveInput(true);
   };
-  console.log(error);
-
   return (
     <ContainerInput>
       <Label>
-        <Span activeInput={activeInput} error={error}>
-          {children}
-        </Span>
+        <Span activeInput={activeInput}>{children}</Span>
         <Input
-          type={type}
+          type="text"
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          ref={inputRef}
-          error={error}
-          name={name}
         />
       </Label>
-      {error && <MessageError>{error.message}</MessageError>}
     </ContainerInput>
   );
 };
 
-export default FormUserInput;
+export default FormActionInput;
