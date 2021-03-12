@@ -12,9 +12,9 @@ const Register = () => {
         <BackGroundImage image={Background} />
         <GlobalWrap>
           <FormUser isRegistering>
-            <FormUserInput></FormUserInput>
-            <FormUserInput></FormUserInput>
-            <FormUserInput></FormUserInput>
+            <FormUserInput>Username</FormUserInput>
+            <FormUserInput>Email</FormUserInput>
+            <FormUserInput>Password</FormUserInput>
           </FormUser>
         </GlobalWrap>
       </GlobalContainer>
