@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { Link } from "@material-ui/core";
 import { ImArrowRight2 } from "react-icons/im";
+import { FONTS } from "../../style";
 
 export const FormTitle = styled.h1`
   text-align: center;
+  font-family: ${FONTS.highlight};
+  font-size: 60px;
+  letter-spacing: 3px;
 `;
 
 export const SquareRed = styled.div`
@@ -49,6 +53,8 @@ export const ContainerLink = styled.div`
 export const LinkRegister = styled(Link)`
   color: black !important;
   font-size: 2rem;
+  font-family: ${FONTS.normal};
+  text-decoration: none;
 `;
 
 export const LinkSingIn = styled(Link)`

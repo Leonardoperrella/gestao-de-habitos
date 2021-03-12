@@ -15,7 +15,7 @@ const FormUser = ({ children, isRegistering }) => {
     <div>
       <div>
         <SquareRed />
-        <FormTitle>WE ARE VALORANT</FormTitle>
+        <FormTitle>WE ARE HABITORANT</FormTitle>
         <SquareGrey />
       </div>
 

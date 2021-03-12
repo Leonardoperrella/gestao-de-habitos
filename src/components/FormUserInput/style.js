@@ -17,6 +17,7 @@ export const Input = styled.input`
   border: 2px solid #b7bfcc;
   padding-top: 0.3rem;
   outline: none;
+  margin: 12px 0;
 `;
 
 export const Span = styled.span`
