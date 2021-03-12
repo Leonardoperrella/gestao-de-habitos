@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AddHabit from "../pages/AddHabit";
+import EditHabit from "../pages/EditHabit";
 
 const Routes = () => {
   return (
@@ -22,6 +23,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/habits">
         <Habits />
+      </Route>
+      <Route exact path="/edit-habit">
+        <EditHabit />
       </Route>
     </Switch>
   );
