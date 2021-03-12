@@ -75,45 +75,51 @@ const AddHabit = () => {
   };
 
   return (
-    <GlobalContainer>
-      <BackGroundImage image={Background} />
-      <GlobalWrap>
-        <FormAction handleSubmit={handleSubmit(handleForm)} title="Add Habit">
-          <FormUserInput name="title" inputRef={register} error={errors.title}>
-            Title
-          </FormUserInput>
-          <FormActionSelect
-            name="category"
-            inputRef={register}
-            error={errors.category}
-          >
-            {category}
-          </FormActionSelect>
-          <FormActionSelect
-            name="difficulty"
-            inputRef={register}
-            error={errors.difficulty}
-          >
-            {difficulty}
-          </FormActionSelect>
-          <FormActionSelect
-            name="frequency"
-            inputRef={register}
-            error={errors.frequency}
-          >
-            {frequency}
-          </FormActionSelect>
-          <FormActionSelect
-            name="how_much_achieved"
-            inputRef={register}
-            error={errors.how_much_achieved}
-          >
-            {how_much_achieved}
-          </FormActionSelect>
-        </FormAction>
-        <Menu />
-      </GlobalWrap>
-    </GlobalContainer>
+    <>
+      <GlobalContainer>
+        <BackGroundImage image={Background} />
+        <GlobalWrap>
+          <FormAction handleSubmit={handleSubmit(handleForm)} title="Add Habit">
+            <FormUserInput
+              name="title"
+              inputRef={register}
+              error={errors.title}
+            >
+              Title
+            </FormUserInput>
+            <FormActionSelect
+              name="category"
+              inputRef={register}
+              error={errors.category}
+            >
+              {category}
+            </FormActionSelect>
+            <FormActionSelect
+              name="difficulty"
+              inputRef={register}
+              error={errors.difficulty}
+            >
+              {difficulty}
+            </FormActionSelect>
+            <FormActionSelect
+              name="frequency"
+              inputRef={register}
+              error={errors.frequency}
+            >
+              {frequency}
+            </FormActionSelect>
+            <FormActionSelect
+              name="how_much_achieved"
+              inputRef={register}
+              error={errors.how_much_achieved}
+            >
+              {how_much_achieved}
+            </FormActionSelect>
+          </FormAction>
+        </GlobalWrap>
+      </GlobalContainer>
+      <Menu />
+    </>
   );
 };
 
