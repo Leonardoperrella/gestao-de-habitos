@@ -3,7 +3,9 @@ export const COLORS = {
   highlight: "#FF4654",
   foreground: "#FFFFFF",
   text: "#1f1e1e",
+  textHighlight: "#FFFFFF",
   gray: "#b7b9bc",
+  dark: "#000000de",
 };
 
 export const FONTS = {
