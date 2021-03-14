@@ -4,6 +4,11 @@ import Menu from "../../components/Menu";
 import FormEdit from "../../components/FormEdit";
 import FormUserInput from "../../components/FormUserInput";
 import FormActionSelect from "../../components/FormActionSelect";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import api from "../../services/api";
+import { useState } from "react";
 
 const muckupDATA = {
   title: "Correr com personagem",
@@ -54,16 +59,47 @@ const markSelectedOptions = (data) => {
 markSelectedOptions(muckupDATA);
 
 const EditHabit = () => {
+  const schema = yup.object().shape({
+    title: yup.string().required("Field Required"),
+    category: yup.string().required("Field Required"),
+    difficulty: yup.string().required("Field Required"),
+    frequency: yup.string().required("Field Required"),
+  });
+
+  const { register, handleSubmit, errors, reset } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const handleForm = (data) => {};
+
   return (
     <GlobalContainer>
       <GlobalWrap>
-        <FormEdit>
-          <FormUserInput>{muckupDATA.title} </FormUserInput>
-          <FormActionSelect name="new category">{category}</FormActionSelect>
-          <FormActionSelect name="new difficulty">
+        <FormEdit handleSubmit={handleSubmit(handleForm)}>
+          <FormUserInput name="title" inputRef={register} error={errors.title}>
+            {muckupDATA.title}
+          </FormUserInput>
+          <FormActionSelect
+            name="new category"
+            inputRef={register}
+            error={errors.category}
+          >
+            {category}
+          </FormActionSelect>
+          <FormActionSelect
+            name="new difficulty"
+            inputRef={register}
+            error={errors.difficulty}
+          >
             {difficulty}
           </FormActionSelect>
-          <FormActionSelect name="new frequency">{frequency}</FormActionSelect>
+          <FormActionSelect
+            name="new frequency"
+            inputRef={register}
+            error={errors.frequency}
+          >
+            {frequency}
+          </FormActionSelect>
         </FormEdit>
       </GlobalWrap>
       <Menu></Menu>
