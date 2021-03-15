@@ -21,7 +21,6 @@ const FormUserInput = ({ children, error, inputRef, name, type }) => {
   const handleFocus = () => {
     setActiveInput(true);
   };
-  console.log(error);
 
   return (
     <ContainerInput>

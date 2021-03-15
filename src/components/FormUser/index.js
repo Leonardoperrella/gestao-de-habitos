@@ -6,7 +6,7 @@ import {
   ButtonSubmit,
   ButtonIcon,
   LinkRegister,
-  LinkSingIn,
+  LinkSignIn,
   ContainerLink,
 } from "./style";
 import { COLORS } from "../../style";
@@ -31,8 +31,8 @@ const FormUser = ({ children, isRegistering, handleSubmit }) => {
       </div>
 
       <ContainerLink>
-        <LinkRegister>{isRegistering ? "Register" : "Sing in"}</LinkRegister>
-        <LinkSingIn>{isRegistering ? "Sing in" : "Register"}</LinkSingIn>
+        <LinkRegister>{isRegistering ? "Register" : "Sign in"}</LinkRegister>
+        <LinkSignIn>{isRegistering ? "Sign in" : "Register"}</LinkSignIn>
       </ContainerLink>
     </div>
   );

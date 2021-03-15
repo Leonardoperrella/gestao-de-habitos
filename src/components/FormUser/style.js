@@ -59,7 +59,7 @@ export const LinkRegister = styled(Link)`
   text-decoration: none !important;
 `;
 
-export const LinkSingIn = styled(Link)`
+export const LinkSignIn = styled(Link)`
   color: #747a7e !important;
   font-size: 1rem;
   margin: 12px 28px !important;
