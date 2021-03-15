@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import api from "../../services/api";
+import CardHabit from "../CardHabit";
 
 const CarrosselHabit = () => {
   const [habits, setHabits] = React.useState([]);
@@ -38,19 +39,24 @@ const CarrosselHabit = () => {
   return (
     <ContainerCarrosel>
       <Slider {...settings}>
-        {habits.map((habit, index) => (
-          <div key={habit.id}>
-            <Habit>
-              <h2>{habit.title}</h2>
+        {habits.map(({ id, title, category, difficulty, frequency }, index) => (
+          <div key={id}>
+            <CardHabit
+              title={title}
+              category={category}
+              difficulty={difficulty}
+              frequency={frequency}
+            >
+              <h2>{title}</h2>
 
               <p>
-                {habit.category} - {habit.difficulty}
+                {category} - {difficulty}
               </p>
 
-              <p>Frequencia - {habit.frequency}</p>
+              <p>Frequencia - {frequency}</p>
 
               <p>Not Completed</p>
-            </Habit>
+            </CardHabit>
           </div>
         ))}
       </Slider>
