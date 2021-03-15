@@ -4,9 +4,10 @@ import GlobalContainer from "../../components/GlobalContainer";
 import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import Card from "../../components/Card";
+import { useGroups } from "../../providers/Groups";
 
 const Groups = () => {
-  const [apiGroups, setApiGroups] = useState([]);
+  const { groups, setGroups } = useGroups();
   const [nextPage, setNextPage] = useState("1");
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
@@ -23,12 +24,12 @@ const Groups = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        const groups = response.data.results.filter(
+        const pageGroups = response.data.results.filter(
           (group) => group.category.split("/")[0] === "habitorant"
         );
-        console.log(groups);
-        if (groups.length > 0) {
-          setApiGroups([...apiGroups, groups]);
+
+        if (pageGroups.length > 0) {
+          setGroups([...groups, pageGroups]);
         }
 
         if (!response.data.next) {
@@ -50,8 +51,8 @@ const Groups = () => {
   return (
     <GlobalContainer>
       <GlobalWrap>
-        {apiGroups.flat().map((group) => (
-          <Card>{group.name}</Card>
+        {groups.flat().map((group, index) => (
+          <Card key={index}>{group.name}</Card>
         ))}
       </GlobalWrap>
       <Menu></Menu>
