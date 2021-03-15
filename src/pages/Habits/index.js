@@ -3,8 +3,8 @@ import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
-import Card from "../../components/Card";
 import { useHabits } from "../../providers/Habits";
+import { CardHabit } from "../../components/Card/style";
 
 const Habits = () => {
   const [token] = useState(() => {
@@ -30,7 +30,18 @@ const Habits = () => {
   return (
     <GlobalContainer>
       <GlobalWrap>
-        <Card />
+        {habits.map(
+          ({ title, category, difficulty, frequency, completed }, key) => (
+            <CardHabit
+              title={title}
+              category={category}
+              difficulty={difficulty}
+              frequency={frequency}
+              completed={completed}
+              key={key}
+            />
+          )
+        )}
       </GlobalWrap>
       <Menu></Menu>
     </GlobalContainer>
