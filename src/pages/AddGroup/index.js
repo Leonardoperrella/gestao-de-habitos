@@ -30,12 +30,13 @@ const AddGroup = () => {
   });
 
   const handleForm = (data) => {
+    data = { ...data, category: `habitorant/${data.category}` };
+
     api
       .post("/groups/", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log(response);
         reset();
       })
       .catch((e) => setGroupError(e.response));
