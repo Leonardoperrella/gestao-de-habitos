@@ -7,6 +7,8 @@ import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import FormEdit from "../../components/FormEdit";
 import FormUserInput from "../../components/FormUserInput";
+import BackGroundImage from "../../components/BackGroundImage";
+import Background from "../../Images/BackgroundEditHabit.jpg";
 
 const EditGroup = () => {
   const schema = yup.object().shape({
@@ -23,6 +25,7 @@ const EditGroup = () => {
 
   return (
     <GlobalContainer>
+      <BackGroundImage image={Background} />
       <GlobalWrap>
         <FormEdit handleSubmit={handleSubmit(handleForm)} name="Group">
           <FormUserInput

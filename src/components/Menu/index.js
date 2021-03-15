@@ -39,7 +39,7 @@ const Menu = () => {
         <MenuIcon edge="end" onClick={() => handleNavigation("/profile")}>
           <Person />
         </MenuIcon>
-        <MenuIcon color="black" onClick={() => handleNavigation("/search")}>
+        <MenuIcon onClick={() => handleNavigation("/search")}>
           <Search />
         </MenuIcon>
       </MenuIconsWrap>
