@@ -1,3 +1,4 @@
+import CarrosselHabit from "../../components/CarroselHabit";
 import Menu from "../../components/Menu";
 import {
   HomeContainer,
@@ -11,9 +12,15 @@ const Home = () => {
     <div>
       <HomeContainer>
         <HomeTitle>Home</HomeTitle>
+
         <HomeHabitWrap>
-          <HomeTitle small>To do today</HomeTitle>
+          <HomeTitle small>To do</HomeTitle>
         </HomeHabitWrap>
+      </HomeContainer>
+
+      <CarrosselHabit />
+
+      <HomeContainer>
         <HomeGroupWrap>
           <HomeTitle small>Groups</HomeTitle>
         </HomeGroupWrap>

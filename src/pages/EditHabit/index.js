@@ -78,7 +78,7 @@ const EditHabit = () => {
     <GlobalContainer>
       <BackGroundImage image={Background} />
       <GlobalWrap>
-        <FormEdit handleSubmit={handleSubmit(handleForm)}>
+        <FormEdit handleSubmit={handleSubmit(handleForm)} name="Habit">
           <FormUserInput name="title" inputRef={register} error={errors.title}>
             {muckupDATA.title}
           </FormUserInput>
