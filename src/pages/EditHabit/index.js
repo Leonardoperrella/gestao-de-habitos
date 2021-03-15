@@ -9,6 +9,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 import { useState } from "react";
+import BackGroundImage from "../../components/BackGroundImage";
+import Background from "../../Images/BackgroundEditHabit.jpg";
 
 const muckupDATA = {
   title: "Correr com personagem",
@@ -74,6 +76,7 @@ const EditHabit = () => {
 
   return (
     <GlobalContainer>
+      <BackGroundImage image={Background} />
       <GlobalWrap>
         <FormEdit handleSubmit={handleSubmit(handleForm)}>
           <FormUserInput name="title" inputRef={register} error={errors.title}>
