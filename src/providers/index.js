@@ -4,7 +4,7 @@ import { GroupsProvider } from "./Groups";
 const Providers = ({ children }) => {
   return (
     <GroupsProvider>
-      <HabitsProvider>{children}</HabitsProvider>;
+      <HabitsProvider>{children}</HabitsProvider>
     </GroupsProvider>
   );
 };
