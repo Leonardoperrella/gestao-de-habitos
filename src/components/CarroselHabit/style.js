@@ -14,7 +14,7 @@ export const Habit = styled.div`
 `;
 
 export const ContainerCarrosel = styled.div`
-  width: 90vw;
-  margin: 0 auto;
+  width: 100vw;
+  padding: 0 15px;
   overflow: hidden;
 `;
