@@ -1,13 +1,13 @@
 import { FormEditContainer, FormEditTitle, FormEditButton } from "./style";
 
-const FormEdit = ({ children, handleSubmit }) => {
+const FormEdit = ({ children, handleSubmit, name }) => {
   return (
     <>
       <FormEditContainer onSubmit={handleSubmit}>
-        <FormEditTitle>Edit Habit</FormEditTitle>
+        <FormEditTitle>Edit {name}</FormEditTitle>
         {children}
         <FormEditButton>Save edit</FormEditButton>
-        <FormEditButton isRemovable>Delete Habit</FormEditButton>
+        <FormEditButton isRemovable> Delete {name}</FormEditButton>
       </FormEditContainer>
     </>
   );
