@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HabitItem = styled.div`
   border: 1px solid #000;
-  width: 90%;
+  width: 300px;
   margin: 0 auto;
 
   background-color: #ff4654;
