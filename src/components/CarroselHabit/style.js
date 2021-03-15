@@ -1,20 +1,38 @@
 import styled from "styled-components";
 
-export const Carrosel = styled.div`
-  display: flex;
-  transition: 0.2s;
-`;
-
 export const Habit = styled.div`
-  flex: none;
   border: 1px solid #000;
-  background-color: blue;
-  width: 300px;
-  margin: 0 15px;
+  width: 90%;
+  margin: 0 auto;
+
+  background-color: #ff4654;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 600;
+
+  h2 {
+    margin-bottom: 7px;
+  }
+
+  p {
+    margin: 5px;
+    font-size: 0.875rem;
+  }
+
+  p:last-child {
+    margin: 20px;
+    font-size: 1.5rem;
+  }
 `;
 
 export const ContainerCarrosel = styled.div`
-  width: 100vw;
-  padding: 0 15px;
+  width: 90vw;
+  margin: 0 auto;
   overflow: hidden;
 `;
