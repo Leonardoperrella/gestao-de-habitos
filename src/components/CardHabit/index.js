@@ -21,7 +21,7 @@ const CardHabit = ({
   return (
     <HabitItem>
       <IconEdit onClick={() => handleHistory(id)}></IconEdit>
-      <h3>{title}</h3>
+      <h2>{title}</h2>
       <p>
         {category} - {difficulty}
       </p>
