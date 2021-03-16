@@ -14,6 +14,7 @@ import FormAction from "../../components/FormAction";
 
 const AddHabit = () => {
   const [habitError, setHabitError] = useState({});
+  const [inputValue, setInputValue] = useState("");
 
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
@@ -76,6 +77,8 @@ const AddHabit = () => {
               name="title"
               inputRef={register}
               error={errors.title}
+              setInputValue={setInputValue}
+              value={inputValue}
             >
               Title
             </FormUserInput>
