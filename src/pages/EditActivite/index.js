@@ -11,18 +11,15 @@ import FormEdit from "../../components/FormEdit";
 import FormUserInput from "../../components/FormUserInput";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
-import { useGroups } from "../../providers/Groups";
 
-const EditGroup = () => {
+const EditActivite = () => {
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
 
   const schema = yup.object().shape({
-    name: yup.string().required("Field Required"),
-    description: yup.string().required("Field Required"),
-    category: yup.string().required("Field Required"),
+    title: yup.string().required("Field Required"),
   });
 
   const { register, handleSubmit, errors } = useForm({
@@ -30,20 +27,16 @@ const EditGroup = () => {
   });
 
   const params = useParams();
-  const [groupError, setGroupError] = useState({});
-  const [inputName, setInputName] = useState("");
-  const [inputDescription, setInputDescription] = useState("");
-  const [inputCategory, setInputCategory] = useState("");
+  const [editError, setEditError] = useState({});
+  const [inputTitle, setInputTitle] = useState("");
 
-  const getGroup = async () => {
+  const getActivite = async () => {
     await api
-      .get(`/groups/${params.id}/`, {
+      .get(`/activities/${params.id}/`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        setInputName(response.data.name);
-        setInputDescription(response.data.description);
-        setInputCategory(response.data.category);
+        setInputTitle(response.data.title);
       })
       .catch((e) => {
         console.log(e.response);
@@ -51,20 +44,27 @@ const EditGroup = () => {
   };
 
   useEffect(() => {
-    getGroup();
+    getActivite();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleForm = (data) => {
+    const today = new Date().toLocaleString();
+    const fullData = today.split(" ")[0];
+    const year = fullData.split("/")[2];
+    const month = fullData.split("/")[1];
+    const day = fullData.split("/")[0];
+    const time = today.split(" ")[1];
+    const realizationTime = `${year}-${month}-${day}T${time}Z`;
+    data = { ...data, realization_time: realizationTime, group: 11 };
     console.log(data);
-    data = { ...data, category: `habitorant/${data.category}` };
 
     api
-      .patch(`/groups/${params.id}/`, data, {
+      .patch(`/activities/${params.id}/`, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {})
-      .catch((e) => setGroupError(e.response));
+      .catch((e) => setEditError(e.response));
   };
 
   return (
@@ -73,35 +73,17 @@ const EditGroup = () => {
       <GlobalWrap>
         <FormEdit
           handleSubmit={handleSubmit(handleForm)}
-          name="Group"
-          subscribePath={`/groups/${params.id}/subscribe/`}
+          name="Activite"
+          deletePath={`/activities/${params.id}/`}
         >
           <FormUserInput
-            name="name"
+            name="title"
             inputRef={register}
-            error={errors.name}
-            value={inputName}
-            setInputValue={setInputName}
+            error={errors.title}
+            value={inputTitle}
+            setInputValue={setInputTitle}
           >
-            Name
-          </FormUserInput>
-          <FormUserInput
-            name="description"
-            inputRef={register}
-            error={errors.description}
-            value={inputDescription}
-            setInputValue={setInputDescription}
-          >
-            Description
-          </FormUserInput>
-          <FormUserInput
-            name="category"
-            inputRef={register}
-            error={errors.category}
-            value={inputCategory}
-            setInputValue={setInputCategory}
-          >
-            Category
+            Title
           </FormUserInput>
         </FormEdit>
       </GlobalWrap>
@@ -109,4 +91,4 @@ const EditGroup = () => {
     </GlobalContainer>
   );
 };
-export default EditGroup;
+export default EditActivite;
