@@ -61,27 +61,35 @@ const markSelectedOptions = (data) => {
 markSelectedOptions(muckupDATA);
 
 const EditHabit = () => {
+  const [habitTitle, setHabitTitle] = useState(muckupDATA.title);
+
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
-    category: yup.string().required("Field Required"),
-    difficulty: yup.string().required("Field Required"),
-    frequency: yup.string().required("Field Required"),
+    category: yup.string(),
+    difficulty: yup.string(),
+    frequency: yup.string(),
   });
 
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const handleForm = (data) => {};
+  const handleForm = (data) => {
+    console.log(data);
+  };
 
   return (
     <GlobalContainer>
       <BackGroundImage image={Background} />
       <GlobalWrap>
         <FormEdit handleSubmit={handleSubmit(handleForm)} name="Habit">
-          <FormUserInput name="title" inputRef={register} error={errors.title}>
-            {muckupDATA.title}
-          </FormUserInput>
+          <FormUserInput
+            name="title"
+            inputRef={register}
+            error={errors.title}
+            value={habitTitle}
+            setInputValue={setHabitTitle}
+          ></FormUserInput>
           <FormActionSelect
             name="new category"
             inputRef={register}
