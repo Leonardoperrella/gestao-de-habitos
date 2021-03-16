@@ -12,6 +12,7 @@ import GroupActivities from "../pages/GroupActivities";
 import AddActivite from "../pages/AddActivite";
 import EditActivite from "../pages/EditActivite";
 import AddGoal from "../pages/AggGoal";
+import Profile from "../pages/Profile";
 
 const Routes = () => {
   return (
@@ -55,6 +56,10 @@ const Routes = () => {
       <Route exact path="/add-goal">
         <AddGoal />
       </Route>
+      <Route exact path="/profile">
+        <Profile />
+      </Route>
+      <Route exact path="/search"></Route>
     </Switch>
   );
 };
