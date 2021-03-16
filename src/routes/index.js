@@ -11,7 +11,7 @@ import EditGroup from "../pages/EditGroup";
 import GroupActivities from "../pages/GroupActivities";
 import AddActivite from "../pages/AddActivite";
 import EditActivite from "../pages/EditActivite";
-import AddGoal from "../pages/AggGoal";
+import AddGoal from "../pages/AddGoal";
 
 const Routes = () => {
   return (
