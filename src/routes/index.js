@@ -27,7 +27,7 @@ const Routes = () => {
       <Route exact path="/habits">
         <Habits />
       </Route>
-      <Route exact path="/edit-habit">
+      <Route exact path="/edit-habit/:id">
         <EditHabit />
       </Route>
       <Route exact path="/add-group">

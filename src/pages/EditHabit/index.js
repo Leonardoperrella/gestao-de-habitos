@@ -8,19 +8,11 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
-
-const muckupDATA = {
-  title: "Correr com personagem",
-  category: "Mechanical",
-  difficulty: "Hard",
-  frequency: "Weekend",
-  achieved: false,
-  how_much_achieved: 30,
-  user: 10,
-};
+import { useHistory, useParams } from "react-router-dom";
+import { useHabits } from "../../providers/Habits";
 
 let category = [
   { value: "Aim", content: "Aim" },
@@ -40,28 +32,41 @@ let frequency = [
   { value: "Weekend", content: "Weekend" },
 ];
 
-const markSelectedOptions = (data) => {
-  category.map((option) => {
-    if (option.value === data.category) {
-      option.selected = true;
-    }
-  });
-  difficulty.map((option) => {
-    if (option.value === data.difficulty) {
-      option.selected = true;
-    }
-  });
-  frequency.map((option) => {
-    if (option.value === data.frequency) {
-      option.selected = true;
-    }
-  });
-};
-
-markSelectedOptions(muckupDATA);
-
 const EditHabit = () => {
-  const [habitTitle, setHabitTitle] = useState(muckupDATA.title);
+  const params = useParams();
+
+  const [habits] = useState(() => {
+    const getHabits = localStorage.getItem("habits") || "";
+    return JSON.parse(getHabits);
+  });
+
+  const selectedHabit =
+    habits.filter(({ id }) => id === Number(params.id))[0] || "";
+
+  console.log(selectedHabit);
+  console.log(params);
+  console.log(habits);
+  const [inputValue, setInputValue] = useState(selectedHabit.title);
+
+  const markSelectedOptions = (data) => {
+    category.map((option) => {
+      if (option.value === data.category) {
+        option.selected = true;
+      }
+    });
+    difficulty.map((option) => {
+      if (option.value === data.difficulty) {
+        option.selected = true;
+      }
+    });
+    frequency.map((option) => {
+      if (option.value === data.frequency) {
+        option.selected = true;
+      }
+    });
+  };
+
+  markSelectedOptions(selectedHabit);
 
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
@@ -87,8 +92,8 @@ const EditHabit = () => {
             name="title"
             inputRef={register}
             error={errors.title}
-            value={habitTitle}
-            setInputValue={setHabitTitle}
+            value={inputValue}
+            setInputValue={setInputValue}
           ></FormUserInput>
           <FormActionSelect
             name="new category"

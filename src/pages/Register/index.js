@@ -14,6 +14,9 @@ import FormUserInput from "../../components/FormUserInput";
 
 const Register = () => {
   const history = useHistory();
+  const [userValue, setUserValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+  const [emailvalue, setEmailValue] = useState("");
   const [registerError, setRegisterError] = useState({});
   const schema = yup.object().shape({
     username: yup.string().required("Field Required"),
@@ -44,6 +47,8 @@ const Register = () => {
               name="username"
               inputRef={register}
               error={errors.username}
+              value={userValue}
+              setInputValue={setUserValue}
             >
               Username
             </FormUserInput>
@@ -51,6 +56,8 @@ const Register = () => {
               name="email"
               inputRef={register}
               error={errors.email}
+              value={emailvalue}
+              setInputValue={setEmailValue}
             >
               Email
             </FormUserInput>
@@ -58,6 +65,8 @@ const Register = () => {
               name="password"
               inputRef={register}
               error={errors.password}
+              value={passwordValue}
+              setInputValue={setPasswordValue}
             >
               Password
             </FormUserInput>
