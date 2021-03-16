@@ -3,7 +3,7 @@ import api from "../../services/api";
 import GlobalContainer from "../../components/GlobalContainer";
 import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
-import Card from "../../components/Card";
+import CardGroup from "../../components/CardGroup";
 import { useGroups } from "../../providers/Groups";
 import GobalLoading from "../../components/GobalLoading";
 
@@ -38,8 +38,8 @@ const Groups = () => {
         }
       })
       .catch((e) => {
-        console.log(e);
-        setIsLoading(true);
+        console.log(e.response);
+        setIsLoading(false);
       });
   };
 
@@ -55,7 +55,17 @@ const Groups = () => {
     <GlobalContainer>
       <GlobalWrap>
         {!isLoading ? (
-          groups.flat().map(({ id }) => <Card key={id} />)
+          groups
+            .flat()
+            .map(({ id, name, description, category }) => (
+              <CardGroup
+                key={id}
+                id={id}
+                name={name}
+                description={description}
+                category={category}
+              />
+            ))
         ) : (
           <GobalLoading />
         )}
