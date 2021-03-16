@@ -7,7 +7,7 @@ import GlobalWrap from "../../components/GlobalWrap";
 import GlobalContainer from "../../components/GlobalContainer";
 import BackGroundImage from "../../components/BackGroundImage";
 import FormUserInput from "../../components/FormUserInput";
-import Background from "../../Images/BackgroundAddGroup.jpg";
+import Background from "../../Images/BackgroundAddActivite.png";
 import Menu from "../../components/Menu";
 import FormAction from "../../components/FormAction";
 
