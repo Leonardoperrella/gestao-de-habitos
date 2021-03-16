@@ -6,7 +6,7 @@ const FormActionSelect = ({ children, inputRef, error, name, value }) => {
     <ContainerSelect>
       <Select ref={inputRef} name={name} value={value}>
         <option value="" disabled>
-          Selecione uma opção
+          {name}
         </option>
         {children.map(({ value, content, selected }, index) => (
           <option key={index} value={value} selected={selected}>
