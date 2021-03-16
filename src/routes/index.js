@@ -40,7 +40,7 @@ const Routes = () => {
       <Route exact path="/edit-group">
         <EditGroup />
       </Route>
-      <Route exact path="/group-activities">
+      <Route exact path="/group-activities/:id">
         <GroupActivities />
       </Route>
     </Switch>

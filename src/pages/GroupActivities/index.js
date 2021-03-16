@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import GlobalContainer from "../../components/GlobalContainer";
 import GlobalWrap from "../../components/GlobalWrap";
+import Menu from "../../components/Menu";
 import api from "../../services/api";
 
 const GroupActivities = () => {
-  const [activities, setActivities] = useState();
-
-  const [token] = useState(() => {
-    const sessionToken = localStorage.getItem("token") || "";
-    return JSON.parse(sessionToken);
-  });
+  const [activities, setActivities] = useState([]);
+  const state = useParams();
 
   const getGroupActivities = async () => {
-    await api
-      .get("/activities/", {
-        headers: { Authorizantion: `Bearer ${token}` },
-      })
-      .then((response) => console.log(response));
+    const response = await api.get(`/groups/${state.id}/`);
+    setActivities(response.data.activities);
+    console.log(response.data.activities);
   };
 
   useEffect(() => {
@@ -25,12 +21,12 @@ const GroupActivities = () => {
 
   return (
     <GlobalContainer>
-      <h1>activities</h1>
       <GlobalWrap>
-        {/* {activities.map((title, index) => (
+        {activities?.map(({ title }, index) => (
           <div key={index}>{title}</div>
-        ))} */}
+        ))}
       </GlobalWrap>
+      <Menu></Menu>
     </GlobalContainer>
   );
 };
