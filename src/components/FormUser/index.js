@@ -5,13 +5,24 @@ import {
   Form,
   ButtonSubmit,
   ButtonIcon,
-  LinkRegister,
-  LinkSignIn,
+  LabelSignInRegiter,
+  LinkSignInRegiter,
   ContainerLink,
 } from "./style";
 import { COLORS } from "../../style";
+import { useHistory } from "react-router-dom";
 
 const FormUser = ({ children, isRegistering, handleSubmit }) => {
+  const history = useHistory();
+
+  const handleClick = (isRegistering) => {
+    if (isRegistering) {
+      history.push("/");
+    } else {
+      history.push("/register");
+    }
+  };
+
   return (
     <div>
       <div>
@@ -31,8 +42,12 @@ const FormUser = ({ children, isRegistering, handleSubmit }) => {
       </div>
 
       <ContainerLink>
-        <LinkRegister>{isRegistering ? "Register" : "Sign in"}</LinkRegister>
-        <LinkSignIn>{isRegistering ? "Sign in" : "Register"}</LinkSignIn>
+        <LabelSignInRegiter>
+          {isRegistering ? "Register" : "Sign in"}
+        </LabelSignInRegiter>
+        <LinkSignInRegiter onClick={() => handleClick(isRegistering)}>
+          {isRegistering ? "Sign in" : "Register"}
+        </LinkSignInRegiter>
       </ContainerLink>
     </div>
   );
