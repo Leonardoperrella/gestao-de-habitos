@@ -13,6 +13,7 @@ import AddActivite from "../pages/AddActivite";
 import EditActivite from "../pages/EditActivite";
 import AddGoal from "../pages/AddGoal";
 import Profile from "../pages/Profile";
+import EditGoal from "../pages/EditGoal";
 
 const Routes = () => {
   return (
@@ -55,6 +56,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/add-goal">
         <AddGoal />
+      </Route>
+      <Route exact path="/edit-goal/:id">
+        <EditGoal />
       </Route>
       <Route exact path="/profile">
         <Profile />
