@@ -13,6 +13,9 @@ import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
 import { useHistory, useParams } from "react-router-dom";
 import { useHabits } from "../../providers/Habits";
+import { ToastContainer, toast } from "react-toastify";
+import Notification from "../../components/Notification";
+import "react-toastify/dist/ReactToastify.css";
 
 let category = [
   { value: "Aim", content: "Aim" },
@@ -32,8 +35,11 @@ let frequency = [
   { value: "Weekend", content: "Weekend" },
 ];
 
+toast.configure();
+
 const EditHabit = () => {
   const params = useParams();
+  const history = useHistory();
 
   const [selectedHabit, setSelectedHabit] = useState({});
 
@@ -41,6 +47,17 @@ const EditHabit = () => {
   const [selectCategory] = useState(selectedHabit.category);
   const [selectDifficulty] = useState(selectedHabit.difficulty);
   const [selectFrequency] = useState(selectedHabit.frequency);
+
+  const notify = () =>
+    toast("Salvo com sucesso!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
@@ -71,9 +88,11 @@ const EditHabit = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => console.log(response));
-  };
 
-  const handleDelete = () => {};
+    notify();
+
+    //history.push("/home");
+  };
 
   return (
     <GlobalContainer>
@@ -118,6 +137,20 @@ const EditHabit = () => {
             {frequency}
           </FormActionSelect>
         </FormEdit>
+        <Notification
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          className=".Toastify__progress-bar--dark .Toastify__toast--dark"
+        >
+          TESTE
+        </Notification>
       </GlobalWrap>
       <Menu></Menu>
     </GlobalContainer>
