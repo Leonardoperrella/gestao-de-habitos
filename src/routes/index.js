@@ -11,6 +11,7 @@ import EditGroup from "../pages/EditGroup";
 import GroupActivities from "../pages/GroupActivities";
 import AddActivite from "../pages/AddActivite";
 import EditActivite from "../pages/EditActivite";
+import AddGoal from "../pages/AggGoal";
 
 const Routes = () => {
   return (
@@ -50,6 +51,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/edit-activite/:id">
         <EditActivite />
+      </Route>
+      <Route exact path="/add-goal">
+        <AddGoal />
       </Route>
     </Switch>
   );
