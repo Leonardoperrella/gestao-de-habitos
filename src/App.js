@@ -1,11 +1,14 @@
 import Routes from "./routes";
 import GlobalStyles from "./components/GlobalStyle";
+import UserProvider from "./providers/UserProvider";
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <Routes />
+      <UserProvider>
+        <Routes />
+      </UserProvider>
     </>
   );
 }
