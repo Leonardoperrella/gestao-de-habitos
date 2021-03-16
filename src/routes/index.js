@@ -8,6 +8,7 @@ import EditHabit from "../pages/EditHabit";
 import AddGroup from "../pages/AddGroup";
 import Groups from "../pages/Groups";
 import EditGroup from "../pages/EditGroup";
+import GroupActivities from "../pages/GroupActivities";
 import AddActivite from "../pages/AddActivite";
 
 const Routes = () => {
@@ -39,6 +40,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/edit-group">
         <EditGroup />
+      </Route>
+      <Route exact path="/group-activities/:id">
+        <GroupActivities />
       </Route>
       <Route exact path="/add-activite">
         <AddActivite />
