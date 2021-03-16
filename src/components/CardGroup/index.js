@@ -5,7 +5,7 @@ import { GroupItem } from "./style";
 const CardGroup = ({ id, name, description, category }) => {
   const history = useHistory();
   const handleClick = (id) => {
-    history.push("/edit-group", { id });
+    history.push(`/edit-group/${id}`);
   };
 
   return (
