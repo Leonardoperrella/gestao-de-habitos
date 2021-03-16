@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ContainerInput, Input, Label, Span, MessageError } from "./style";
 
 const FormUserInput = ({
@@ -11,6 +11,17 @@ const FormUserInput = ({
   setInputValue,
 }) => {
   const [activeInput, setActiveInput] = useState(false);
+
+  useEffect(() => {
+    if (value) {
+      setActiveInput(true);
+      if (value.split("/")[0] === "habitorant") {
+        setInputValue(value.split("/")[1]);
+      } else {
+        setInputValue(value);
+      }
+    }
+  }, [value]);
 
   const handleChange = ({ target }) => {
     if (target.value !== "") {
