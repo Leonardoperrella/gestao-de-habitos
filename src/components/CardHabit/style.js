@@ -3,11 +3,11 @@ import { AiFillEdit } from "react-icons/ai";
 
 export const HabitItem = styled.div`
   border: 1px solid #000;
-  max-width: 338px;
+  max-width: 300px;
   max-height: 192px;
 
   background-color: #ff4654;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   color: #fff;
   font-family: "Roboto", sans-serif;
@@ -17,6 +17,8 @@ export const HabitItem = styled.div`
   flex-direction: column;
   align-items: center;
   font-weight: 600;
+  margin: 0 auto;
+
 
   h2 {
     margin-bottom: 7px;

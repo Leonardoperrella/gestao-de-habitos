@@ -1,5 +1,5 @@
 import React from "react";
-import { Habit, ContainerCarrosel } from "./style";
+import { ContainerCarrosel } from "./style";
 import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
