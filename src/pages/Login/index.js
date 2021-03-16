@@ -14,6 +14,8 @@ import FormUserInput from "../../components/FormUserInput";
 
 const Login = () => {
   const history = useHistory();
+  const [userValue, setUserValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
 
   const [loginError, setLoginError] = useState({});
 
@@ -48,6 +50,8 @@ const Login = () => {
             name="username"
             inputRef={register}
             error={errors.username}
+            value={userValue}
+            setInputValue={setUserValue}
           >
             Username
           </FormUserInput>
@@ -55,6 +59,8 @@ const Login = () => {
             name="password"
             inputRef={register}
             error={errors.password}
+            value={passwordValue}
+            setInputValue={setPasswordValue}
           >
             Password
           </FormUserInput>

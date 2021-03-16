@@ -5,6 +5,7 @@ import api from "../../services/api";
 import { useEffect, useState } from "react";
 import { useHabits } from "../../providers/Habits";
 import CardHabit from "../../components/CardHabit";
+import { HabitsTitle } from "./style";
 
 const Habits = () => {
   const [token] = useState(() => {
@@ -25,13 +26,14 @@ const Habits = () => {
   useEffect(() => {
     getUserHabits();
   }, []);
+  localStorage.setItem("habits", JSON.stringify(habits));
 
-  console.log(habits);
   return (
     <GlobalContainer>
+      <HabitsTitle>Habits</HabitsTitle>
       <GlobalWrap>
         {habits.map(
-          ({ title, category, difficulty, frequency, completed }, key) => (
+          ({ id, title, category, difficulty, frequency, completed }, key) => (
             <CardHabit
               title={title}
               category={category}
@@ -39,6 +41,7 @@ const Habits = () => {
               frequency={frequency}
               completed={completed}
               key={key}
+              id={id}
             />
           )
         )}

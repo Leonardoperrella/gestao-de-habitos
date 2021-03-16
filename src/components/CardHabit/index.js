@@ -1,15 +1,23 @@
 import React from "react";
 import { HabitItem } from "./style";
+import { useHistory } from "react-router-dom";
 
 const CardHabit = ({
+  id,
   title,
   category,
   difficulty,
   frequency,
   completed = false,
 }) => {
+  const history = useHistory();
+
+  const handleHistory = (id) => {
+    history.push(`/edit-habit/${id}`);
+  };
+
   return (
-    <HabitItem>
+    <HabitItem onClick={() => handleHistory(id)}>
       <h2>{title}</h2>
 
       <p>
