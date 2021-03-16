@@ -7,7 +7,13 @@ import {
   FormWrap,
 } from "./style";
 
-const FormEdit = ({ children, handleSubmit, name, deletePath }) => {
+const FormEdit = ({
+  children,
+  handleSubmit,
+  name,
+  deletePath,
+  subscribePath,
+}) => {
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
@@ -21,6 +27,18 @@ const FormEdit = ({ children, handleSubmit, name, deletePath }) => {
       .then((response) => console.log(response, "deletado"));
   };
 
+  const handleSubscribe = (subscribePath) => {
+    api
+      .post(
+        subscribePath,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => console.log(response, "subscribed"));
+  };
+
   return (
     <FormWrap>
       <FormEditContainer onSubmit={handleSubmit}>
@@ -28,9 +46,18 @@ const FormEdit = ({ children, handleSubmit, name, deletePath }) => {
         {children}
         <FormEditButton>Save edit</FormEditButton>
       </FormEditContainer>
-      <FormEditButton isRemovable onClick={() => handleDelete(deletePath)}>
-        Delete {name}
-      </FormEditButton>
+      {!subscribePath ? (
+        <FormEditButton isRemovable onClick={() => handleDelete(deletePath)}>
+          Delete {name}
+        </FormEditButton>
+      ) : (
+        <FormEditButton
+          isRemovable
+          onClick={() => handleSubscribe(subscribePath)}
+        >
+          Subscribe {name}
+        </FormEditButton>
+      )}
     </FormWrap>
   );
 };

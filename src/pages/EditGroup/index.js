@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 import api from "../../services/api";
@@ -29,7 +29,7 @@ const EditGroup = () => {
     resolver: yupResolver(schema),
   });
 
-  const { state } = useLocation();
+  const params = useParams();
   const [groupError, setGroupError] = useState({});
   const [inputName, setInputName] = useState("");
   const [inputDescription, setInputDescription] = useState("");
@@ -37,7 +37,7 @@ const EditGroup = () => {
 
   const getGroup = async () => {
     await api
-      .get(`/groups/${state.id}/`, {
+      .get(`/groups/${params.id}/`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -51,7 +51,6 @@ const EditGroup = () => {
   };
 
   useEffect(() => {
-    console.log(state.id);
     getGroup();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -61,7 +60,7 @@ const EditGroup = () => {
     data = { ...data, category: `habitorant/${data.category}` };
 
     api
-      .patch(`/groups/${state.id}/`, data, {
+      .patch(`/groups/${params.id}/`, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {})
@@ -72,7 +71,11 @@ const EditGroup = () => {
     <GlobalContainer>
       <BackGroundImage image={Background} />
       <GlobalWrap>
-        <FormEdit handleSubmit={handleSubmit(handleForm)} name="Group">
+        <FormEdit
+          handleSubmit={handleSubmit(handleForm)}
+          name="Group"
+          subscribePath={`/groups/${params.id}/subscribe/`}
+        >
           <FormUserInput
             name="name"
             inputRef={register}
