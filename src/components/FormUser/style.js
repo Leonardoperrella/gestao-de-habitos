@@ -52,14 +52,14 @@ export const ContainerLink = styled.div`
   cursor: pointer;
 `;
 
-export const LinkRegister = styled(Link)`
+export const LabelSignInRegiter = styled.label`
   color: black !important;
   font-size: 2rem;
   font-family: ${FONTS.normal};
   text-decoration: none !important;
 `;
 
-export const LinkSignIn = styled(Link)`
+export const LinkSignInRegiter = styled(Link)`
   color: #747a7e !important;
   font-size: 1rem;
   margin: 12px 28px !important;
