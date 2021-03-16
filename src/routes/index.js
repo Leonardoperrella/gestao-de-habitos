@@ -11,6 +11,7 @@ import EditGroup from "../pages/EditGroup";
 import GroupActivities from "../pages/GroupActivities";
 import AddActivite from "../pages/AddActivite";
 import EditActivite from "../pages/EditActivite";
+import Profile from "../pages/Profile";
 
 const Routes = () => {
   return (
@@ -51,6 +52,10 @@ const Routes = () => {
       <Route exact path="/edit-activite/:id">
         <EditActivite />
       </Route>
+      <Route exact path="/profile">
+        <Profile />
+      </Route>
+      <Route exact path="/search"></Route>
     </Switch>
   );
 };
