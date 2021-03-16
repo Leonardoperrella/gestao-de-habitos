@@ -13,6 +13,7 @@ import AddActivite from "../pages/AddActivite";
 import EditActivite from "../pages/EditActivite";
 import AddGoal from "../pages/AggGoal";
 import Profile from "../pages/Profile";
+import Search from "../pages/Search";
 
 const Routes = () => {
   return (
@@ -59,7 +60,9 @@ const Routes = () => {
       <Route exact path="/profile">
         <Profile />
       </Route>
-      <Route exact path="/search"></Route>
+      <Route exact path="/search">
+        <Search />
+      </Route>
     </Switch>
   );
 };
