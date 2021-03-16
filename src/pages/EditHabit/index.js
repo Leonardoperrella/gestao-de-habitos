@@ -35,38 +35,24 @@ let frequency = [
 const EditHabit = () => {
   const params = useParams();
 
-  const [habits] = useState(() => {
-    const getHabits = localStorage.getItem("habits") || "";
-    return JSON.parse(getHabits);
+  const [selectedHabit, setSelectedHabit] = useState({});
+
+  const [inputTitle, setInputTitle] = useState("");
+  const [selectCategory] = useState(selectedHabit.category);
+  const [selectDifficulty] = useState(selectedHabit.difficulty);
+  const [selectFrequency] = useState(selectedHabit.frequency);
+
+  const [token] = useState(() => {
+    const sessionToken = localStorage.getItem("token") || "";
+    return JSON.parse(sessionToken);
   });
 
-  const selectedHabit =
-    habits.filter(({ id }) => id === Number(params.id))[0] || "";
-
-  console.log(selectedHabit);
-  console.log(params);
-  console.log(habits);
-  const [inputValue, setInputValue] = useState(selectedHabit.title);
-
-  const markSelectedOptions = (data) => {
-    category.map((option) => {
-      if (option.value === data.category) {
-        option.selected = true;
-      }
+  useEffect(() => {
+    api.get(`/habits/${params.id}/`).then((response) => {
+      setSelectedHabit(response.data);
+      setInputTitle(response.data.title);
     });
-    difficulty.map((option) => {
-      if (option.value === data.difficulty) {
-        option.selected = true;
-      }
-    });
-    frequency.map((option) => {
-      if (option.value === data.frequency) {
-        option.selected = true;
-      }
-    });
-  };
-
-  markSelectedOptions(selectedHabit);
+  }, []);
 
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
@@ -80,39 +66,54 @@ const EditHabit = () => {
   });
 
   const handleForm = (data) => {
-    console.log(data);
+    api
+      .patch(`/habits/${params.id}/`, data, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => console.log(response));
   };
+
+  const handleDelete = () => {};
 
   return (
     <GlobalContainer>
       <BackGroundImage image={Background} />
       <GlobalWrap>
-        <FormEdit handleSubmit={handleSubmit(handleForm)} name="Habit">
+        <FormEdit
+          handleSubmit={handleSubmit(handleForm)}
+          name="Habit"
+          id={params.id}
+        >
           <FormUserInput
             name="title"
             inputRef={register}
             error={errors.title}
-            value={inputValue}
-            setInputValue={setInputValue}
-          ></FormUserInput>
+            value={inputTitle}
+            setInputValue={setInputTitle}
+          >
+            title
+          </FormUserInput>
           <FormActionSelect
-            name="new category"
+            name="category"
             inputRef={register}
             error={errors.category}
+            value={selectCategory}
           >
             {category}
           </FormActionSelect>
           <FormActionSelect
-            name="new difficulty"
+            name="difficulty"
             inputRef={register}
             error={errors.difficulty}
+            value={selectDifficulty}
           >
             {difficulty}
           </FormActionSelect>
           <FormActionSelect
-            name="new frequency"
+            name="frequency"
             inputRef={register}
             error={errors.frequency}
+            value={selectFrequency}
           >
             {frequency}
           </FormActionSelect>

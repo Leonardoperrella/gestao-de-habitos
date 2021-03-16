@@ -40,8 +40,9 @@ const CarrosselHabit = () => {
     <ContainerCarrosel>
       <Slider {...settings}>
         {habits.map(({ id, title, category, difficulty, frequency }, index) => (
-          <div key={id}>
+          <div key={index}>
             <CardHabit
+              id={id}
               title={title}
               category={category}
               difficulty={difficulty}

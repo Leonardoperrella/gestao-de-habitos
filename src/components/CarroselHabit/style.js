@@ -11,4 +11,5 @@ export const ContainerCarrosel = styled.div`
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
+  text-align: -webkit-center;
 `;

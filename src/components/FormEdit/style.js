@@ -3,6 +3,8 @@ import { COLORS, FONTS } from "../../style";
 
 export const FormEditContainer = styled.form``;
 
+export const FormWrap = styled.div``;
+
 export const FormEditTitle = styled.h1`
   font-family: ${FONTS.normal} !important;
   font-size: 28px !important;
