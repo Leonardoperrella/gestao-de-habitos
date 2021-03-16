@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { AiFillEdit } from "react-icons/ai";
 
 export const HabitItem = styled.div`
   border: 1px solid #000;
@@ -18,6 +19,9 @@ export const HabitItem = styled.div`
 
   h2 {
     margin-bottom: 7px;
+    max-width: 159px;
+    text-align: center;
+    padding: 10px;
   }
 
   p {
@@ -29,4 +33,13 @@ export const HabitItem = styled.div`
     margin: 20px;
     font-size: 1.5rem;
   }
+`;
+
+export const IconEdit = styled(AiFillEdit)`
+  color: #fff;
+  height: 27px;
+  width: 115px;
+  position: absolute;
+  margin-top: 23px;
+  margin-left: 229px;
 `;
