@@ -29,8 +29,6 @@ const AddHabit = () => {
 
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
-
-    difficulty: yup.string().required("Field Required"),
   });
 
   const { register, handleSubmit, errors, reset } = useForm({
