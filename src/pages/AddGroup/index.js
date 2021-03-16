@@ -13,6 +13,9 @@ import FormAction from "../../components/FormAction";
 
 const AddGroup = () => {
   const [groupError, setGroupError] = useState({});
+  const [inputName, setInputName] = useState("");
+  const [inputDescription, setInputDescription] = useState("");
+  const [inputCategory, setInputCategory] = useState("");
 
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
@@ -29,14 +32,16 @@ const AddGroup = () => {
     resolver: yupResolver(schema),
   });
 
-  const handleForm = (data) => {
+  const handleForm = async (data) => {
+    console.log(data);
     data = { ...data, category: `habitorant/${data.category}` };
 
-    api
+    await api
       .post("/groups/", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
+        console.log(response);
         reset();
       })
       .catch((e) => setGroupError(e.response));
@@ -48,13 +53,21 @@ const AddGroup = () => {
         <BackGroundImage image={Background} />
         <GlobalWrap>
           <FormAction handleSubmit={handleSubmit(handleForm)} title="Add Group">
-            <FormUserInput name="name" inputRef={register} error={errors.name}>
+            <FormUserInput
+              name="name"
+              inputRef={register}
+              error={errors.name}
+              value={inputName}
+              setInputValue={setInputName}
+            >
               Name
             </FormUserInput>
             <FormUserInput
               name="description"
               inputRef={register}
               error={errors.description}
+              value={inputDescription}
+              setInputValue={setInputDescription}
             >
               Description
             </FormUserInput>
@@ -62,6 +75,8 @@ const AddGroup = () => {
               name="category"
               inputRef={register}
               error={errors.category}
+              value={inputCategory}
+              setInputValue={setInputCategory}
             >
               Category
             </FormUserInput>
