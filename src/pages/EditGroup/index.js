@@ -74,7 +74,7 @@ const EditGroup = () => {
       <GlobalWrap>
         <FormEdit handleSubmit={handleSubmit(handleForm)} name="Group">
           <FormUserInput
-            name="new name"
+            name="name"
             inputRef={register}
             error={errors.name}
             value={inputName}
@@ -83,7 +83,7 @@ const EditGroup = () => {
             Name
           </FormUserInput>
           <FormUserInput
-            name="new description"
+            name="description"
             inputRef={register}
             error={errors.description}
             value={inputDescription}
@@ -92,7 +92,7 @@ const EditGroup = () => {
             Description
           </FormUserInput>
           <FormUserInput
-            name="new category"
+            name="category"
             inputRef={register}
             error={errors.category}
             value={inputCategory}
