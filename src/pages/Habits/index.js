@@ -4,7 +4,7 @@ import Menu from "../../components/Menu";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
 import { useHabits } from "../../providers/Habits";
-import { CardHabit } from "../../components/Card/style";
+import CardHabit from "../../components/CardHabit";
 
 const Habits = () => {
   const [token] = useState(() => {

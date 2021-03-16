@@ -1,7 +1,15 @@
 import { useState } from "react";
 import { ContainerInput, Input, Label, Span, MessageError } from "./style";
 
-const FormUserInput = ({ children, error, inputRef, name, type }) => {
+const FormUserInput = ({
+  children,
+  error,
+  inputRef,
+  name,
+  type,
+  value,
+  setInputValue,
+}) => {
   const [activeInput, setActiveInput] = useState(false);
 
   const handleChange = ({ target }) => {
@@ -10,6 +18,7 @@ const FormUserInput = ({ children, error, inputRef, name, type }) => {
     } else {
       setActiveInput(false);
     }
+    setInputValue(target.value);
   };
 
   const handleBlur = ({ target }) => {
@@ -36,6 +45,7 @@ const FormUserInput = ({ children, error, inputRef, name, type }) => {
           ref={inputRef}
           error={error}
           name={name}
+          value={value}
         />
       </Label>
       {error && <MessageError>{error.message}</MessageError>}
