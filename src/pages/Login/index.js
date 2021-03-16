@@ -61,6 +61,7 @@ const Login = () => {
             error={errors.password}
             value={passwordValue}
             setInputValue={setPasswordValue}
+            type="password"
           >
             Password
           </FormUserInput>

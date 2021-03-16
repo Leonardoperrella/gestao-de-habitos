@@ -10,6 +10,7 @@ export const HabitItem = styled.div`
   border: none;
   color: #fff;
   font-family: "Roboto", sans-serif;
+  text-align: center;
 
   display: flex;
   flex-direction: column;

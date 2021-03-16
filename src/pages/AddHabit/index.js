@@ -39,8 +39,8 @@ const AddHabit = () => {
 
   const frequency = [
     { value: "Daily", content: "Daily" },
-    { value: "Weekly", content: "Medium" },
-    { value: "Monthly", content: "Hard" },
+    { value: "Weekly", content: "Weekly" },
+    { value: "Weekend", content: "Weekend" },
   ];
 
   const schema = yup.object().shape({
