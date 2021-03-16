@@ -1,5 +1,5 @@
 import React from "react";
-import { HabitItem } from "./style";
+import { HabitItem, IconEdit } from "./style";
 import { useHistory } from "react-router-dom";
 
 const CardHabit = ({
@@ -12,14 +12,16 @@ const CardHabit = ({
 }) => {
   const history = useHistory();
 
+  console.log(id);
+
   const handleHistory = (id) => {
-    history.push(`/edit-habit/${id}`);
+    history.push(`/edit-habit/${id}/`);
   };
 
   return (
-    <HabitItem onClick={() => handleHistory(id)}>
+    <HabitItem>
+      <IconEdit onClick={() => handleHistory(id)}></IconEdit>
       <h2>{title}</h2>
-
       <p>
         {category} - {difficulty}
       </p>
