@@ -11,7 +11,6 @@ import FormEdit from "../../components/FormEdit";
 import FormUserInput from "../../components/FormUserInput";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
-import { useGroups } from "../../providers/Groups";
 
 const EditGroup = () => {
   const [token] = useState(() => {

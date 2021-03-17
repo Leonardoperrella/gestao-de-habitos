@@ -4,11 +4,10 @@ import GlobalContainer from "../../components/GlobalContainer";
 import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import CardGroup from "../../components/CardGroup";
-import { useGroups } from "../../providers/Groups";
 import GobalLoading from "../../components/GobalLoading";
 
 const Groups = () => {
-  const { groups, setGroups } = useGroups();
+  const [groups, setGroups] = useState([]);
   const [nextPage, setNextPage] = useState("1");
   const [isLoading, setIsLoading] = useState(true);
   const [token] = useState(() => {
