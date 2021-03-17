@@ -101,7 +101,8 @@ const EditHabit = () => {
         <FormEdit
           handleSubmit={handleSubmit(handleForm)}
           name="Habit"
-          id={params.id}
+          deletePath={`habits/${params.id}/`}
+          origin="/habits"
         >
           <FormUserInput
             name="title"

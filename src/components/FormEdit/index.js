@@ -10,44 +10,32 @@ import {
   FormBackButtonText,
   FormBackButtonWrap,
 } from "./style";
+import { useHistory } from "react-router-dom";
 
-const FormEdit = ({
-  children,
-  handleSubmit,
-  name,
-  deletePath,
-  subscribePath,
-}) => {
+const FormEdit = ({ children, handleSubmit, name, origin, deletePath }) => {
+  const history = useHistory();
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
 
-  const handleDelete = (deletePath) => {
+  const handleDelete = (path) => {
     api
-      .delete(deletePath, {
+      .delete(path, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => console.log(response, "deletado"));
   };
 
-  const handleSubscribe = (subscribePath) => {
-    api
-      .post(
-        subscribePath,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-      .then((response) => console.log(response, "subscribed"));
+  const handleBackToOrigin = (path) => {
+    history.push(path);
   };
 
   return (
     <FormWrap>
       <FormEditWrap>
         <FormBackButtonWrap>
-          <FormBackButtonIcon />
+          <FormBackButtonIcon onClick={() => handleBackToOrigin(origin)} />
         </FormBackButtonWrap>
         <FormEditTitle>Edit {name}</FormEditTitle>
       </FormEditWrap>
@@ -55,18 +43,10 @@ const FormEdit = ({
         {children}
         <FormEditButton>Save edit</FormEditButton>
       </FormEditContainer>
-      {!subscribePath ? (
-        <FormEditButton isRemovable onClick={() => handleDelete(deletePath)}>
-          Delete {name}
-        </FormEditButton>
-      ) : (
-        <FormEditButton
-          isRemovable
-          onClick={() => handleSubscribe(subscribePath)}
-        >
-          Subscribe {name}
-        </FormEditButton>
-      )}
+      <FormEditButton isRemovable onClick={() => handleDelete(deletePath)}>
+        {" "}
+        Delete {name}
+      </FormEditButton>
     </FormWrap>
   );
 };
