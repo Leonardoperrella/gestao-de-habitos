@@ -11,7 +11,7 @@ const CardActivite = ({ id, title }) => {
 
   return (
     <ActiviteItem onClick={() => handleHistory(id)}>
-      <h2>{title}</h2>
+      <h3>{title}</h3>
     </ActiviteItem>
   );
 };
