@@ -23,7 +23,7 @@ export const Select = styled.select`
 
   background-image: url("./icons/seta-drop.svg");
   background-repeat: no-repeat;
-  background-position: 270px center;
+  background-position: 95% center;
 `;
 
 export const SetaDrop = styled.div`

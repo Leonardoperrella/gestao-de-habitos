@@ -18,8 +18,7 @@ export const HabitItem = styled.div`
   flex-direction: column;
   align-items: center;
   font-weight: 600;
-  margin: 0 auto;
-
+  margin: 5px auto;
 
   h2 {
     margin-bottom: 7px;
