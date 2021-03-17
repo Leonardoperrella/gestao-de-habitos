@@ -11,42 +11,33 @@ import api from "../../services/api";
 import { useState, useEffect } from "react";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
-import { useHistory, useParams } from "react-router-dom";
-import { useHabits } from "../../providers/Habits";
-import { ToastContainer, toast } from "react-toastify";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
 import "react-toastify/dist/ReactToastify.css";
 
-let category = [
-  { value: "Aim", content: "Aim" },
-  { value: "Mechanical", content: "Mechanical" },
-  { value: "Decision Making", content: "Decision Making" },
-  { value: "Game Sense", content: "Game Sense" },
-];
 let difficulty = [
   { value: "Easy", content: "Easy" },
   { value: "Medium", content: "Medium" },
   { value: "Hard", content: "Hard" },
 ];
 
-let frequency = [
-  { value: "Daily", content: "Daily" },
-  { value: "Weekly", content: "Weekly" },
-  { value: "Weekend", content: "Weekend" },
+let howMuchAchieved = [
+  { value: 25, content: "25%" },
+  { value: 50, content: "50%" },
+  { value: 75, content: "75%" },
+  { value: 100, content: "100%" },
 ];
 
 toast.configure();
 
 const EditHabit = () => {
   const params = useParams();
-  const history = useHistory();
-
+  const [goalError, setGoalError] = useState({});
   const [selectedHabit, setSelectedHabit] = useState({});
-
   const [inputTitle, setInputTitle] = useState("");
-  const [selectCategory] = useState(selectedHabit.category);
   const [selectDifficulty] = useState(selectedHabit.difficulty);
-  const [selectFrequency] = useState(selectedHabit.frequency);
+  const [selecthowMuchAchieved] = useState(selectedHabit.howMuchAchieved);
 
   const notify = () =>
     toast("Salvo com sucesso!", {
@@ -65,7 +56,7 @@ const EditHabit = () => {
   });
 
   useEffect(() => {
-    api.get(`/habits/${params.id}/`).then((response) => {
+    api.get(`/goals/${params.id}/`).then((response) => {
       setSelectedHabit(response.data);
       setInputTitle(response.data.title);
     });
@@ -73,9 +64,8 @@ const EditHabit = () => {
 
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
-    category: yup.string(),
     difficulty: yup.string(),
-    frequency: yup.string(),
+    how_much_achieved: yup.number(),
   });
 
   const { register, handleSubmit, errors, reset } = useForm({
@@ -84,14 +74,13 @@ const EditHabit = () => {
 
   const handleForm = (data) => {
     api
-      .patch(`/habits/${params.id}/`, data, {
+      .patch(`/goals/${params.id}/`, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((response) => console.log(response));
+      .then((response) => console.log(response))
+      .catch((e) => setGoalError(e.response));
 
     notify();
-
-    //history.push("/home");
   };
 
   return (
@@ -100,8 +89,9 @@ const EditHabit = () => {
       <GlobalWrap>
         <FormEdit
           handleSubmit={handleSubmit(handleForm)}
-          name="Habit"
+          name="Goal"
           id={params.id}
+          deletePath={`/goals/${params.id}/`}
         >
           <FormUserInput
             name="title"
@@ -113,14 +103,6 @@ const EditHabit = () => {
             title
           </FormUserInput>
           <FormActionSelect
-            name="category"
-            inputRef={register}
-            error={errors.category}
-            value={selectCategory}
-          >
-            {category}
-          </FormActionSelect>
-          <FormActionSelect
             name="difficulty"
             inputRef={register}
             error={errors.difficulty}
@@ -129,12 +111,12 @@ const EditHabit = () => {
             {difficulty}
           </FormActionSelect>
           <FormActionSelect
-            name="frequency"
+            name="how_much_achieved"
             inputRef={register}
-            error={errors.frequency}
-            value={selectFrequency}
+            error={errors.how_much_achieved}
+            value={selecthowMuchAchieved}
           >
-            {frequency}
+            {howMuchAchieved}
           </FormActionSelect>
         </FormEdit>
         <Notification

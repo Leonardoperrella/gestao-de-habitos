@@ -11,7 +11,11 @@ import EditGroup from "../pages/EditGroup";
 import GroupActivities from "../pages/GroupActivities";
 import AddActivite from "../pages/AddActivite";
 import EditActivite from "../pages/EditActivite";
-import AddGoal from "../pages/AggGoal";
+import AddGoal from "../pages/AddGoal";
+import GroupGoals from "../pages/GroupGoals";
+import Profile from "../pages/Profile";
+import EditGoal from "../pages/EditGoal";
+import Search from "../pages/Search";
 import GroupDetails from "../pages/GroupDetails";
 
 const Routes = () => {
@@ -64,6 +68,18 @@ const Routes = () => {
 
       <Route exact path="/add-goal">
         <AddGoal />
+      </Route>
+      <Route exact path="/group-goals/:id">
+        <GroupGoals />
+      </Route>
+      <Route exact path="/edit-goal/:id">
+        <EditGoal />
+      </Route>
+      <Route exact path="/profile">
+        <Profile />
+      </Route>
+      <Route exact path="/search">
+        <Search />
       </Route>
     </Switch>
   );

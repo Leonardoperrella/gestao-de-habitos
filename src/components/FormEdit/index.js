@@ -5,6 +5,10 @@ import {
   FormEditTitle,
   FormEditButton,
   FormWrap,
+  FormEditWrap,
+  FormBackButtonIcon,
+  FormBackButtonText,
+  FormBackButtonWrap,
 } from "./style";
 
 const FormEdit = ({
@@ -41,8 +45,13 @@ const FormEdit = ({
 
   return (
     <FormWrap>
-      <FormEditContainer onSubmit={handleSubmit}>
+      <FormEditWrap>
+        <FormBackButtonWrap>
+          <FormBackButtonIcon />
+        </FormBackButtonWrap>
         <FormEditTitle>Edit {name}</FormEditTitle>
+      </FormEditWrap>
+      <FormEditContainer onSubmit={handleSubmit}>
         {children}
         <FormEditButton>Save edit</FormEditButton>
       </FormEditContainer>
