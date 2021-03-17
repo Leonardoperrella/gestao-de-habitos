@@ -30,13 +30,15 @@ const GroupGoals = () => {
       <GlobalWrap>
         <GroupGoalsTitle>Group Goals</GroupGoalsTitle>
         {goals?.map(
-          ({ title, difficulty, how_much_achieved, achieved }, index) => (
+          ({ title, difficulty, how_much_achieved, achieved, group, id }) => (
             <CardGoals
-              key={index}
+              key={id}
+              id={id}
               title={title}
               difficulty={difficulty}
               how_much_achieved={how_much_achieved}
               achieved={achieved}
+              group={group}
             />
           )
         )}
