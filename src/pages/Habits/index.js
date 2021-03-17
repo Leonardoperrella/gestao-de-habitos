@@ -1,11 +1,15 @@
 import GlobalContainer from "../../components/GlobalContainer";
-import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
 import { useHabits } from "../../providers/Habits";
 import CardHabit from "../../components/CardHabit";
-import { HabitsTitle, HabitsWrap, HabitsButton } from "./style";
+import {
+  HabitsTitle,
+  HabitsWrap,
+  HabitsTitleWrap,
+  HabitsButton,
+} from "./style";
 import { useHistory } from "react-router";
 
 const Habits = () => {
@@ -37,13 +41,13 @@ const Habits = () => {
 
   return (
     <GlobalContainer>
-      <HabitsWrap>
+      <HabitsTitleWrap>
         <HabitsTitle>Habits</HabitsTitle>
         <HabitsButton onClick={() => handleNavigation("/add-habit")}>
           Add Habits
         </HabitsButton>
-      </HabitsWrap>
-      <GlobalWrap>
+      </HabitsTitleWrap>
+      <HabitsWrap>
         {habits.map(
           ({ id, title, category, difficulty, frequency, completed }, key) => (
             <CardHabit
@@ -57,7 +61,7 @@ const Habits = () => {
             />
           )
         )}
-      </GlobalWrap>
+      </HabitsWrap>
       <Menu></Menu>
     </GlobalContainer>
   );
