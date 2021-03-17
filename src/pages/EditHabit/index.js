@@ -102,6 +102,7 @@ const EditHabit = () => {
           handleSubmit={handleSubmit(handleForm)}
           name="Habit"
           id={params.id}
+          origin="/habits"
         >
           <FormUserInput
             name="title"
