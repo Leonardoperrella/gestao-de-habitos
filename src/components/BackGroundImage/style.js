@@ -6,12 +6,4 @@ export const BackGroundImageStyled = styled.div`
   background-position: 50% 10%;
   width: 100%;
   height: 30vh;
-
-  @media (min-width: 1024px) {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    background-size: cover;
-  }
 `;
