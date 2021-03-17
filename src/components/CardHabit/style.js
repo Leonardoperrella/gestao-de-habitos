@@ -8,7 +8,7 @@ export const HabitItem = styled.div`
   margin: 10px;
 
   background-color: #ff4654;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   color: #fff;
   font-family: "Roboto", sans-serif;
@@ -18,6 +18,8 @@ export const HabitItem = styled.div`
   flex-direction: column;
   align-items: center;
   font-weight: 600;
+  margin: 0 auto;
+
 
   h2 {
     margin-bottom: 7px;
