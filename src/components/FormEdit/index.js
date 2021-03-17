@@ -38,33 +38,32 @@ const FormEdit = ({
   };
 
   return (
-    <FormEditWrap>
+    <>
       <FormEditBackButtonWrap>
         <FormEditBackButtonIcon onClick={() => history.goBack()} />
       </FormEditBackButtonWrap>
       <FormEditWrap>
-        <FormEditBackButtonWrap>
-          <FormEditBackButtonIcon onClick={() => handleBackToOrigin(origin)} />
-        </FormEditBackButtonWrap>
-        <FormEditTitle>Edit {name}</FormEditTitle>
+        <FormEditTextWrap>
+          <FormEditTitle>Edit {name}</FormEditTitle>
+        </FormEditTextWrap>
+        <FormEditContainer onSubmit={handleSubmit}>
+          {children}
+          <FormEditButton>Save edit</FormEditButton>
+        </FormEditContainer>
+        {!subscribePath ? (
+          <FormEditButton isRemovable onClick={() => handleDelete(deletePath)}>
+            Delete {name}
+          </FormEditButton>
+        ) : (
+          <FormEditButton
+            isRemovable
+            onClick={() => handleSubscribe(subscribePath)}
+          >
+            Subscribe {name}
+          </FormEditButton>
+        )}
       </FormEditWrap>
-      <FormEditContainer onSubmit={handleSubmit}>
-        {children}
-        <FormEditButton>Save edit</FormEditButton>
-      </FormEditContainer>
-      {!subscribePath ? (
-        <FormEditButton isRemovable onClick={() => handleDelete(deletePath)}>
-          Delete {name}
-        </FormEditButton>
-      ) : (
-        <FormEditButton
-          isRemovable
-          onClick={() => handleSubscribe(subscribePath)}
-        >
-          Subscribe {name}
-        </FormEditButton>
-      )}
-    </FormEditWrap>
+    </>
   );
 };
 
