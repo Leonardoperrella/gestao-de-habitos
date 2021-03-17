@@ -16,7 +16,6 @@ const FormEdit = ({
   handleSubmit,
   name,
   deletePath,
-  origin,
   subscribePath,
 }) => {
   const history = useHistory();
@@ -25,16 +24,24 @@ const FormEdit = ({
     return JSON.parse(sessionToken);
   });
 
-  const handleDelete = (path) => {
+  const handleDelete = (deletePath) => {
     api
-      .delete(path, {
+      .delete(deletePath, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => console.log(response, "deletado"));
   };
 
-  const handleBackToOrigin = (path) => {
-    history.push(path);
+  const handleSubscribe = (subscribePath) => {
+    api
+      .post(
+        subscribePath,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => console.log(response, "subscribed"));
   };
 
   return (
