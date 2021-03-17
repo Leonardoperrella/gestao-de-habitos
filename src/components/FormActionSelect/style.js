@@ -25,3 +25,7 @@ export const Select = styled.select`
   background-repeat: no-repeat;
   background-position: 270px center;
 `;
+
+export const SetaDrop = styled.div`
+  background-image: url("./icons/seta-drop.svg");
+`;

@@ -4,15 +4,21 @@ import {
   FormEditContainer,
   FormEditTitle,
   FormEditButton,
-  FormWrap,
   FormEditWrap,
-  FormBackButtonIcon,
-  FormBackButtonText,
-  FormBackButtonWrap,
+  FormEditTextWrap,
+  FormEditBackButtonIcon,
+  FormEditBackButtonWrap,
 } from "./style";
 import { useHistory } from "react-router-dom";
 
-const FormEdit = ({ children, handleSubmit, name, origin, deletePath }) => {
+const FormEdit = ({
+  children,
+  handleSubmit,
+  name,
+  origin,
+  deletePath,
+  subscribePath,
+}) => {
   const history = useHistory();
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
@@ -32,22 +38,27 @@ const FormEdit = ({ children, handleSubmit, name, origin, deletePath }) => {
   };
 
   return (
-    <FormWrap>
+    <>
+      <FormEditBackButtonWrap>
+        <FormEditBackButtonIcon onClick={() => history.goBack()} />
+      </FormEditBackButtonWrap>
       <FormEditWrap>
-        <FormBackButtonWrap>
-          <FormBackButtonIcon onClick={() => handleBackToOrigin(origin)} />
-        </FormBackButtonWrap>
-        <FormEditTitle>Edit {name}</FormEditTitle>
+        <FormEditTextWrap>
+          <FormEditTitle>Edit {name}</FormEditTitle>
+        </FormEditTextWrap>
+        <FormEditContainer onSubmit={handleSubmit}>
+          {children}
+          <FormEditButton>Save edit</FormEditButton>
+        </FormEditContainer>
+        {!subscribePath ? (
+          <FormEditButton isRemovable onClick={() => handleDelete(deletePath)}>
+            Delete {name}
+          </FormEditButton>
+        ) : (
+          <FormEditButton isRemovable>Subscribe {name}</FormEditButton>
+        )}
       </FormEditWrap>
-      <FormEditContainer onSubmit={handleSubmit}>
-        {children}
-        <FormEditButton>Save edit</FormEditButton>
-      </FormEditContainer>
-      <FormEditButton isRemovable onClick={() => handleDelete(deletePath)}>
-        {" "}
-        Delete {name}
-      </FormEditButton>
-    </FormWrap>
+    </>
   );
 };
 

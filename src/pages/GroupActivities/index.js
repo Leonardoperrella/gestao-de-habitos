@@ -4,6 +4,8 @@ import GlobalContainer from "../../components/GlobalContainer";
 import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import api from "../../services/api";
+import CardActivite from "../../components/CardActivite";
+import { GroupActivitieTitle } from "./style";
 
 const GroupActivities = () => {
   const [activities, setActivities] = useState([]);
@@ -12,7 +14,6 @@ const GroupActivities = () => {
   const getGroupActivities = async () => {
     const response = await api.get(`/groups/${state.id}/`);
     setActivities(response.data.activities);
-    console.log(response.data.activities);
   };
 
   useEffect(() => {
@@ -22,8 +23,9 @@ const GroupActivities = () => {
   return (
     <GlobalContainer>
       <GlobalWrap>
-        {activities?.map(({ title }, index) => (
-          <div key={index}>{title}</div>
+        <GroupActivitieTitle>Activities</GroupActivitieTitle>
+        {activities?.map(({ title, id, group }) => (
+          <CardActivite key={id} title={title} id={id} group={group} />
         ))}
       </GlobalWrap>
       <Menu></Menu>
