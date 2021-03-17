@@ -1,15 +1,22 @@
 import { useHistory } from "react-router";
 import { GoalsContainer } from "./style";
 
-const CardGoals = ({ id, title, difficulty, how_much_achieved }) => {
+const CardGoals = ({
+  id,
+  title,
+  difficulty,
+  how_much_achieved,
+  achieved = false,
+  group,
+}) => {
   const history = useHistory();
 
-  const handleHistory = (id) => {
-    history.push(`/edit-goal/${id}`);
+  const handleHistory = (id, group) => {
+    history.push(`/edit-goal/${id}`, { group: group });
   };
 
   return (
-    <div>
+    <div onClick={() => handleHistory(id, group)}>
       {how_much_achieved === 100 ? (
         <GoalsContainer
           style={{ background: "#10AC84" }}

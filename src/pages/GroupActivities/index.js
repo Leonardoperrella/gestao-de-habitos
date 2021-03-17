@@ -13,7 +13,6 @@ const GroupActivities = () => {
   const getGroupActivities = async () => {
     const response = await api.get(`/groups/${state.id}/`);
     setActivities(response.data.activities);
-    console.log(response.data.activities);
   };
 
   useEffect(() => {
@@ -23,8 +22,8 @@ const GroupActivities = () => {
   return (
     <GlobalContainer>
       <GlobalWrap>
-        {activities?.map(({ title }, index) => (
-          <CardActivite key={index} title={title} />
+        {activities?.map(({ title, id, group }) => (
+          <CardActivite key={id} title={title} id={id} group={group} />
         ))}
       </GlobalWrap>
       <Menu></Menu>

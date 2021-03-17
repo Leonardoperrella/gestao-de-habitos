@@ -19,6 +19,11 @@ export const Input = styled.input`
   padding-top: 0.3rem;
   outline: none;
   margin: 0;
+
+  @media (min-width: 1024px) {
+    width: 470px;
+    height: 4rem;
+  }
 `;
 
 export const Span = styled.span`

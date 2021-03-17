@@ -11,7 +11,7 @@ import api from "../../services/api";
 import { useState, useEffect } from "react";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
 import "react-toastify/dist/ReactToastify.css";
@@ -38,6 +38,9 @@ const EditHabit = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [selectDifficulty] = useState(selectedHabit.difficulty);
   const [selecthowMuchAchieved] = useState(selectedHabit.howMuchAchieved);
+  const {
+    state: { group },
+  } = useLocation();
 
   const notify = () =>
     toast("Salvo com sucesso!", {
@@ -73,6 +76,7 @@ const EditHabit = () => {
   });
 
   const handleForm = (data) => {
+    data = { ...data, group: group };
     api
       .patch(`/goals/${params.id}/`, data, {
         headers: { Authorization: `Bearer ${token}` },

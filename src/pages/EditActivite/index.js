@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 import api from "../../services/api";
@@ -18,6 +18,9 @@ const EditActivite = () => {
     return JSON.parse(sessionToken);
   });
 
+  const {
+    state: { group },
+  } = useLocation();
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
   });
@@ -56,14 +59,16 @@ const EditActivite = () => {
     const day = fullData.split("/")[0];
     const time = today.split(" ")[1];
     const realizationTime = `${year}-${month}-${day}T${time}Z`;
-    data = { ...data, realization_time: realizationTime, group: 11 };
+    data = { ...data, realization_time: realizationTime, group: group };
     console.log(data);
 
     api
       .patch(`/activities/${params.id}/`, data, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((response) => {})
+      .then((response) => {
+        console.log(response);
+      })
       .catch((e) => setEditError(e.response));
   };
 
