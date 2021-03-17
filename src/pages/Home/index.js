@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import CarrosselHabit from "../../components/CarroselHabit";
 import Menu from "../../components/Menu";
 import CardGroup from "../../components/CardGroup";
@@ -9,12 +10,14 @@ import {
   HomeHabitWrap,
   HomeGroupWrap,
   Group,
+  LinkAllGroups,
 } from "./style";
 import { UserContext } from "../../providers/UserProvider";
 
 const Home = () => {
   const [group, setGroup] = React.useState({});
   const [showGroup, setShowGroup] = React.useState(false);
+  const history = useHistory();
 
   const { group: idGroup } = React.useContext(UserContext);
 
@@ -34,6 +37,10 @@ const Home = () => {
 
   const { id, name, description, category } = group;
 
+  const handleNavigation = (path) => {
+    history.push(path);
+  };
+
   return (
     <div>
       <HomeContainer>
@@ -48,8 +55,10 @@ const Home = () => {
 
       <HomeContainer>
         <HomeGroupWrap>
-          <HomeTitle small>Groups</HomeTitle>
-
+          <HomeTitle small>Group</HomeTitle>
+          <LinkAllGroups onClick={() => handleNavigation("/groups")}>
+            All groups
+          </LinkAllGroups>
           <Group>
             {showGroup ? (
               <CardGroup
@@ -57,6 +66,7 @@ const Home = () => {
                 name={name}
                 description={description}
                 category={category}
+                details={true}
               />
             ) : (
               "Nenhum grupo encontrado"

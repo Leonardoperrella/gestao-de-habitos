@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { COLORS, FONTS } from "../../style";
+import { AiFillEdit } from "react-icons/ai";
 
 export const GoalsContainer = styled.div`
   width: 284px;
@@ -32,4 +33,11 @@ export const GoalsContainer = styled.div`
     margin: 20px;
     font-size: 1rem;
   }
+`;
+
+export const IconEdit = styled(AiFillEdit)`
+  color: white;
+  height: 27px;
+  width: 115px;
+  position: absolute;
 `;
