@@ -19,13 +19,11 @@ const Groups = () => {
   const patt = /\d+$/;
   const getUserGroups = async (page) => {
     await api
-      .get(`/groups/?page=${page}`, {
+      .get(`/groups/?category=habitorant/&page=${page}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        const pageGroups = response.data.results.filter(
-          (group) => group.category.split("/")[0] === "habitorant"
-        );
+        const pageGroups = response.data.results;
 
         if (pageGroups.length > 0) {
           setGroups([...groups, pageGroups]);
