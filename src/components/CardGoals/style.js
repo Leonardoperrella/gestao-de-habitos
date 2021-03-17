@@ -1,12 +1,13 @@
 import styled from "styled-components";
+import { COLORS, FONTS } from "../../style";
 
 export const GoalsContainer = styled.div`
   width: 284px;
 
   border-radius: 10px;
   border: none;
-  color: #fff;
-  font-family: "Roboto", sans-serif;
+  color: ${COLORS.textHighlight};
+  font-family: ${FONTS.normal};
 
   display: flex;
   flex-direction: column;
