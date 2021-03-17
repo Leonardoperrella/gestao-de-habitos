@@ -14,9 +14,6 @@ import FormUserInput from "../../components/FormUserInput";
 
 const Register = () => {
   const history = useHistory();
-  const [userValue, setUserValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
-  const [emailvalue, setEmailValue] = useState("");
   const [registerError, setRegisterError] = useState({});
   const schema = yup.object().shape({
     username: yup.string().required("Field Required"),
@@ -24,7 +21,7 @@ const Register = () => {
     password: yup.string().required("Field Required"),
   });
 
-  const { register, handleSubmit, errors, reset } = useForm({
+  const { register, handleSubmit, errors, reset, getValues } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -37,6 +34,8 @@ const Register = () => {
       })
       .catch((e) => setRegisterError(e.response));
   };
+
+  const { username, email, password } = getValues();
   return (
     <div>
       <GlobalContainer>
@@ -47,8 +46,7 @@ const Register = () => {
               name="username"
               inputRef={register}
               error={errors.username}
-              value={userValue}
-              setInputValue={setUserValue}
+              value={username}
             >
               Username
             </FormUserInput>
@@ -56,8 +54,7 @@ const Register = () => {
               name="email"
               inputRef={register}
               error={errors.email}
-              value={emailvalue}
-              setInputValue={setEmailValue}
+              value={email}
             >
               Email
             </FormUserInput>
@@ -65,8 +62,7 @@ const Register = () => {
               name="password"
               inputRef={register}
               error={errors.password}
-              value={passwordValue}
-              setInputValue={setPasswordValue}
+              value={password}
               type="password"
             >
               Password

@@ -24,15 +24,13 @@ const EditGroup = () => {
     category: yup.string().required("Field Required"),
   });
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, setValue, getValues } = useForm({
     resolver: yupResolver(schema),
   });
 
   const params = useParams();
   const [groupError, setGroupError] = useState({});
-  const [inputName, setInputName] = useState("");
-  const [inputDescription, setInputDescription] = useState("");
-  const [inputCategory, setInputCategory] = useState("");
+  const [group, setGroup] = useState({});
 
   const getGroup = async () => {
     await api
@@ -40,9 +38,13 @@ const EditGroup = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        setInputName(response.data.name);
-        setInputDescription(response.data.description);
-        setInputCategory(response.data.category);
+        setValue("name", response.data.name);
+        setValue("description", response.data.description);
+
+        const categoryValid = response.data.category.split("/")[1];
+        setValue("category", categoryValid);
+
+        setGroup(getValues());
       })
       .catch((e) => {
         console.log(e.response);
@@ -66,6 +68,8 @@ const EditGroup = () => {
       .catch((e) => setGroupError(e.response));
   };
 
+  const { name, description, category } = group;
+
   return (
     <GlobalContainer>
       <BackGroundImage image={Background} />
@@ -79,8 +83,7 @@ const EditGroup = () => {
             name="name"
             inputRef={register}
             error={errors.name}
-            value={inputName}
-            setInputValue={setInputName}
+            value={name}
           >
             Name
           </FormUserInput>
@@ -88,8 +91,7 @@ const EditGroup = () => {
             name="description"
             inputRef={register}
             error={errors.description}
-            value={inputDescription}
-            setInputValue={setInputDescription}
+            value={description}
           >
             Description
           </FormUserInput>
@@ -97,8 +99,7 @@ const EditGroup = () => {
             name="category"
             inputRef={register}
             error={errors.category}
-            value={inputCategory}
-            setInputValue={setInputCategory}
+            value={category}
           >
             Category
           </FormUserInput>

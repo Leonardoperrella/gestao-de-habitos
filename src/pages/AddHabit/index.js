@@ -50,7 +50,7 @@ const AddHabit = () => {
     frequency: yup.string().required("Field Required"),
   });
 
-  const { register, handleSubmit, errors, reset } = useForm({
+  const { register, handleSubmit, errors, reset, getValues } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -67,6 +67,8 @@ const AddHabit = () => {
       .catch((e) => setHabitError(e.response));
   };
 
+  const { title } = getValues();
+
   return (
     <>
       <GlobalContainer>
@@ -77,8 +79,7 @@ const AddHabit = () => {
               name="title"
               inputRef={register}
               error={errors.title}
-              setInputValue={setInputValue}
-              value={inputValue}
+              value={title}
             >
               Title
             </FormUserInput>
