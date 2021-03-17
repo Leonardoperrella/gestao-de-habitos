@@ -13,7 +13,11 @@ import AddActivite from "../pages/AddActivite";
 import EditActivite from "../pages/EditActivite";
 import AddGoal from "../pages/AddGoal";
 import Profile from "../pages/Profile";
+<<<<<<< HEAD
 import EditGoal from "../pages/EditGoal";
+=======
+import Search from "../pages/Search";
+>>>>>>> 14b6b027873e148a71fcc537e32f403f911aff2f
 
 const Routes = () => {
   return (
@@ -63,7 +67,9 @@ const Routes = () => {
       <Route exact path="/profile">
         <Profile />
       </Route>
-      <Route exact path="/search"></Route>
+      <Route exact path="/search">
+        <Search />
+      </Route>
     </Switch>
   );
 };
