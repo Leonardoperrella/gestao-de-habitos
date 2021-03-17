@@ -5,7 +5,6 @@ import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import api from "../../services/api";
 import CardActivite from "../../components/CardActivite";
-import { GroupActivitieTitle } from "./style";
 
 const GroupActivities = () => {
   const [activities, setActivities] = useState([]);
@@ -24,7 +23,6 @@ const GroupActivities = () => {
   return (
     <GlobalContainer>
       <GlobalWrap>
-        <GroupActivitieTitle>Activities</GroupActivitieTitle>
         {activities?.map(({ title }, index) => (
           <CardActivite key={index} title={title} />
         ))}
