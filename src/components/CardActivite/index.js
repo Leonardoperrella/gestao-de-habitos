@@ -2,15 +2,15 @@ import React from "react";
 import { ActiviteItem } from "./style";
 import { useHistory } from "react-router-dom";
 
-const CardActivite = ({ id, title }) => {
+const CardActivite = ({ id, title, group }) => {
   const history = useHistory();
 
-  const handleHistory = (id) => {
-    history.push(`/edit-activite/${id}`);
+  const handleHistory = (id, group) => {
+    history.push(`/edit-activite/${id}`, { group: group });
   };
 
   return (
-    <ActiviteItem onClick={() => handleHistory(id)}>
+    <ActiviteItem onClick={() => handleHistory(id, group)}>
       <h3>{title}</h3>
     </ActiviteItem>
   );
