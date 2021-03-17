@@ -1,19 +1,32 @@
 import React from "react";
-import { Form } from "./style";
+import {
+  FormActionContainer,
+  FormActionTitle,
+  FormActionButton,
+  FormActionWrap,
+  FormActionTextWrap,
+  FormActionBackButtonIcon,
+  FormActionBackButtonWrap,
+} from "./style";
+import { useHistory } from "react-router-dom";
 
-import { ButtonSubmit, ButtonIcon } from "../../components/FormUser/style";
-
-const FormAction = ({ children, handleSubmit, title }) => {
+const FormAction = ({ children, handleSubmit, name }) => {
+  const history = useHistory();
   return (
-    <Form onSubmit={handleSubmit}>
-      <h1>{title}</h1>
-
-      {children}
-
-      <ButtonSubmit type="submit">
-        <ButtonIcon />
-      </ButtonSubmit>
-    </Form>
+    <>
+      <FormActionBackButtonWrap>
+        <FormActionBackButtonIcon onClick={() => history.goBack()} />
+      </FormActionBackButtonWrap>
+      <FormActionWrap>
+        <FormActionTextWrap>
+          <FormActionTitle>Add {name}</FormActionTitle>
+        </FormActionTextWrap>
+        <FormActionContainer onSubmit={handleSubmit}>
+          {children}
+          <FormActionButton>Add</FormActionButton>
+        </FormActionContainer>
+      </FormActionWrap>
+    </>
   );
 };
 

@@ -52,7 +52,7 @@ const AddGroup = () => {
       <GlobalContainer>
         <BackGroundImage image={Background} />
         <GlobalWrap>
-          <FormAction handleSubmit={handleSubmit(handleForm)} title="Add Group">
+          <FormAction handleSubmit={handleSubmit(handleForm)} name="Group">
             <FormUserInput
               name="name"
               inputRef={register}

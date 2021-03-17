@@ -4,12 +4,12 @@ import {
   FormEditContainer,
   FormEditTitle,
   FormEditButton,
-  FormWrap,
   FormEditWrap,
-  FormBackButtonIcon,
-  FormBackButtonText,
-  FormBackButtonWrap,
+  FormEditTextWrap,
+  FormEditBackButtonIcon,
+  FormEditBackButtonWrap,
 } from "./style";
+import { useHistory } from "react-router-dom";
 
 const FormEdit = ({
   children,
@@ -18,6 +18,7 @@ const FormEdit = ({
   deletePath,
   subscribePath,
 }) => {
+  const history = useHistory();
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
@@ -44,30 +45,32 @@ const FormEdit = ({
   };
 
   return (
-    <FormWrap>
+    <>
+      <FormEditBackButtonWrap>
+        <FormEditBackButtonIcon onClick={() => history.goBack()} />
+      </FormEditBackButtonWrap>
       <FormEditWrap>
-        <FormBackButtonWrap>
-          <FormBackButtonIcon />
-        </FormBackButtonWrap>
-        <FormEditTitle>Edit {name}</FormEditTitle>
+        <FormEditTextWrap>
+          <FormEditTitle>Edit {name}</FormEditTitle>
+        </FormEditTextWrap>
+        <FormEditContainer onSubmit={handleSubmit}>
+          {children}
+          <FormEditButton>Save edit</FormEditButton>
+        </FormEditContainer>
+        {!subscribePath ? (
+          <FormEditButton isRemovable onClick={() => handleDelete(deletePath)}>
+            Delete {name}
+          </FormEditButton>
+        ) : (
+          <FormEditButton
+            isRemovable
+            onClick={() => handleSubscribe(subscribePath)}
+          >
+            Subscribe {name}
+          </FormEditButton>
+        )}
       </FormEditWrap>
-      <FormEditContainer onSubmit={handleSubmit}>
-        {children}
-        <FormEditButton>Save edit</FormEditButton>
-      </FormEditContainer>
-      {!subscribePath ? (
-        <FormEditButton isRemovable onClick={() => handleDelete(deletePath)}>
-          Delete {name}
-        </FormEditButton>
-      ) : (
-        <FormEditButton
-          isRemovable
-          onClick={() => handleSubscribe(subscribePath)}
-        >
-          Subscribe {name}
-        </FormEditButton>
-      )}
-    </FormWrap>
+    </>
   );
 };
 
