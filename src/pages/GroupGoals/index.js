@@ -6,6 +6,8 @@ import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import api from "../../services/api";
 
+import { GroupGoalsTitle } from "./style";
+
 const GroupGoals = () => {
   const [goals, setGoals] = useState([]);
   const state = useParams();
@@ -13,17 +15,20 @@ const GroupGoals = () => {
   const getGroupGoals = async () => {
     const response = await api.get(`/groups/${state.id}/`);
     setGoals(response.data.goals);
-    console.log(response.data.goals);
   };
 
   useEffect(() => {
     getGroupGoals();
   }, []);
 
+  goals.sort(function (a, b) {
+    return a.how_much_achieved - b.how_much_achieved;
+  });
+
   return (
     <GlobalContainer>
       <GlobalWrap>
-        <h2>Group Goals</h2>
+        <GroupGoalsTitle>Group Goals</GroupGoalsTitle>
         {goals?.map(
           ({ title, difficulty, how_much_achieved, achieved }, index) => (
             <CardGoals
