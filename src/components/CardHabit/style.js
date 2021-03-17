@@ -3,8 +3,9 @@ import { AiFillEdit } from "react-icons/ai";
 
 export const HabitItem = styled.div`
   border: 1px solid #000;
-  max-width: 338px;
-  max-height: 192px;
+  width: 300px;
+  height: 192px;
+  margin: 10px;
 
   background-color: #ff4654;
   border-radius: 10px;
@@ -42,6 +43,4 @@ export const IconEdit = styled(AiFillEdit)`
   height: 27px;
   width: 115px;
   position: absolute;
-  margin-top: 6px;
-  margin-left: 229px;
 `;
