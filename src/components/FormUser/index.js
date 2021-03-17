@@ -7,6 +7,7 @@ import {
   ButtonIcon,
   LabelSignInRegiter,
   LinkSignInRegiter,
+  FormButtonsWrap,
   ContainerLink,
 } from "./style";
 import { COLORS } from "../../style";
@@ -30,25 +31,25 @@ const FormUser = ({ children, isRegistering, handleSubmit }) => {
         <SquareInverse color={COLORS.gray} />
         <FormTitle>WE ARE HABITORANT</FormTitle>
       </div>
-
       <div>
         <Form onSubmit={handleSubmit}>
-          {children}
+          <div>{children}</div>
 
-          <ButtonSubmit>
-            <ButtonIcon />
-          </ButtonSubmit>
+          <FormButtonsWrap>
+            <ButtonSubmit>
+              <ButtonIcon />
+            </ButtonSubmit>
+            <ContainerLink>
+              <LabelSignInRegiter>
+                {isRegistering ? "Register" : "Sign in"}
+              </LabelSignInRegiter>
+              <LinkSignInRegiter onClick={() => handleClick(isRegistering)}>
+                {isRegistering ? "or Sign in" : "or Register"}
+              </LinkSignInRegiter>
+            </ContainerLink>
+          </FormButtonsWrap>
         </Form>
       </div>
-
-      <ContainerLink>
-        <LabelSignInRegiter>
-          {isRegistering ? "Register" : "Sign in"}
-        </LabelSignInRegiter>
-        <LinkSignInRegiter onClick={() => handleClick(isRegistering)}>
-          {isRegistering ? "Sign in" : "Register"}
-        </LinkSignInRegiter>
-      </ContainerLink>
     </div>
   );
 };
