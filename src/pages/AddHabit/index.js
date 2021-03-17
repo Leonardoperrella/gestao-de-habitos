@@ -72,7 +72,7 @@ const AddHabit = () => {
       <GlobalContainer>
         <BackGroundImage image={Background} />
         <GlobalWrap>
-          <FormAction handleSubmit={handleSubmit(handleForm)} title="Add Habit">
+          <FormAction handleSubmit={handleSubmit(handleForm)} name="Habit">
             <FormUserInput
               name="title"
               inputRef={register}
