@@ -28,7 +28,7 @@ const AddGroup = () => {
     category: yup.string().required("Field Required"),
   });
 
-  const { register, handleSubmit, errors, reset } = useForm({
+  const { register, handleSubmit, errors, reset, getValues } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -47,6 +47,8 @@ const AddGroup = () => {
       .catch((e) => setGroupError(e.response));
   };
 
+  const { name, description, category } = getValues();
+
   return (
     <>
       <GlobalContainer>
@@ -57,8 +59,7 @@ const AddGroup = () => {
               name="name"
               inputRef={register}
               error={errors.name}
-              value={inputName}
-              setInputValue={setInputName}
+              value={name}
             >
               Name
             </FormUserInput>
@@ -66,8 +67,7 @@ const AddGroup = () => {
               name="description"
               inputRef={register}
               error={errors.description}
-              value={inputDescription}
-              setInputValue={setInputDescription}
+              value={description}
             >
               Description
             </FormUserInput>
@@ -75,8 +75,7 @@ const AddGroup = () => {
               name="category"
               inputRef={register}
               error={errors.category}
-              value={inputCategory}
-              setInputValue={setInputCategory}
+              value={category}
             >
               Category
             </FormUserInput>

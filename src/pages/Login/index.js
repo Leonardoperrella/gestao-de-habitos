@@ -14,8 +14,6 @@ import FormUserInput from "../../components/FormUserInput";
 
 const Login = () => {
   const history = useHistory();
-  const [userValue, setUserValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
 
   const [loginError, setLoginError] = useState({});
 
@@ -24,9 +22,11 @@ const Login = () => {
     password: yup.string().required("Field Required"),
   });
 
-  const { register, handleSubmit, errors, reset } = useForm({
+  const { register, handleSubmit, errors, reset, getValues } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const { username, password } = getValues();
 
   const handleForm = (data) => {
     api
@@ -50,8 +50,8 @@ const Login = () => {
             name="username"
             inputRef={register}
             error={errors.username}
-            value={userValue}
-            setInputValue={setUserValue}
+            type="text"
+            value={username}
           >
             Username
           </FormUserInput>
@@ -59,9 +59,8 @@ const Login = () => {
             name="password"
             inputRef={register}
             error={errors.password}
-            value={passwordValue}
-            setInputValue={setPasswordValue}
             type="password"
+            value={password}
           >
             Password
           </FormUserInput>

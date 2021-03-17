@@ -12,8 +12,7 @@ import { useState, useEffect } from "react";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
 import { useHistory, useParams } from "react-router-dom";
-import { useHabits } from "../../providers/Habits";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -43,11 +42,6 @@ const EditHabit = () => {
 
   const [selectedHabit, setSelectedHabit] = useState({});
 
-  const [inputTitle, setInputTitle] = useState("");
-  const [selectCategory] = useState(selectedHabit.category);
-  const [selectDifficulty] = useState(selectedHabit.difficulty);
-  const [selectFrequency] = useState(selectedHabit.frequency);
-
   const notify = () =>
     toast("Salvo com sucesso!", {
       position: "top-right",
@@ -64,23 +58,24 @@ const EditHabit = () => {
     return JSON.parse(sessionToken);
   });
 
+  const schema = yup.object().shape({
+    title: yup.string().required("Field Required"),
+    category: yup.string().required("Field Required"),
+    difficulty: yup.string().required("Field Required"),
+    frequency: yup.string().required("Field Required"),
+  });
+
+  const { register, handleSubmit, errors, setValue } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   useEffect(() => {
     api.get(`/habits/${params.id}/`).then((response) => {
       setSelectedHabit(response.data);
-      setInputTitle(response.data.title);
+      setValue("title", response.data.title);
+      console.log(response.data);
     });
   }, []);
-
-  const schema = yup.object().shape({
-    title: yup.string().required("Field Required"),
-    category: yup.string(),
-    difficulty: yup.string(),
-    frequency: yup.string(),
-  });
-
-  const { register, handleSubmit, errors, reset } = useForm({
-    resolver: yupResolver(schema),
-  });
 
   const handleForm = (data) => {
     api
@@ -93,6 +88,8 @@ const EditHabit = () => {
 
     //history.push("/home");
   };
+
+  const { title } = selectedHabit;
 
   return (
     <GlobalContainer>
@@ -108,8 +105,7 @@ const EditHabit = () => {
             name="title"
             inputRef={register}
             error={errors.title}
-            value={inputTitle}
-            setInputValue={setInputTitle}
+            value={title}
           >
             title
           </FormUserInput>
@@ -117,7 +113,7 @@ const EditHabit = () => {
             name="category"
             inputRef={register}
             error={errors.category}
-            value={selectCategory}
+            value={selectedHabit.category}
           >
             {category}
           </FormActionSelect>
@@ -125,7 +121,7 @@ const EditHabit = () => {
             name="difficulty"
             inputRef={register}
             error={errors.difficulty}
-            value={selectDifficulty}
+            value={selectedHabit.difficulty}
           >
             {difficulty}
           </FormActionSelect>
@@ -133,7 +129,7 @@ const EditHabit = () => {
             name="frequency"
             inputRef={register}
             error={errors.frequency}
-            value={selectFrequency}
+            value={selectedHabit.frequency}
           >
             {frequency}
           </FormActionSelect>
