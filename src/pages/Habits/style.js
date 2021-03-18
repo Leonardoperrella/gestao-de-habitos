@@ -39,4 +39,8 @@ export const HabitsButton = styled(Button)`
   background-color: ${COLORS.highlight} !important;
   color: ${COLORS.textHighlight} !important;
   height: 40px;
+
+  @media (min-width: 1024px) {
+    margin-top: 23px !important;
+  }
 `;

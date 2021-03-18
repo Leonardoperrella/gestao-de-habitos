@@ -40,27 +40,31 @@ const CarrosselHabit = () => {
   return (
     <ContainerCarrosel>
       <Slider {...settings}>
-        {habits.map(({ id, title, category, difficulty, frequency }, index) => (
-          <div key={index}>
+        {habits.map(
+          (
+            {
+              id,
+              title,
+              category,
+              difficulty,
+              frequency,
+              completed,
+              how_much_achieved,
+            },
+            key
+          ) => (
             <CardHabit
-              id={id}
               title={title}
               category={category}
               difficulty={difficulty}
               frequency={frequency}
-            >
-              <h2>{title}</h2>
-
-              <p>
-                {category} - {difficulty}
-              </p>
-
-              <p>Frequencia - {frequency}</p>
-
-              <p>Not Completed</p>
-            </CardHabit>
-          </div>
-        ))}
+              completed={completed}
+              how_much_achieved={how_much_achieved}
+              key={key}
+              id={id}
+            />
+          )
+        )}
       </Slider>
     </ContainerCarrosel>
   );
