@@ -63,7 +63,7 @@ const Groups = () => {
     <GlobalContainer>
       <GroupsTitleWrap>
         <GroupsTitle>Groups</GroupsTitle>
-        <GroupsButton onClick={() => handleNavigation("/add-habit")}>
+        <GroupsButton onClick={() => handleNavigation("/add-groups")}>
           Add Group
         </GroupsButton>
       </GroupsTitleWrap>
