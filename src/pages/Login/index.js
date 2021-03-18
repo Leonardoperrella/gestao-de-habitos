@@ -10,6 +10,9 @@ import BackGroundImage from "../../components/BackGroundImage";
 import FormUser from "../../components/FormUser";
 import FormUserInput from "../../components/FormUserInput";
 import { ContainerLogin } from "./style";
+import { toast } from "react-toastify";
+import Notification from "../../components/Notification";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const history = useHistory();
@@ -22,6 +25,12 @@ const Login = () => {
   const { register, handleSubmit, errors, reset, getValues } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const notifyError = (error) =>
+    toast(error, {
+      autoClose: 2000,
+      hideProgressBar: true,
+    });
 
   const { username, password } = getValues();
 
@@ -36,7 +45,9 @@ const Login = () => {
         reset();
         history.push("/home");
       })
-      .catch((e) => console.log(e.response));
+      .catch((e) => {
+        notifyError(e.response.data.detail);
+      });
   };
   return (
     <GlobalContainer>
@@ -61,6 +72,7 @@ const Login = () => {
           >
             Password
           </FormUserInput>
+          <Notification />
         </FormUser>
       </ContainerLogin>
     </GlobalContainer>
