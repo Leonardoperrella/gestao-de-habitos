@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
 import api from "../../services/api";
+import { useHistory } from "react-router";
+import {
+  GroupsTitle,
+  GroupsWrap,
+  GroupsTitleWrap,
+  GroupsButton,
+} from "./style";
 import GlobalContainer from "../../components/GlobalContainer";
 import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
@@ -14,7 +21,7 @@ const Groups = () => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
-
+  const history = useHistory();
   const patt = /\d+$/;
   const getUserGroups = async (page) => {
     await api
@@ -48,9 +55,19 @@ const Groups = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nextPage]);
 
+  const handleNavigation = (path) => {
+    history.push(path);
+  };
+
   return (
     <GlobalContainer>
-      <GlobalWrap>
+      <GroupsTitleWrap>
+        <GroupsTitle>Groups</GroupsTitle>
+        <GroupsButton onClick={() => handleNavigation("/add-groups")}>
+          Add Group
+        </GroupsButton>
+      </GroupsTitleWrap>
+      <GroupsWrap>
         {!isLoading ? (
           groups
             .flat()
@@ -66,7 +83,7 @@ const Groups = () => {
         ) : (
           <GobalLoading />
         )}
-      </GlobalWrap>
+      </GroupsWrap>
       <Menu></Menu>
     </GlobalContainer>
   );

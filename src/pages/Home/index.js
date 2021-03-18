@@ -57,7 +57,7 @@ const Home = () => {
         <HomeGroupWrap>
           <HomeTitle small>Group</HomeTitle>
           <LinkAllGroups onClick={() => handleNavigation("/groups")}>
-            All groups
+            See all groups
           </LinkAllGroups>
           <Group>
             {showGroup ? (
@@ -69,7 +69,7 @@ const Home = () => {
                 details={true}
               />
             ) : (
-              "Nenhum grupo encontrado"
+              <HomeTitle small>Group not found</HomeTitle>
             )}
           </Group>
         </HomeGroupWrap>
