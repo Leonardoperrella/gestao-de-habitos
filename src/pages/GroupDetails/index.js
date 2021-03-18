@@ -42,8 +42,8 @@ const GroupDetails = () => {
     setShowActivies(!showActivies);
   };
 
-  const handleNavigation = (path) => {
-    history.push(path);
+  const handleNavigation = (path, id) => {
+    history.push(path, { group: id });
   };
 
   return (
@@ -62,7 +62,7 @@ const GroupDetails = () => {
                 <GroupGoals />
               </ContainerShow>
             )}
-            <AddIcon onClick={() => handleNavigation("/add-goal")} />
+            <AddIcon onClick={() => handleNavigation("/add-goal", id)} />
 
             <ButtonTopic onClick={handleShowActivies} showItem={showActivies}>
               Activities
@@ -73,7 +73,7 @@ const GroupDetails = () => {
                 <GroupActivities />
               </ContainerShow>
             )}
-            <AddIcon onClick={() => handleNavigation("/add-activite")} />
+            <AddIcon onClick={() => handleNavigation("/add-activite", id)} />
           </>
         ) : (
           "Grupo não encontrado"

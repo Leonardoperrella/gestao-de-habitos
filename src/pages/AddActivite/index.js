@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 import * as yup from "yup";
@@ -14,6 +15,9 @@ import FormAction from "../../components/FormAction";
 const AddGroup = () => {
   const [activiteError, setActiviteError] = useState({});
   const [inputTitle, setInputTitle] = useState("");
+  const {
+    state: { group },
+  } = useLocation();
 
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
@@ -36,7 +40,7 @@ const AddGroup = () => {
     const day = fullData.split("/")[0];
     const time = today.split(" ")[1];
     const realizationTime = `${year}-${month}-${day}T${time}Z`;
-    data = { ...data, realization_time: realizationTime, group: 11 };
+    data = { ...data, realization_time: realizationTime, group: group };
 
     await api
       .post("/activities/", data, {
