@@ -51,9 +51,9 @@ const EditGoal = () => {
   const [group, setGroup] = useState("");
 
   const notify = () =>
-    toast("Saved successfully!", {
+    toast("Successfully saved!", {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 2000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,

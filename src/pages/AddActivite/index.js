@@ -30,7 +30,7 @@ const AddGroup = () => {
   });
 
   const notify = () =>
-    toast("Added successfully!", {
+    toast("Successfully Added!", {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: true,

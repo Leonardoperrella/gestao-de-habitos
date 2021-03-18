@@ -24,7 +24,7 @@ const EditActivite = () => {
   });
 
   const notify = () =>
-    toast("Saved successfully!", {
+    toast("Successfully saved!", {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: true,
