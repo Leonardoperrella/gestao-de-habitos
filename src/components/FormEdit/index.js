@@ -34,8 +34,7 @@ const FormEdit = ({
       })
       .then((response) => console.log(response, "deletado"))
       .then((response) => {
-        window.location.reload();
-        history.push("/habits");
+        history.goBack();
       });
     setShowModal(false);
   };
