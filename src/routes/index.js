@@ -18,6 +18,7 @@ import EditGoal from "../pages/EditGoal";
 import Search from "../pages/Search";
 import GroupDetails from "../pages/GroupDetails";
 import Providers from "../providers";
+import EditProfile from "../pages/EditProfile";
 
 const Routes = () => {
   return (
@@ -47,27 +48,21 @@ const Routes = () => {
         <Route exact path="/groups">
           <Groups />
         </Route>
-
         <Route exact path="/group/:id">
           <GroupDetails />
         </Route>
-
         <Route exact path="/edit-group/:id">
           <EditGroup />
         </Route>
-
         <Route exact path="/group-activities/:id">
           <GroupActivities />
         </Route>
-
         <Route exact path="/add-activite">
           <AddActivite />
         </Route>
-
         <Route exact path="/edit-activite/:id">
           <EditActivite />
         </Route>
-
         <Route exact path="/add-goal">
           <AddGoal />
         </Route>
@@ -82,6 +77,9 @@ const Routes = () => {
         </Route>
         <Route exact path="/search">
           <Search />
+        </Route>
+        <Route exact path="/edit-profile">
+          <EditProfile />
         </Route>
       </Providers>
     </Switch>

@@ -8,17 +8,21 @@ import {
   ProfileTitle,
   ProfileText,
   ProfileSubTitle,
+  GroupsTitle,
+  GroupsTitleWrap,
+  GroupsButton,
 } from "./style";
 import { useState, useEffect } from "react";
 import api from "../../services/api";
 import jwt_decode from "jwt-decode";
+import { useHistory } from "react-router";
 
 const Profile = () => {
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
-
+  const history = useHistory();
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -26,11 +30,20 @@ const Profile = () => {
     api.get(`users/${user_id}/`).then((response) => setUser(response.data));
   });
 
+  const handleNavigation = (path) => {
+    history.push(path);
+  };
+
   return (
     <>
       <GlobalContainer>
         <BackGroundImage image={Background} />
         <GlobalWrap>
+          <GroupsTitleWrap>
+            <GroupsButton onClick={() => handleNavigation("/edit-profile")}>
+              Edit Profile
+            </GroupsButton>
+          </GroupsTitleWrap>
           <ProfileTitle>Profile</ProfileTitle>
           <ProfileIcon />
           <ProfileSubTitle>Username</ProfileSubTitle>
