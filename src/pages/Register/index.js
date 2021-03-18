@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,7 +13,6 @@ import FormUserInput from "../../components/FormUserInput";
 
 const Register = () => {
   const history = useHistory();
-  const [registerError, setRegisterError] = useState({});
   const schema = yup.object().shape({
     username: yup.string().required("Field Required"),
     email: yup.string().email("Invalid email").required("Field Required"),
@@ -32,7 +30,7 @@ const Register = () => {
         reset();
         history.push("/");
       })
-      .catch((e) => setRegisterError(e.response));
+      .catch((e) => console.log(e.response));
   };
 
   const { username, email, password } = getValues();
