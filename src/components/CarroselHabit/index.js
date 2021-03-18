@@ -34,6 +34,7 @@ const CarrosselHabit = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: false,
   };
 
   return (

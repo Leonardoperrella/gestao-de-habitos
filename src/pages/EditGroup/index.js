@@ -78,6 +78,7 @@ const EditGroup = () => {
           handleSubmit={handleSubmit(handleForm)}
           name="Group"
           subscribePath={`/groups/${params.id}/subscribe/`}
+          idParams={params.id}
         >
           <FormUserInput
             name="name"

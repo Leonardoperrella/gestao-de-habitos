@@ -38,6 +38,7 @@ const EditHabit = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [selectDifficulty] = useState(selectedHabit.difficulty);
   const [selecthowMuchAchieved] = useState(selectedHabit.howMuchAchieved);
+  console.log(useLocation());
   const {
     state: { group },
   } = useLocation();
