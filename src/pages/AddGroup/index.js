@@ -17,11 +17,6 @@ import Notification from "../../components/Notification";
 toast.configure();
 
 const AddGroup = () => {
-  const [groupError, setGroupError] = useState({});
-  const [inputName, setInputName] = useState("");
-  const [inputDescription, setInputDescription] = useState("");
-  const [inputCategory, setInputCategory] = useState("");
-
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
@@ -55,7 +50,7 @@ const AddGroup = () => {
         console.log(response);
         reset();
       })
-      .catch((e) => setGroupError(e.response));
+      .catch((e) => console.log(e.response));
     notify();
   };
 

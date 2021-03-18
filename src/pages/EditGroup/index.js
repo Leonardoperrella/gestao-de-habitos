@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 import api from "../../services/api";
@@ -39,7 +39,6 @@ const EditGroup = () => {
   });
 
   const params = useParams();
-  const [groupError, setGroupError] = useState({});
   const [group, setGroup] = useState({});
 
   const getGroup = async () => {
@@ -75,7 +74,7 @@ const EditGroup = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {})
-      .catch((e) => setGroupError(e.response));
+      .catch((e) => console.log(e.response));
     notify();
   };
 

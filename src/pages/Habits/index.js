@@ -30,9 +30,8 @@ const Habits = () => {
       .then((response) => setHabits(response.data));
   };
 
-  useEffect(() => {
-    getUserHabits();
-  }, []);
+  useEffect(getUserHabits);
+  
   localStorage.setItem("habits", JSON.stringify(habits));
 
   const handleNavigation = (path) => {

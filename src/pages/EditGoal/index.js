@@ -30,12 +30,12 @@ let howMuchAchieved = [
 ];
 
 const markSelectedOptions = (data) => {
-  difficulty.map((option) => {
+  difficulty.forEach((option) => {
     if (option.value === data.difficulty) {
       option.selected = true;
     }
   });
-  howMuchAchieved.map((option) => {
+  howMuchAchieved.forEach((option) => {
     if (option.value === data.how_much_achieved) {
       option.selected = true;
     }
@@ -61,14 +61,6 @@ const EditGoal = () => {
     return JSON.parse(sessionToken);
   });
 
-  useEffect(() => {
-    api.get(`/goals/${params.id}/`).then((response) => {
-      setSelectedGoal(response.data);
-      setValue("title", response.data.title);
-      setGroup(response.data.group);
-    });
-  }, []);
-
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
     difficulty: yup.string(),
@@ -78,6 +70,14 @@ const EditGoal = () => {
   const { register, handleSubmit, errors, setValue } = useForm({
     resolver: yupResolver(schema),
   });
+
+  useEffect(() => {
+    api.get(`/goals/${params.id}/`).then((response) => {
+      setSelectedGoal(response.data);
+      setValue("title", response.data.title);
+      setGroup(response.data.group);
+    });
+  }, [params.id, setValue]);
 
   const handleForm = (data) => {
     data = { ...data, group: group };
