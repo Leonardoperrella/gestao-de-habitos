@@ -18,9 +18,6 @@ import Notification from "../../components/Notification";
 toast.configure();
 
 const AddHabit = () => {
-  const [habitError, setHabitError] = useState({});
-  const [inputValue, setInputValue] = useState("");
-
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
@@ -76,7 +73,7 @@ const AddHabit = () => {
         console.log(response);
         reset();
       })
-      .catch((e) => setHabitError(e.response));
+      .catch((e) => console.log(e.response));
     notify();
   };
 

@@ -12,12 +12,22 @@ export const FormTitle = styled.h1`
 export const FormButtonsWrap = styled.div`
   display: flex;
   flex-direction: row-reverse;
+  justify-content: space-around;
+
+  p {
+    margin: 0.1rem;
+  }
+
   @media (min-width: 1024px) {
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     align-items: center;
     justify-content: center;
-    margin: 10px;
+    margin-top: 5rem;
+
+    button {
+      box-shadow: none;
+    }
   }
 `;
 
@@ -77,8 +87,10 @@ export const ContainerLink = styled.div`
   cursor: pointer;
 
   @media (min-width: 1024px) {
-    justify-content: center;
-    margin: 0px;
+    p {
+      margin: 0.1rem;
+      float: left;
+    }
   }
 `;
 

@@ -7,9 +7,9 @@ import * as yup from "yup";
 import Background from "../../Images/BackgroundLoginRegister.jpg";
 import GlobalContainer from "../../components/GlobalContainer";
 import BackGroundImage from "../../components/BackGroundImage";
-import GlobalWrap from "../../components/GlobalWrap";
 import FormUser from "../../components/FormUser";
 import FormUserInput from "../../components/FormUserInput";
+import { ContainerRegister } from "./style";
 
 const Register = () => {
   const history = useHistory();
@@ -38,7 +38,7 @@ const Register = () => {
     <div>
       <GlobalContainer>
         <BackGroundImage image={Background} />
-        <GlobalWrap>
+        <ContainerRegister>
           <FormUser isRegistering handleSubmit={handleSubmit(handleForm)}>
             <FormUserInput
               name="username"
@@ -66,7 +66,7 @@ const Register = () => {
               Password
             </FormUserInput>
           </FormUser>
-        </GlobalWrap>
+        </ContainerRegister>
       </GlobalContainer>
     </div>
   );

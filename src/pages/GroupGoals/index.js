@@ -12,10 +12,7 @@ const GroupGoals = () => {
     setGoals(response.data.goals);
   };
 
-  useEffect(() => {
-    getGroupGoals();
-    console.log("entrou goals");
-  }, []);
+  useEffect(getGroupGoals);
 
   goals.sort(function (a, b) {
     return a.how_much_achieved - b.how_much_achieved;

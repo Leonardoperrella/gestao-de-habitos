@@ -8,7 +8,6 @@ import {
   ProfileTitle,
   ProfileText,
   ProfileSubTitle,
-  GroupsTitle,
   GroupsTitleWrap,
   GroupsButton,
 } from "./style";

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 import api from "../../services/api";
@@ -38,7 +38,6 @@ const EditActivite = () => {
   });
 
   const params = useParams();
-  const [editError, setEditError] = useState({});
   const [yupValues, setYupValues] = useState({});
   const [group, setGroup] = useState({});
 
@@ -81,7 +80,7 @@ const EditActivite = () => {
       .then((response) => {
         console.log(response);
       })
-      .catch((e) => setEditError(e.response));
+      .catch((e) => console.log(e.response));
 
     notify();
   };

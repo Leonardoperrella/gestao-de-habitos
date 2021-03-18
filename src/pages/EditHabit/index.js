@@ -11,7 +11,7 @@ import api from "../../services/api";
 import { useState, useEffect } from "react";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
 import "react-toastify/dist/ReactToastify.css";
@@ -43,22 +43,22 @@ let howMuchAchieved = [
 ];
 
 const markSelectedOptions = (data) => {
-  category.map((option) => {
+  category.forEach((option) => {
     if (option.value === data.category) {
       option.selected = true;
     }
   });
-  difficulty.map((option) => {
+  difficulty.forEach((option) => {
     if (option.value === data.difficulty) {
       option.selected = true;
     }
   });
-  frequency.map((option) => {
+  frequency.forEach((option) => {
     if (option.value === data.frequency) {
       option.selected = true;
     }
   });
-  howMuchAchieved.map((option) => {
+  howMuchAchieved.forEach((option) => {
     if (option.value === data.how_much_achieved) {
       option.selected = true;
     }
@@ -69,7 +69,6 @@ toast.configure();
 
 const EditHabit = () => {
   const params = useParams();
-  const history = useHistory();
 
   const [selectedHabit, setSelectedHabit] = useState({});
 
@@ -101,7 +100,7 @@ const EditHabit = () => {
       setSelectedHabit(response.data);
       setValue("title", response.data.title);
     });
-  }, []);
+  }, [params.id, setValue]);
 
   const handleForm = (data) => {
     api

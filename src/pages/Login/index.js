@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,14 +7,12 @@ import jwt_decode from "jwt-decode";
 import Background from "../../Images/BackgroundLoginRegister.jpg";
 import GlobalContainer from "../../components/GlobalContainer";
 import BackGroundImage from "../../components/BackGroundImage";
-import GlobalWrap from "../../components/GlobalWrap";
 import FormUser from "../../components/FormUser";
 import FormUserInput from "../../components/FormUserInput";
+import { ContainerLogin } from "./style";
 
 const Login = () => {
   const history = useHistory();
-
-  const [loginError, setLoginError] = useState({});
 
   const schema = yup.object().shape({
     username: yup.string().required("Field Required"),
@@ -39,12 +36,12 @@ const Login = () => {
         reset();
         history.push("/home");
       })
-      .catch((e) => setLoginError(e.response));
+      .catch((e) => console.log(e.response));
   };
   return (
     <GlobalContainer>
       <BackGroundImage image={Background} />
-      <GlobalWrap>
+      <ContainerLogin>
         <FormUser isRegistering={false} handleSubmit={handleSubmit(handleForm)}>
           <FormUserInput
             name="username"
@@ -65,7 +62,7 @@ const Login = () => {
             Password
           </FormUserInput>
         </FormUser>
-      </GlobalWrap>
+      </ContainerLogin>
     </GlobalContainer>
   );
 };

@@ -8,7 +8,6 @@ import {
   GroupsButton,
 } from "./style";
 import GlobalContainer from "../../components/GlobalContainer";
-import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import CardGroup from "../../components/CardGroup";
 import GobalLoading from "../../components/GobalLoading";

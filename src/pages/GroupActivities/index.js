@@ -12,9 +12,7 @@ const GroupActivities = () => {
     setActivities(response.data.activities);
   };
 
-  useEffect(() => {
-    getGroupActivities();
-  }, []);
+  useEffect(getGroupActivities);
 
   return (
     <>
