@@ -7,16 +7,15 @@ const CardGoals = ({
   difficulty,
   how_much_achieved,
   achieved = false,
-  group,
 }) => {
   const history = useHistory();
 
-  const handleHistory = (id, group) => {
-    history.push(`/edit-goal/${id}`, { group: group });
+  const handleHistory = (id) => {
+    history.push(`/edit-goal/${id}`);
   };
 
   return (
-    <div onClick={() => handleHistory(id, group)}>
+    <div onClick={() => handleHistory(id)}>
       {how_much_achieved === 100 ? (
         <GoalsContainer
           style={{ background: "#10AC84" }}

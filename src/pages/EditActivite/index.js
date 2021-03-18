@@ -18,20 +18,18 @@ const EditActivite = () => {
     return JSON.parse(sessionToken);
   });
 
-  const {
-    state: { group },
-  } = useLocation();
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
   });
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, getValues } = useForm({
     resolver: yupResolver(schema),
   });
 
   const params = useParams();
   const [editError, setEditError] = useState({});
   const [inputTitle, setInputTitle] = useState("");
+  const [group, setGroup] = useState("");
 
   const getActivite = async () => {
     await api
@@ -39,7 +37,9 @@ const EditActivite = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
+        console.log(response.data.title);
         setInputTitle(response.data.title);
+        setGroup(response.data.group);
       })
       .catch((e) => {
         console.log(e.response);
@@ -72,6 +72,8 @@ const EditActivite = () => {
       .catch((e) => setEditError(e.response));
   };
 
+  const { title } = getValues();
+
   return (
     <GlobalContainer>
       <BackGroundImage image={Background} />
@@ -86,7 +88,6 @@ const EditActivite = () => {
             inputRef={register}
             error={errors.title}
             value={inputTitle}
-            setInputValue={setInputTitle}
           >
             Title
           </FormUserInput>

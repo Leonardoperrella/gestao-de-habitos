@@ -22,8 +22,8 @@ const GroupActivities = () => {
   return (
     <GlobalContainer>
       <GlobalWrap>
-        {activities?.map(({ title, id, group }) => (
-          <CardActivite key={id} title={title} id={id} group={group} />
+        {activities?.map(({ title, id }) => (
+          <CardActivite key={id} title={title} id={id} />
         ))}
       </GlobalWrap>
       <Menu></Menu>

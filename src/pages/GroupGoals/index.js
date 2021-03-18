@@ -27,7 +27,7 @@ const GroupGoals = () => {
     <GlobalContainer>
       <GlobalWrap>
         {goals?.map(
-          ({ title, difficulty, how_much_achieved, achieved, group, id }) => (
+          ({ title, difficulty, how_much_achieved, achieved, id }) => (
             <CardGoals
               key={id}
               id={id}
@@ -35,7 +35,6 @@ const GroupGoals = () => {
               difficulty={difficulty}
               how_much_achieved={how_much_achieved}
               achieved={achieved}
-              group={group}
             />
           )
         )}

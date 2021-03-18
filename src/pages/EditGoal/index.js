@@ -38,9 +38,7 @@ const EditHabit = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [selectDifficulty] = useState(selectedHabit.difficulty);
   const [selecthowMuchAchieved] = useState(selectedHabit.howMuchAchieved);
-  const {
-    state: { group },
-  } = useLocation();
+  const [group, setGroup] = useState({});
 
   const notify = () =>
     toast("Salvo com sucesso!", {
@@ -62,6 +60,7 @@ const EditHabit = () => {
     api.get(`/goals/${params.id}/`).then((response) => {
       setSelectedHabit(response.data);
       setInputTitle(response.data.title);
+      setGroup(response.data.group);
     });
   }, []);
 
