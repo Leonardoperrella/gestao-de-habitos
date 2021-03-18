@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import GlobalContainer from "../../components/GlobalContainer";
-import GlobalWrap from "../../components/GlobalWrap";
-import Menu from "../../components/Menu";
 import api from "../../services/api";
 import CardActivite from "../../components/CardActivite";
 

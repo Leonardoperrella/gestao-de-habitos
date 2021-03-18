@@ -18,7 +18,6 @@ import Notification from "../../components/Notification";
 toast.configure();
 
 const AddGroup = () => {
-  const [activiteError, setActiviteError] = useState({});
   const [inputTitle, setInputTitle] = useState("");
   const {
     state: { group },
@@ -61,7 +60,7 @@ const AddGroup = () => {
         console.log(response);
         reset();
       })
-      .catch((e) => setActiviteError(e.response));
+      .catch((e) => console.log(e.response));
 
     notify();
   };

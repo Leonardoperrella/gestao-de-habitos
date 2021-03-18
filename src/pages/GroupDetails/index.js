@@ -11,7 +11,7 @@ import GroupActivities from "../GroupActivities";
 
 import GobalLoading from "../../components/GobalLoading";
 
-import { AddIcon, ButtonTopic, ContainerShow, LinkAllGroups } from "./style";
+import { AddIcon, ButtonTopic, ContainerShow } from "./style";
 
 import { ReactComponent as SetaSvg } from "../../svgs/seta-suspensa.svg";
 
