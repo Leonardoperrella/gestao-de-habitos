@@ -29,9 +29,22 @@ let howMuchAchieved = [
   { value: 100, content: "100%" },
 ];
 
+const markSelectedOptions = (data) => {
+  difficulty.map((option) => {
+    if (option.value === data.difficulty) {
+      option.selected = true;
+    }
+  });
+  howMuchAchieved.map((option) => {
+    if (option.value === data.how_much_achieved) {
+      option.selected = true;
+    }
+  });
+};
+
 toast.configure();
 
-const EditHabit = () => {
+const EditGoal = () => {
   const params = useParams();
   const [goalError, setGoalError] = useState({});
   const [selectedGoal, setSelectedGoal] = useState({});
@@ -83,8 +96,9 @@ const EditHabit = () => {
     notify();
   };
 
+  markSelectedOptions(selectedGoal);
   const { title } = selectedGoal;
-
+  console.log(difficulty);
   return (
     <GlobalContainer>
       <BackGroundImage image={Background} />
@@ -107,7 +121,6 @@ const EditHabit = () => {
             name="difficulty"
             inputRef={register}
             error={errors.difficulty}
-            value={selectedGoal.difficulty}
           >
             {difficulty}
           </FormActionSelect>
@@ -115,7 +128,6 @@ const EditHabit = () => {
             name="how_much_achieved"
             inputRef={register}
             error={errors.how_much_achieved}
-            value={selectedGoal.how_much_achieved}
           >
             {howMuchAchieved}
           </FormActionSelect>
@@ -139,4 +151,4 @@ const EditHabit = () => {
     </GlobalContainer>
   );
 };
-export default EditHabit;
+export default EditGoal;

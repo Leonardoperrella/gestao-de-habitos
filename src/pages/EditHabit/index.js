@@ -17,21 +17,21 @@ import Notification from "../../components/Notification";
 import "react-toastify/dist/ReactToastify.css";
 
 let category = [
-  { value: "Aim", content: "Aim", selected: false },
-  { value: "Mechanical", content: "Mechanical", selected: false },
-  { value: "Decision Making", content: "Decision Making", selected: false },
-  { value: "Game Sense", content: "Game Sense", selected: false },
+  { value: "Aim", content: "Aim" },
+  { value: "Mechanical", content: "Mechanical" },
+  { value: "Decision Making", content: "Decision Making" },
+  { value: "Game Sense", content: "Game Sense" },
 ];
 let difficulty = [
-  { value: "Easy", content: "Easy", selected: false },
-  { value: "Medium", content: "Medium", selected: false },
-  { value: "Hard", content: "Hard", selected: false },
+  { value: "Easy", content: "Easy" },
+  { value: "Medium", content: "Medium" },
+  { value: "Hard", content: "Hard" },
 ];
 
 let frequency = [
-  { value: "Daily", content: "Daily", selected: false },
-  { value: "Weekly", content: "Weekly", selected: false },
-  { value: "Weekend", content: "Weekend", selected: false },
+  { value: "Daily", content: "Daily" },
+  { value: "Weekly", content: "Weekly" },
+  { value: "Weekend", content: "Weekend" },
 ];
 
 const markSelectedOptions = (data) => {
@@ -91,7 +91,6 @@ const EditHabit = () => {
     api.get(`/habits/${params.id}/`).then((response) => {
       setSelectedHabit(response.data);
       setValue("title", response.data.title);
-      markSelectedOptions(response.data);
     });
   }, []);
 
@@ -103,10 +102,8 @@ const EditHabit = () => {
       .then((response) => console.log(response));
 
     notify();
-
-    //history.push("/home");
   };
-
+  markSelectedOptions(selectedHabit);
   const { title } = selectedHabit;
 
   return (
