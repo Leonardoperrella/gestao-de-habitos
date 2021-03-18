@@ -12,6 +12,11 @@ import Background from "../../Images/BackgroundAddActivite.png";
 import Menu from "../../components/Menu";
 import FormAction from "../../components/FormAction";
 
+import { toast } from "react-toastify";
+import Notification from "../../components/Notification";
+
+toast.configure();
+
 const AddGroup = () => {
   const [activiteError, setActiviteError] = useState({});
   const [inputTitle, setInputTitle] = useState("");
@@ -23,6 +28,17 @@ const AddGroup = () => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
+
+  const notify = () =>
+    toast("Added successfully!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
@@ -51,6 +67,8 @@ const AddGroup = () => {
         reset();
       })
       .catch((e) => setActiviteError(e.response));
+
+    notify();
   };
 
   return (
@@ -58,10 +76,7 @@ const AddGroup = () => {
       <GlobalContainer>
         <BackGroundImage image={Background} />
         <GlobalWrap>
-          <FormAction
-            handleSubmit={handleSubmit(handleForm)}
-            title="Add Activite"
-          >
+          <FormAction handleSubmit={handleSubmit(handleForm)} name="Activite">
             <FormUserInput
               name="title"
               inputRef={register}
@@ -72,6 +87,18 @@ const AddGroup = () => {
               Name
             </FormUserInput>
           </FormAction>
+          <Notification
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            className=".Toastify__progress-bar--dark .Toastify__toast--dark"
+          />
         </GlobalWrap>
       </GlobalContainer>
       <Menu />

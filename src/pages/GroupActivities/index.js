@@ -20,14 +20,11 @@ const GroupActivities = () => {
   }, []);
 
   return (
-    <GlobalContainer>
-      <GlobalWrap>
-        {activities?.map(({ title, id }) => (
-          <CardActivite key={id} title={title} id={id} />
-        ))}
-      </GlobalWrap>
-      <Menu></Menu>
-    </GlobalContainer>
+    <>
+      {activities?.map(({ title, id }) => (
+        <CardActivite key={id} title={title} id={id} />
+      ))}
+    </>
   );
 };
 export default GroupActivities;

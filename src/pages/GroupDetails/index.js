@@ -9,6 +9,8 @@ import api from "../../services/api";
 import GroupGoals from "../GroupGoals";
 import GroupActivities from "../GroupActivities";
 
+import GobalLoading from "../../components/GobalLoading";
+
 import { AddIcon, ButtonTopic, ContainerShow, LinkAllGroups } from "./style";
 
 import { ReactComponent as SetaSvg } from "../../svgs/seta-suspensa.svg";
@@ -57,26 +59,26 @@ const GroupDetails = () => {
               Goals
               <SetaSvg />
             </ButtonTopic>
+            <AddIcon onClick={() => handleNavigation("/add-goal", id)} />
             {showGoals && (
               <ContainerShow>
                 <GroupGoals />
               </ContainerShow>
             )}
-            <AddIcon onClick={() => handleNavigation("/add-goal", id)} />
 
             <ButtonTopic onClick={handleShowActivies} showItem={showActivies}>
               Activities
               <SetaSvg />
             </ButtonTopic>
+            <AddIcon onClick={() => handleNavigation("/add-activite", id)} />
             {showActivies && (
               <ContainerShow>
                 <GroupActivities />
               </ContainerShow>
             )}
-            <AddIcon onClick={() => handleNavigation("/add-activite", id)} />
           </>
         ) : (
-          "Grupo não encontrado"
+          <GobalLoading />
         )}
       </GlobalWrap>
       <Menu></Menu>
