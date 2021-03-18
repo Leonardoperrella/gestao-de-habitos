@@ -106,6 +106,8 @@ const EditHabit = () => {
   markSelectedOptions(selectedHabit);
   const { title } = selectedHabit;
 
+  markSelectedOptions(selectedHabit);
+
   return (
     <GlobalContainer>
       <BackGroundImage image={Background} />
@@ -167,3 +169,58 @@ const EditHabit = () => {
   );
 };
 export default EditHabit;
+
+// let category = [
+//   { value: "Aim", content: "Aim" },
+//   { value: "Mechanical", content: "Mechanical" },
+//   { value: "Decision Making", content: "Decision Making" },
+//   { value: "Game Sense", content: "Game Sense" },
+// ];
+// let difficulty = [
+//   { value: "Easy", content: "Easy" },
+//   { value: "Medium", content: "Medium" },
+//   { value: "Hard", content: "Hard" },
+// ];
+
+// let frequency = [
+//   { value: "Daily", content: "Daily" },
+//   { value: "Weekly", content: "Weekly" },
+//   { value: "Weekend", content: "Weekend" },
+// ];
+
+// const EditHabit = () => {
+//   const params = useParams();
+
+//   const [habits] = useState(() => {
+//     const getHabits = localStorage.getItem("habits") || "";
+//     return JSON.parse(getHabits);
+//   });
+
+//   const selectedHabit =
+//     habits.filter(({ id }) => id === Number(params.id))[0] || "";
+//   const [inputValue, setInputValue] = useState(selectedHabit.title);
+
+//   console.log(selectedHabit);
+//   console.log(params);
+//   console.log(habits);
+//   console.log(inputValue);
+
+//   const markSelectedOptions = (data) => {
+//     category.map((option) => {
+//       if (option.value === data.category) {
+//         option.selected = true;
+//       }
+//     });
+//     difficulty.map((option) => {
+//       if (option.value === data.difficulty) {
+//         option.selected = true;
+//       }
+//     });
+//     frequency.map((option) => {
+//       if (option.value === data.frequency) {
+//         option.selected = true;
+//       }
+//     });
+//   };
+
+//   markSelectedOptions(selectedHabit);
