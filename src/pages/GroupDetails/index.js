@@ -11,7 +11,7 @@ import GroupActivities from "../GroupActivities";
 
 import GobalLoading from "../../components/GobalLoading";
 
-import { AddIcon, ButtonTopic, ContainerShow, LinkAllGroups } from "./style";
+import { AddIcon, ButtonTopic, ContainerShow } from "./style";
 
 import { ReactComponent as SetaSvg } from "../../svgs/seta-suspensa.svg";
 
@@ -34,7 +34,7 @@ const GroupDetails = () => {
     };
 
     getGroupActivities();
-  }, [id]);
+  }, []);
 
   const handleShowGoals = () => {
     setShowGoals(!showGoals);
@@ -45,6 +45,7 @@ const GroupDetails = () => {
   };
 
   const handleNavigation = (path, id) => {
+    console.log("entrou");
     history.push(path, { group: id });
   };
 
@@ -78,7 +79,7 @@ const GroupDetails = () => {
             )}
           </>
         ) : (
-          <GobalLoading />
+          "Você não esta inscrito em nenhum grupo"
         )}
       </GlobalWrap>
       <Menu></Menu>

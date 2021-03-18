@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,14 +7,15 @@ import jwt_decode from "jwt-decode";
 import Background from "../../Images/BackgroundLoginRegister.jpg";
 import GlobalContainer from "../../components/GlobalContainer";
 import BackGroundImage from "../../components/BackGroundImage";
-import GlobalWrap from "../../components/GlobalWrap";
 import FormUser from "../../components/FormUser";
 import FormUserInput from "../../components/FormUserInput";
+import { ContainerLogin } from "./style";
+import { toast } from "react-toastify";
+import Notification from "../../components/Notification";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const history = useHistory();
-
-  const [loginError, setLoginError] = useState({});
 
   const schema = yup.object().shape({
     username: yup.string().required("Field Required"),
@@ -25,6 +25,12 @@ const Login = () => {
   const { register, handleSubmit, errors, reset, getValues } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const notifyError = (error) =>
+    toast(error, {
+      autoClose: 2000,
+      hideProgressBar: true,
+    });
 
   const { username, password } = getValues();
 
@@ -39,12 +45,14 @@ const Login = () => {
         reset();
         history.push("/home");
       })
-      .catch((e) => setLoginError(e.response));
+      .catch((e) => {
+        notifyError(e.response.data.detail);
+      });
   };
   return (
     <GlobalContainer>
       <BackGroundImage image={Background} />
-      <GlobalWrap>
+      <ContainerLogin>
         <FormUser isRegistering={false} handleSubmit={handleSubmit(handleForm)}>
           <FormUserInput
             name="username"
@@ -64,8 +72,9 @@ const Login = () => {
           >
             Password
           </FormUserInput>
+          <Notification />
         </FormUser>
-      </GlobalWrap>
+      </ContainerLogin>
     </GlobalContainer>
   );
 };

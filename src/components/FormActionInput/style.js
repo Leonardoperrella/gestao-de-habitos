@@ -1,9 +1,12 @@
 import styled from "styled-components";
+import { animationInput } from "../FormUserInput/style";
 
 export const Label = styled.label``;
 
 export const ContainerInput = styled.div`
   position: relative;
+
+  animation: ${animationInput} 0.3s forwards;
 `;
 
 export const Input = styled.input`
@@ -13,8 +16,8 @@ export const Input = styled.input`
   height: 3.5rem;
   font-size: 1rem;
   padding-left: 0.5rem;
-  background-color: #F9F9F9;
-  border: 2px solid #E8F0FE;
+  background-color: #f9f9f9;
+  border: 2px solid #e8f0fe;
   padding-top: 0.3rem;
 `;
 

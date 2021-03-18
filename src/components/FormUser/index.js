@@ -41,10 +41,10 @@ const FormUser = ({ children, isRegistering, handleSubmit }) => {
             </ButtonSubmit>
             <ContainerLink>
               <LabelSignInRegiter>
-                {isRegistering ? "Register" : "Sign in"}
+                {isRegistering ? <p>Register</p> : <p>Sign in</p>}
               </LabelSignInRegiter>
               <LinkSignInRegiter onClick={() => handleClick(isRegistering)}>
-                {isRegistering ? "or Sign in" : "or Register"}
+                {isRegistering ? <p>or Sign in</p> : <p>or Register</p>}
               </LinkSignInRegiter>
             </ContainerLink>
           </FormButtonsWrap>

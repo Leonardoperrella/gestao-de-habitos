@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 import api from "../../services/api";
@@ -12,11 +12,21 @@ import FormUserInput from "../../components/FormUserInput";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
 
+import { toast } from "react-toastify";
+import Notification from "../../components/Notification";
+toast.configure();
+
 const EditGroup = () => {
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
+
+  const notify = () =>
+    toast("Successfully saved!", {
+      autoClose: 2000,
+      hideProgressBar: true,
+    });
 
   const schema = yup.object().shape({
     name: yup.string().required("Field Required"),
@@ -29,7 +39,6 @@ const EditGroup = () => {
   });
 
   const params = useParams();
-  const [groupError, setGroupError] = useState({});
   const [group, setGroup] = useState({});
 
   const getGroup = async () => {
@@ -65,7 +74,8 @@ const EditGroup = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {})
-      .catch((e) => setGroupError(e.response));
+      .catch((e) => console.log(e.response));
+    notify();
   };
 
   const { name, description, category } = group;
@@ -78,6 +88,7 @@ const EditGroup = () => {
           handleSubmit={handleSubmit(handleForm)}
           name="Group"
           subscribePath={`/groups/${params.id}/subscribe/`}
+          idParams={params.id}
         >
           <FormUserInput
             name="name"
@@ -104,6 +115,7 @@ const EditGroup = () => {
             Category
           </FormUserInput>
         </FormEdit>
+        <Notification />
       </GlobalWrap>
       <Menu></Menu>
     </GlobalContainer>

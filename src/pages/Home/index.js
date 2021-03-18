@@ -19,7 +19,8 @@ const Home = () => {
   const [showGroup, setShowGroup] = React.useState(false);
   const history = useHistory();
 
-  const { group: idGroup } = React.useContext(UserContext);
+  const { user } = React.useContext(UserContext);
+  const { group: idGroup } = user;
 
   React.useEffect(() => {
     if (idGroup) {

@@ -8,15 +8,13 @@ import {
   GroupsButton,
 } from "./style";
 import GlobalContainer from "../../components/GlobalContainer";
-import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import CardGroup from "../../components/CardGroup";
-import GobalLoading from "../../components/GobalLoading";
 
 const Groups = () => {
   const [groups, setGroups] = useState([]);
   const [nextPage, setNextPage] = useState("1");
-  const [isLoading, setIsLoading] = useState(true);
+
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
@@ -36,14 +34,12 @@ const Groups = () => {
         }
         if (!response.data.next) {
           setNextPage(response.data.next);
-          setIsLoading(false);
         } else {
           setNextPage(response.data.next.match(patt)[0]);
         }
       })
       .catch((e) => {
         console.log(e.response);
-        setIsLoading(false);
       });
   };
 
@@ -63,26 +59,20 @@ const Groups = () => {
     <GlobalContainer>
       <GroupsTitleWrap>
         <GroupsTitle>Groups</GroupsTitle>
-        <GroupsButton onClick={() => handleNavigation("/add-groups")}>
+        <GroupsButton onClick={() => handleNavigation("/add-group")}>
           Add Group
         </GroupsButton>
       </GroupsTitleWrap>
       <GroupsWrap>
-        {!isLoading ? (
-          groups
-            .flat()
-            .map(({ id, name, description, category }) => (
-              <CardGroup
-                key={id}
-                id={id}
-                name={name}
-                description={description}
-                category={category}
-              />
-            ))
-        ) : (
-          <GobalLoading />
-        )}
+        {groups.flat().map(({ id, name, description, category }) => (
+          <CardGroup
+            key={id}
+            id={id}
+            name={name}
+            description={description}
+            category={category}
+          />
+        ))}
       </GroupsWrap>
       <Menu></Menu>
     </GlobalContainer>

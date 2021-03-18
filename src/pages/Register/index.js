@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,13 +7,12 @@ import * as yup from "yup";
 import Background from "../../Images/BackgroundLoginRegister.jpg";
 import GlobalContainer from "../../components/GlobalContainer";
 import BackGroundImage from "../../components/BackGroundImage";
-import GlobalWrap from "../../components/GlobalWrap";
 import FormUser from "../../components/FormUser";
 import FormUserInput from "../../components/FormUserInput";
+import { ContainerRegister } from "./style";
 
 const Register = () => {
   const history = useHistory();
-  const [registerError, setRegisterError] = useState({});
   const schema = yup.object().shape({
     username: yup.string().required("Field Required"),
     email: yup.string().email("Invalid email").required("Field Required"),
@@ -32,7 +30,7 @@ const Register = () => {
         reset();
         history.push("/");
       })
-      .catch((e) => setRegisterError(e.response));
+      .catch((e) => console.log(e.response));
   };
 
   const { username, email, password } = getValues();
@@ -40,7 +38,7 @@ const Register = () => {
     <div>
       <GlobalContainer>
         <BackGroundImage image={Background} />
-        <GlobalWrap>
+        <ContainerRegister>
           <FormUser isRegistering handleSubmit={handleSubmit(handleForm)}>
             <FormUserInput
               name="username"
@@ -68,7 +66,7 @@ const Register = () => {
               Password
             </FormUserInput>
           </FormUser>
-        </GlobalWrap>
+        </ContainerRegister>
       </GlobalContainer>
     </div>
   );

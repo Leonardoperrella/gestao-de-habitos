@@ -15,7 +15,7 @@ const CardGoals = ({
   };
 
   return (
-    <div onClick={() => handleHistory(id)}>
+    <div>
       {how_much_achieved === 100 ? (
         <GoalsContainer
           style={{ background: "#10AC84" }}

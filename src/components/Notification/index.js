@@ -1,7 +1,7 @@
 import { NoticiationContainer } from "./style";
 
 const Notification = (text) => {
-  return <NoticiationContainer>aaaa</NoticiationContainer>;
+  return <NoticiationContainer />;
 };
 
 export default Notification;

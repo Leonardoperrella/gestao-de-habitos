@@ -30,14 +30,17 @@ const Habits = () => {
       .then((response) => setHabits(response.data));
   };
 
-  useEffect(() => {
-    getUserHabits();
-  }, []);
+  useEffect(getUserHabits);
+  
   localStorage.setItem("habits", JSON.stringify(habits));
 
   const handleNavigation = (path) => {
     history.push(path);
   };
+
+  habits.sort(function (a, b) {
+    return a.how_much_achieved - b.how_much_achieved;
+  });
 
   return (
     <GlobalContainer>
@@ -49,13 +52,25 @@ const Habits = () => {
       </HabitsTitleWrap>
       <HabitsWrap>
         {habits.map(
-          ({ id, title, category, difficulty, frequency, completed }, key) => (
+          (
+            {
+              id,
+              title,
+              category,
+              difficulty,
+              frequency,
+              completed,
+              how_much_achieved,
+            },
+            key
+          ) => (
             <CardHabit
               title={title}
               category={category}
               difficulty={difficulty}
               frequency={frequency}
               completed={completed}
+              how_much_achieved={how_much_achieved}
               key={key}
               id={id}
             />

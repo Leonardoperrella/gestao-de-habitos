@@ -13,7 +13,9 @@ import { UserContext } from "../../providers/UserProvider";
 
 const Menu = () => {
   const history = useHistory();
-  const { group: idGroup } = React.useContext(UserContext);
+
+  const { user } = React.useContext(UserContext);
+  const { group: idGroup } = user;
 
   const handleNavigation = (path) => {
     history.push(path);

@@ -30,12 +30,12 @@ let howMuchAchieved = [
 ];
 
 const markSelectedOptions = (data) => {
-  difficulty.map((option) => {
+  difficulty.forEach((option) => {
     if (option.value === data.difficulty) {
       option.selected = true;
     }
   });
-  howMuchAchieved.map((option) => {
+  howMuchAchieved.forEach((option) => {
     if (option.value === data.how_much_achieved) {
       option.selected = true;
     }
@@ -46,35 +46,20 @@ toast.configure();
 
 const EditGoal = () => {
   const params = useParams();
-  const [goalError, setGoalError] = useState({});
+
   const [selectedGoal, setSelectedGoal] = useState({});
   const [group, setGroup] = useState("");
 
   const notify = () =>
-    toast("Saved successfully!", {
-      position: "top-right",
-      autoClose: 5000,
+    toast("Successfully saved!", {
+      autoClose: 2000,
       hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      rtl: false,
-      newestOnTop: false,
     });
 
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
-
-  useEffect(() => {
-    api.get(`/goals/${params.id}/`).then((response) => {
-      setSelectedGoal(response.data);
-      setValue("title", response.data.title);
-      setGroup(response.data.group);
-    });
-  }, []);
 
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
@@ -86,6 +71,22 @@ const EditGoal = () => {
     resolver: yupResolver(schema),
   });
 
+  useEffect(() => {
+    api.get(`/goals/${params.id}/`).then((response) => {
+      setSelectedGoal(response.data);
+      setValue("title", response.data.title);
+      setGroup(response.data.group);
+    });
+  }, [params.id, setValue]);
+
+  useEffect(() => {
+    api.get(`/goals/${params.id}/`).then((response) => {
+      setSelectedGoal(response.data);
+      setValue("title", response.data.title);
+      setGroup(response.data.group);
+    });
+  }, [params.id, setValue]);
+
   const handleForm = (data) => {
     data = { ...data, group: group };
     api
@@ -93,14 +94,13 @@ const EditGoal = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => console.log(response))
-      .catch((e) => setGoalError(e.response));
+      .catch((e) => console.log(e));
 
     notify();
   };
 
   markSelectedOptions(selectedGoal);
   const { title } = selectedGoal;
-  console.log(difficulty);
   return (
     <GlobalContainer>
       <BackGroundImage image={Background} />
@@ -127,25 +127,14 @@ const EditGoal = () => {
             {difficulty}
           </FormActionSelect>
           <FormActionSelect
-            name="Frequency"
+            name="how_much_achieved"
             inputRef={register}
             error={errors.how_much_achieved}
           >
             {howMuchAchieved}
           </FormActionSelect>
         </FormEdit>
-        <Notification
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          className=".Toastify__progress-bar--dark .Toastify__toast--dark"
-        />
+        <Notification />
       </GlobalWrap>
       <Menu></Menu>
     </GlobalContainer>

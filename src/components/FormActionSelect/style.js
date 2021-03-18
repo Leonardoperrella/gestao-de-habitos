@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { animationInput, ContainerInput } from "../FormUserInput/style";
 
-import { ContainerInput } from "../FormUserInput/style";
-
-export const ContainerSelect = styled(ContainerInput)``;
+export const ContainerSelect = styled(ContainerInput)`
+  animation: ${animationInput} 0.3s forwards;
+`;
 
 export const Select = styled.select`
   box-sizing: border-box;
