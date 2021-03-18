@@ -51,14 +51,16 @@ const EditGoal = () => {
   const [group, setGroup] = useState("");
 
   const notify = () =>
-    toast("Salvo com sucesso!", {
+    toast("Saved successfully!", {
       position: "top-right",
-      autoClose: 2000,
+      autoClose: 5000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
+      rtl: false,
+      newestOnTop: false,
     });
 
   const [token] = useState(() => {
@@ -125,7 +127,7 @@ const EditGoal = () => {
             {difficulty}
           </FormActionSelect>
           <FormActionSelect
-            name="how_much_achieved"
+            name="Frequency"
             inputRef={register}
             error={errors.how_much_achieved}
           >
@@ -143,9 +145,7 @@ const EditGoal = () => {
           draggable
           pauseOnHover
           className=".Toastify__progress-bar--dark .Toastify__toast--dark"
-        >
-          TESTE
-        </Notification>
+        />
       </GlobalWrap>
       <Menu></Menu>
     </GlobalContainer>

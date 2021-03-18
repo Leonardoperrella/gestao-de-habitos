@@ -12,11 +12,27 @@ import FormUserInput from "../../components/FormUserInput";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
 
+import { toast } from "react-toastify";
+import Notification from "../../components/Notification";
+
+toast.configure();
+
 const EditActivite = () => {
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
+
+  const notify = () =>
+    toast("Saved successfully!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
@@ -71,6 +87,8 @@ const EditActivite = () => {
         console.log(response);
       })
       .catch((e) => setEditError(e.response));
+
+    notify();
   };
 
   const { title } = yupValues;
@@ -93,6 +111,18 @@ const EditActivite = () => {
             Title
           </FormUserInput>
         </FormEdit>
+        <Notification
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          className=".Toastify__progress-bar--dark .Toastify__toast--dark"
+        />
       </GlobalWrap>
       <Menu></Menu>
     </GlobalContainer>

@@ -24,23 +24,18 @@ const GroupGoals = () => {
   });
 
   return (
-    <GlobalContainer>
-      <GlobalWrap>
-        {goals?.map(
-          ({ title, difficulty, how_much_achieved, achieved, id }) => (
-            <CardGoals
-              key={id}
-              id={id}
-              title={title}
-              difficulty={difficulty}
-              how_much_achieved={how_much_achieved}
-              achieved={achieved}
-            />
-          )
-        )}
-      </GlobalWrap>
-      <Menu></Menu>
-    </GlobalContainer>
+    <>
+      {goals?.map(({ title, difficulty, how_much_achieved, achieved, id }) => (
+        <CardGoals
+          key={id}
+          id={id}
+          title={title}
+          difficulty={difficulty}
+          how_much_achieved={how_much_achieved}
+          achieved={achieved}
+        />
+      ))}
+    </>
   );
 };
 export default GroupGoals;
