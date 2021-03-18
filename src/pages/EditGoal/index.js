@@ -67,6 +67,7 @@ const EditGoal = () => {
       setValue("title", response.data.title);
       setGroup(response.data.group);
     });
+    console.log("goals");
   }, []);
 
   const schema = yup.object().shape({
@@ -93,7 +94,6 @@ const EditGoal = () => {
 
   markSelectedOptions(selectedGoal);
   const { title } = selectedGoal;
-  console.log(difficulty);
   return (
     <GlobalContainer>
       <BackGroundImage image={Background} />

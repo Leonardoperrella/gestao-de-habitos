@@ -34,7 +34,7 @@ const GroupDetails = () => {
     };
 
     getGroupActivities();
-  }, [id]);
+  }, []);
 
   const handleShowGoals = () => {
     setShowGoals(!showGoals);
@@ -45,6 +45,7 @@ const GroupDetails = () => {
   };
 
   const handleNavigation = (path, id) => {
+    console.log("entrou");
     history.push(path, { group: id });
   };
 
@@ -78,7 +79,7 @@ const GroupDetails = () => {
             )}
           </>
         ) : (
-          <GobalLoading />
+          "Você não esta inscrito em nenhum grupo"
         )}
       </GlobalWrap>
       <Menu></Menu>

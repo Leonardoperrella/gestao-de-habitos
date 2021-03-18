@@ -14,6 +14,7 @@ const GroupGoals = () => {
 
   useEffect(() => {
     getGroupGoals();
+    console.log("entrou goals");
   }, []);
 
   goals.sort(function (a, b) {
