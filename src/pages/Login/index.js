@@ -7,9 +7,9 @@ import jwt_decode from "jwt-decode";
 import Background from "../../Images/BackgroundLoginRegister.jpg";
 import GlobalContainer from "../../components/GlobalContainer";
 import BackGroundImage from "../../components/BackGroundImage";
-import GlobalWrap from "../../components/GlobalWrap";
 import FormUser from "../../components/FormUser";
 import FormUserInput from "../../components/FormUserInput";
+import { ContainerLogin } from "./style";
 
 const Login = () => {
   const history = useHistory();
@@ -41,7 +41,7 @@ const Login = () => {
   return (
     <GlobalContainer>
       <BackGroundImage image={Background} />
-      <GlobalWrap>
+      <ContainerLogin>
         <FormUser isRegistering={false} handleSubmit={handleSubmit(handleForm)}>
           <FormUserInput
             name="username"
@@ -62,7 +62,7 @@ const Login = () => {
             Password
           </FormUserInput>
         </FormUser>
-      </GlobalWrap>
+      </ContainerLogin>
     </GlobalContainer>
   );
 };
