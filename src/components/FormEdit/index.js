@@ -8,6 +8,8 @@ import {
   FormEditTextWrap,
   FormEditBackButtonIcon,
   FormEditBackButtonWrap,
+  FormModalConfirmDelete,
+  FormBackgroundModal,
 } from "./style";
 import { useHistory } from "react-router-dom";
 
@@ -23,13 +25,19 @@ const FormEdit = ({
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
+  const [showModal, setShowModal] = useState(false);
 
-  const handleDelete = (deletePath) => {
+  const handleDelete = () => {
     api
       .delete(deletePath, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((response) => console.log(response, "deletado"));
+      .then((response) => console.log(response, "deletado"))
+      .then((response) => {
+        window.location.reload();
+        history.push("/habits");
+      });
+    setShowModal(false);
   };
 
   const handleSubscribe = (subscribePath) => {
@@ -44,9 +52,20 @@ const FormEdit = ({
       .then((response) => console.log(response, "subscribed"));
   };
 
+  const handleDeleteModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <>
       <FormEditBackButtonWrap>
+        <FormBackgroundModal show={showModal} />
+        <FormModalConfirmDelete show={showModal}>
+          <h1>Delete?</h1>
+
+          <button onClick={() => handleDelete()}>Yes</button>
+          <button onClick={() => handleDeleteModal()}>No</button>
+        </FormModalConfirmDelete>
         <FormEditBackButtonIcon onClick={() => history.goBack()} />
       </FormEditBackButtonWrap>
       <FormEditWrap>
@@ -58,7 +77,7 @@ const FormEdit = ({
           <FormEditButton>Save edit</FormEditButton>
         </FormEditContainer>
         {!subscribePath ? (
-          <FormEditButton isRemovable onClick={() => handleDelete(deletePath)}>
+          <FormEditButton isRemovable onClick={() => handleDeleteModal()}>
             Delete {name}
           </FormEditButton>
         ) : (

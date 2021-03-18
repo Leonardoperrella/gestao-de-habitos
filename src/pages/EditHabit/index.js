@@ -103,7 +103,7 @@ const EditHabit = () => {
 
     notify();
   };
-
+  markSelectedOptions(selectedHabit);
   const { title } = selectedHabit;
 
   markSelectedOptions(selectedHabit);
