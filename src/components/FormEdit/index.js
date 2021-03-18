@@ -21,7 +21,6 @@ const FormEdit = ({
   deletePath,
   subscribePath,
   idParams,
-  OmitSecondButton,
 }) => {
   const history = useHistory();
   const [token] = useState(() => {
