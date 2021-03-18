@@ -8,11 +8,9 @@ import Providers from "./providers";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Providers>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Providers>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

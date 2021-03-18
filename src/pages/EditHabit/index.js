@@ -17,22 +17,40 @@ import Notification from "../../components/Notification";
 import "react-toastify/dist/ReactToastify.css";
 
 let category = [
-  { value: "Aim", content: "Aim" },
-  { value: "Mechanical", content: "Mechanical" },
-  { value: "Decision Making", content: "Decision Making" },
-  { value: "Game Sense", content: "Game Sense" },
+  { value: "Aim", content: "Aim", selected: false },
+  { value: "Mechanical", content: "Mechanical", selected: false },
+  { value: "Decision Making", content: "Decision Making", selected: false },
+  { value: "Game Sense", content: "Game Sense", selected: false },
 ];
 let difficulty = [
-  { value: "Easy", content: "Easy" },
-  { value: "Medium", content: "Medium" },
-  { value: "Hard", content: "Hard" },
+  { value: "Easy", content: "Easy", selected: false },
+  { value: "Medium", content: "Medium", selected: false },
+  { value: "Hard", content: "Hard", selected: false },
 ];
 
 let frequency = [
-  { value: "Daily", content: "Daily" },
-  { value: "Weekly", content: "Weekly" },
-  { value: "Weekend", content: "Weekend" },
+  { value: "Daily", content: "Daily", selected: false },
+  { value: "Weekly", content: "Weekly", selected: false },
+  { value: "Weekend", content: "Weekend", selected: false },
 ];
+
+const markSelectedOptions = (data) => {
+  category.map((option) => {
+    if (option.value === data.category) {
+      option.selected = true;
+    }
+  });
+  difficulty.map((option) => {
+    if (option.value === data.difficulty) {
+      option.selected = true;
+    }
+  });
+  frequency.map((option) => {
+    if (option.value === data.frequency) {
+      option.selected = true;
+    }
+  });
+};
 
 toast.configure();
 
@@ -73,7 +91,7 @@ const EditHabit = () => {
     api.get(`/habits/${params.id}/`).then((response) => {
       setSelectedHabit(response.data);
       setValue("title", response.data.title);
-      console.log(response.data);
+      markSelectedOptions(response.data);
     });
   }, []);
 
@@ -100,6 +118,7 @@ const EditHabit = () => {
           name="Habit"
           id={params.id}
           origin="/habits"
+          deletePath={`/habits/${params.id}/`}
         >
           <FormUserInput
             name="title"
@@ -113,7 +132,6 @@ const EditHabit = () => {
             name="category"
             inputRef={register}
             error={errors.category}
-            value={selectedHabit.category}
           >
             {category}
           </FormActionSelect>
@@ -121,7 +139,6 @@ const EditHabit = () => {
             name="difficulty"
             inputRef={register}
             error={errors.difficulty}
-            value={selectedHabit.difficulty}
           >
             {difficulty}
           </FormActionSelect>
@@ -129,7 +146,6 @@ const EditHabit = () => {
             name="frequency"
             inputRef={register}
             error={errors.frequency}
-            value={selectedHabit.frequency}
           >
             {frequency}
           </FormActionSelect>
