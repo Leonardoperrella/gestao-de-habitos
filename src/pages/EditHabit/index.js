@@ -34,6 +34,14 @@ let frequency = [
   { value: "Weekend", content: "Weekend" },
 ];
 
+let howMuchAchieved = [
+  { value: 0, content: "0%" },
+  { value: 25, content: "25%" },
+  { value: 50, content: "50%" },
+  { value: 75, content: "75%" },
+  { value: 100, content: "100%" },
+];
+
 const markSelectedOptions = (data) => {
   category.map((option) => {
     if (option.value === data.category) {
@@ -50,6 +58,11 @@ const markSelectedOptions = (data) => {
       option.selected = true;
     }
   });
+  howMuchAchieved.map((option) => {
+    if (option.value === data.how_much_achieved) {
+      option.selected = true;
+    }
+  });
 };
 
 toast.configure();
@@ -61,14 +74,9 @@ const EditHabit = () => {
   const [selectedHabit, setSelectedHabit] = useState({});
 
   const notify = () =>
-    toast("Salvo com sucesso!", {
-      position: "top-right",
+    toast("Successfully saved!", {
       autoClose: 2000,
       hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
     });
 
   const [token] = useState(() => {
@@ -81,6 +89,7 @@ const EditHabit = () => {
     category: yup.string().required("Field Required"),
     difficulty: yup.string().required("Field Required"),
     frequency: yup.string().required("Field Required"),
+    how_much_achieved: yup.number(),
   });
 
   const { register, handleSubmit, errors, setValue } = useForm({
@@ -148,21 +157,15 @@ const EditHabit = () => {
           >
             {frequency}
           </FormActionSelect>
+          <FormActionSelect
+            name="how_much_achieved"
+            inputRef={register}
+            error={errors.how_much_achieved}
+          >
+            {howMuchAchieved}
+          </FormActionSelect>
         </FormEdit>
-        <Notification
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          className=".Toastify__progress-bar--dark .Toastify__toast--dark"
-        >
-          TESTE
-        </Notification>
+        <Notification />
       </GlobalWrap>
       <Menu></Menu>
     </GlobalContainer>

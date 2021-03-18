@@ -46,21 +46,14 @@ toast.configure();
 
 const EditGoal = () => {
   const params = useParams();
-  const [goalError, setGoalError] = useState({});
+
   const [selectedGoal, setSelectedGoal] = useState({});
   const [group, setGroup] = useState("");
 
   const notify = () =>
-    toast("Saved successfully!", {
-      position: "top-right",
-      autoClose: 5000,
+    toast("Successfully saved!", {
+      autoClose: 2000,
       hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      rtl: false,
-      newestOnTop: false,
     });
 
   const [token] = useState(() => {
@@ -93,7 +86,7 @@ const EditGoal = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => console.log(response))
-      .catch((e) => setGoalError(e.response));
+      .catch((e) => console.log(e));
 
     notify();
   };
@@ -127,25 +120,14 @@ const EditGoal = () => {
             {difficulty}
           </FormActionSelect>
           <FormActionSelect
-            name="Frequency"
+            name="how_much_achieved"
             inputRef={register}
             error={errors.how_much_achieved}
           >
             {howMuchAchieved}
           </FormActionSelect>
         </FormEdit>
-        <Notification
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          className=".Toastify__progress-bar--dark .Toastify__toast--dark"
-        />
+        <Notification />
       </GlobalWrap>
       <Menu></Menu>
     </GlobalContainer>

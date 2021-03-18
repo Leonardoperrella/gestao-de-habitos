@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import api from "../../services/api";
 import {
   FormEditContainer,
@@ -12,6 +12,7 @@ import {
   FormBackgroundModal,
 } from "./style";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../../providers/UserProvider";
 
 const FormEdit = ({
   children,
@@ -19,6 +20,7 @@ const FormEdit = ({
   name,
   deletePath,
   subscribePath,
+  idParams,
 }) => {
   const history = useHistory();
   const [token] = useState(() => {
@@ -27,15 +29,17 @@ const FormEdit = ({
   });
   const [showModal, setShowModal] = useState(false);
 
-  const handleDelete = () => {
+  const { user, setUser } = useContext(UserContext);
+  const { group: groupID } = user;
+
+  const handleDelete = (deletePath) => {
     api
       .delete(deletePath, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => console.log(response, "deletado"))
       .then((response) => {
-        window.location.reload();
-        history.push("/habits");
+        history.goBack();
       });
     setShowModal(false);
   };
@@ -49,7 +53,11 @@ const FormEdit = ({
           headers: { Authorization: `Bearer ${token}` },
         }
       )
-      .then((response) => console.log(response, "subscribed"));
+      .then((response) => {
+        if (response.statusText === "OK") {
+          setUser({ ...response.data.user });
+        }
+      });
   };
 
   const handleDeleteModal = () => {
@@ -68,25 +76,39 @@ const FormEdit = ({
         </FormModalConfirmDelete>
         <FormEditBackButtonIcon onClick={() => history.goBack()} />
       </FormEditBackButtonWrap>
+
       <FormEditWrap>
         <FormEditTextWrap>
           <FormEditTitle>Edit {name}</FormEditTitle>
         </FormEditTextWrap>
+
         <FormEditContainer onSubmit={handleSubmit}>
           {children}
           <FormEditButton>Save edit</FormEditButton>
         </FormEditContainer>
+
         {!subscribePath ? (
           <FormEditButton isRemovable onClick={() => handleDeleteModal()}>
             Delete {name}
           </FormEditButton>
         ) : (
-          <FormEditButton
-            isRemovable
-            onClick={() => handleSubscribe(subscribePath)}
-          >
-            Subscribe {name}
-          </FormEditButton>
+          <>
+            {idParams === groupID ? (
+              <FormEditButton
+                isRemovable
+                style={{ cursor: "not-allowed", opacity: "0.6" }}
+              >
+                Subscribed
+              </FormEditButton>
+            ) : (
+              <FormEditButton
+                isRemovable
+                onClick={() => handleSubscribe(subscribePath)}
+              >
+                Subscribe {name}
+              </FormEditButton>
+            )}
+          </>
         )}
       </FormEditWrap>
     </>

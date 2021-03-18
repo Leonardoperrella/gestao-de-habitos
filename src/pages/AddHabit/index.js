@@ -12,6 +12,11 @@ import Menu from "../../components/Menu";
 import FormActionSelect from "../../components/FormActionSelect";
 import FormAction from "../../components/FormAction";
 
+import { toast } from "react-toastify";
+import Notification from "../../components/Notification";
+
+toast.configure();
+
 const AddHabit = () => {
   const [habitError, setHabitError] = useState({});
   const [inputValue, setInputValue] = useState("");
@@ -20,6 +25,13 @@ const AddHabit = () => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
+
+  const notify = () =>
+    toast("Successfully added!", {
+      autoClose: 2000,
+      hideProgressBar: true,
+    });
+
   const [user_id] = useState(() => {
     const sessionId = localStorage.getItem("user_id") || "";
     return JSON.parse(sessionId);
@@ -65,6 +77,7 @@ const AddHabit = () => {
         reset();
       })
       .catch((e) => setHabitError(e.response));
+    notify();
   };
 
   const { title } = getValues();
@@ -105,6 +118,7 @@ const AddHabit = () => {
               {frequency}
             </FormActionSelect>
           </FormAction>
+          <Notification />
         </GlobalWrap>
       </GlobalContainer>
       <Menu />

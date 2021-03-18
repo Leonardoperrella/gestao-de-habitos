@@ -39,6 +39,10 @@ const Habits = () => {
     history.push(path);
   };
 
+  habits.sort(function (a, b) {
+    return a.how_much_achieved - b.how_much_achieved;
+  });
+
   return (
     <GlobalContainer>
       <HabitsTitleWrap>
@@ -49,13 +53,25 @@ const Habits = () => {
       </HabitsTitleWrap>
       <HabitsWrap>
         {habits.map(
-          ({ id, title, category, difficulty, frequency, completed }, key) => (
+          (
+            {
+              id,
+              title,
+              category,
+              difficulty,
+              frequency,
+              completed,
+              how_much_achieved,
+            },
+            key
+          ) => (
             <CardHabit
               title={title}
               category={category}
               difficulty={difficulty}
               frequency={frequency}
               completed={completed}
+              how_much_achieved={how_much_achieved}
               key={key}
               id={id}
             />
