@@ -120,7 +120,7 @@ const EditGoal = () => {
             {difficulty}
           </FormActionSelect>
           <FormActionSelect
-            name="Frequency"
+            name="how_much_achieved"
             inputRef={register}
             error={errors.how_much_achieved}
           >
