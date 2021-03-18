@@ -35,7 +35,7 @@ const EditHabit = () => {
   const params = useParams();
   const [goalError, setGoalError] = useState({});
   const [selectedGoal, setSelectedGoal] = useState({});
-  const [goalGroup, setGoalGroup] = useState("");
+  const [group, setGroup] = useState("");
 
   const notify = () =>
     toast("Salvo com sucesso!", {
@@ -57,7 +57,7 @@ const EditHabit = () => {
     api.get(`/goals/${params.id}/`).then((response) => {
       setSelectedGoal(response.data);
       setValue("title", response.data.title);
-      setGoalGroup(response.data.group);
+      setGroup(response.data.group);
     });
   }, []);
 
@@ -72,7 +72,7 @@ const EditHabit = () => {
   });
 
   const handleForm = (data) => {
-    data = { ...data, group: goalGroup };
+    data = { ...data, group: group };
     api
       .patch(`/goals/${params.id}/`, data, {
         headers: { Authorization: `Bearer ${token}` },

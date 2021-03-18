@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 import * as yup from "yup";
@@ -15,6 +16,9 @@ import FormAction from "../../components/FormAction";
 const AddHabit = () => {
   const [goalError, setGoalError] = useState({});
   const [inputTitle, setInputTitle] = useState("");
+  const {
+    state: { group },
+  } = useLocation();
 
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
@@ -37,7 +41,7 @@ const AddHabit = () => {
   });
 
   const handleForm = (data) => {
-    data = { ...data, how_much_achieved: 0, group: 11 };
+    data = { ...data, how_much_achieved: 0, group: group };
     api
       .post("/goals/", data, {
         headers: { Authorization: `Bearer ${token}` },
