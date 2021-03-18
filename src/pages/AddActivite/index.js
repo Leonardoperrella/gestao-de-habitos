@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 import * as yup from "yup";
@@ -11,14 +12,27 @@ import Background from "../../Images/BackgroundAddActivite.png";
 import Menu from "../../components/Menu";
 import FormAction from "../../components/FormAction";
 
+import { toast } from "react-toastify";
+import Notification from "../../components/Notification";
+
+toast.configure();
+
 const AddGroup = () => {
-  const [activiteError, setActiviteError] = useState({});
   const [inputTitle, setInputTitle] = useState("");
+  const {
+    state: { group },
+  } = useLocation();
 
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
+
+  const notify = () =>
+    toast("Successfully added!", {
+      autoClose: 2000,
+      hideProgressBar: true,
+    });
 
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
@@ -36,7 +50,7 @@ const AddGroup = () => {
     const day = fullData.split("/")[0];
     const time = today.split(" ")[1];
     const realizationTime = `${year}-${month}-${day}T${time}Z`;
-    data = { ...data, realization_time: realizationTime, group: 11 };
+    data = { ...data, realization_time: realizationTime, group: group };
 
     await api
       .post("/activities/", data, {
@@ -46,7 +60,9 @@ const AddGroup = () => {
         console.log(response);
         reset();
       })
-      .catch((e) => setActiviteError(e.response));
+      .catch((e) => console.log(e.response));
+
+    notify();
   };
 
   return (
@@ -54,10 +70,7 @@ const AddGroup = () => {
       <GlobalContainer>
         <BackGroundImage image={Background} />
         <GlobalWrap>
-          <FormAction
-            handleSubmit={handleSubmit(handleForm)}
-            title="Add Activite"
-          >
+          <FormAction handleSubmit={handleSubmit(handleForm)} name="Activite">
             <FormUserInput
               name="title"
               inputRef={register}
@@ -68,6 +81,7 @@ const AddGroup = () => {
               Name
             </FormUserInput>
           </FormAction>
+          <Notification />
         </GlobalWrap>
       </GlobalContainer>
       <Menu />

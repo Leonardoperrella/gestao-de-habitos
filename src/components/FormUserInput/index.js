@@ -6,20 +6,14 @@ const FormUserInput = ({
   error,
   inputRef,
   name,
-  type,
-  value,
-  setInputValue,
+  type = "text",
+  value = "",
 }) => {
   const [activeInput, setActiveInput] = useState(false);
 
   useEffect(() => {
     if (value) {
       setActiveInput(true);
-      if (value.split("/")[0] === "habitorant") {
-        setInputValue(value.split("/")[1]);
-      } else {
-        setInputValue(value);
-      }
     }
   }, [value]);
 
@@ -29,7 +23,6 @@ const FormUserInput = ({
     } else {
       setActiveInput(false);
     }
-    setInputValue(target.value);
   };
 
   const handleBlur = ({ target }) => {
@@ -56,7 +49,6 @@ const FormUserInput = ({
           ref={inputRef}
           error={error}
           name={name}
-          value={value}
         />
       </Label>
       {error && <MessageError>{error.message}</MessageError>}

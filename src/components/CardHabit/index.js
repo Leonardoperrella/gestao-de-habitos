@@ -1,5 +1,5 @@
 import React from "react";
-import { HabitItem, IconEdit } from "./style";
+import { HabitItem } from "./style";
 import { useHistory } from "react-router-dom";
 
 const CardHabit = ({
@@ -8,7 +8,7 @@ const CardHabit = ({
   category,
   difficulty,
   frequency,
-  completed = false,
+  how_much_achieved,
 }) => {
   const history = useHistory();
 
@@ -19,17 +19,43 @@ const CardHabit = ({
   };
 
   return (
-    <HabitItem>
-      <IconEdit onClick={() => handleHistory(id)}></IconEdit>
-      <h2>{title}</h2>
-      <p>
-        {category} - {difficulty}
-      </p>
+    <>
+      {how_much_achieved === 100 ? (
+        <HabitItem
+          onClick={() => handleHistory(id)}
+          style={{ background: "#10AC84" }}
+        >
+          <h2>{title}</h2>
+          <p>
+            {category} - {difficulty}
+          </p>
+          <p>Frequency - {frequency}</p>
 
-      <p>Frequencia - {frequency}</p>
+          {how_much_achieved === 100 ? (
+            <p>Completed</p>
+          ) : (
+            <p>Completed - {how_much_achieved}%</p>
+          )}
+        </HabitItem>
+      ) : (
+        <HabitItem
+          onClick={() => handleHistory(id)}
+          style={{ background: "#FF4654" }}
+        >
+          <h2>{title}</h2>
+          <p>
+            {category} - {difficulty}
+          </p>
+          <p>Frequency - {frequency}</p>
 
-      {completed ? <p>Completed</p> : <p>Not Completed</p>}
-    </HabitItem>
+          {how_much_achieved === 100 ? (
+            <p>Completed</p>
+          ) : (
+            <p>Completed - {how_much_achieved}%</p>
+          )}
+        </HabitItem>
+      )}
+    </>
   );
 };
 

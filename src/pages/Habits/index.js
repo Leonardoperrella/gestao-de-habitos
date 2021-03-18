@@ -1,11 +1,15 @@
 import GlobalContainer from "../../components/GlobalContainer";
-import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import api from "../../services/api";
 import { useEffect, useState } from "react";
 import { useHabits } from "../../providers/Habits";
 import CardHabit from "../../components/CardHabit";
-import { HabitsTitle, HabitsWrap, HabitsButton } from "./style";
+import {
+  HabitsTitle,
+  HabitsWrap,
+  HabitsTitleWrap,
+  HabitsButton,
+} from "./style";
 import { useHistory } from "react-router";
 
 const Habits = () => {
@@ -35,29 +39,45 @@ const Habits = () => {
     history.push(path);
   };
 
+  habits.sort(function (a, b) {
+    return a.how_much_achieved - b.how_much_achieved;
+  });
+
   return (
     <GlobalContainer>
-      <HabitsWrap>
+      <HabitsTitleWrap>
         <HabitsTitle>Habits</HabitsTitle>
         <HabitsButton onClick={() => handleNavigation("/add-habit")}>
           Add Habits
         </HabitsButton>
-      </HabitsWrap>
-      <GlobalWrap>
+      </HabitsTitleWrap>
+      <HabitsWrap>
         {habits.map(
-          ({ id, title, category, difficulty, frequency, completed }, key) => (
+          (
+            {
+              id,
+              title,
+              category,
+              difficulty,
+              frequency,
+              completed,
+              how_much_achieved,
+            },
+            key
+          ) => (
             <CardHabit
               title={title}
               category={category}
               difficulty={difficulty}
               frequency={frequency}
               completed={completed}
+              how_much_achieved={how_much_achieved}
               key={key}
               id={id}
             />
           )
         )}
-      </GlobalWrap>
+      </HabitsWrap>
       <Menu></Menu>
     </GlobalContainer>
   );

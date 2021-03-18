@@ -2,10 +2,14 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { GroupItem } from "./style";
 
-const CardGroup = ({ id, name, description, category }) => {
+const CardGroup = ({ id, name, description, category, details }) => {
   const history = useHistory();
   const handleClick = (id) => {
-    history.push(`/edit-group/${id}`);
+    if (details) {
+      history.push(`/group/${id}`);
+    } else {
+      history.push(`/edit-group/${id}`);
+    }
   };
 
   return (

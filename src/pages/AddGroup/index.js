@@ -11,6 +11,11 @@ import Background from "../../Images/BackgroundAddGroup.jpg";
 import Menu from "../../components/Menu";
 import FormAction from "../../components/FormAction";
 
+import { toast } from "react-toastify";
+import Notification from "../../components/Notification";
+
+toast.configure();
+
 const AddGroup = () => {
   const [groupError, setGroupError] = useState({});
   const [inputName, setInputName] = useState("");
@@ -22,13 +27,19 @@ const AddGroup = () => {
     return JSON.parse(sessionToken);
   });
 
+  const notify = () =>
+    toast("Successfully added!", {
+      autoClose: 2000,
+      hideProgressBar: true,
+    });
+
   const schema = yup.object().shape({
     name: yup.string().required("Field Required"),
     description: yup.string().required("Field Required"),
     category: yup.string().required("Field Required"),
   });
 
-  const { register, handleSubmit, errors, reset } = useForm({
+  const { register, handleSubmit, errors, reset, getValues } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -45,7 +56,10 @@ const AddGroup = () => {
         reset();
       })
       .catch((e) => setGroupError(e.response));
+    notify();
   };
+
+  const { name, description, category } = getValues();
 
   return (
     <>
@@ -57,8 +71,7 @@ const AddGroup = () => {
               name="name"
               inputRef={register}
               error={errors.name}
-              value={inputName}
-              setInputValue={setInputName}
+              value={name}
             >
               Name
             </FormUserInput>
@@ -66,8 +79,7 @@ const AddGroup = () => {
               name="description"
               inputRef={register}
               error={errors.description}
-              value={inputDescription}
-              setInputValue={setInputDescription}
+              value={description}
             >
               Description
             </FormUserInput>
@@ -75,12 +87,12 @@ const AddGroup = () => {
               name="category"
               inputRef={register}
               error={errors.category}
-              value={inputCategory}
-              setInputValue={setInputCategory}
+              value={category}
             >
               Category
             </FormUserInput>
           </FormAction>
+          <Notification />
         </GlobalWrap>
       </GlobalContainer>
       <Menu />

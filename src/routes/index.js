@@ -17,6 +17,8 @@ import Profile from "../pages/Profile";
 import EditGoal from "../pages/EditGoal";
 import Search from "../pages/Search";
 import GroupDetails from "../pages/GroupDetails";
+import Providers from "../providers";
+import EditProfile from "../pages/EditProfile";
 
 const Routes = () => {
   return (
@@ -24,63 +26,62 @@ const Routes = () => {
       <Route exact path="/">
         <Login />
       </Route>
-      <Route exact path="/home">
-        <Home />
-      </Route>
       <Route exact path="/register">
         <Register />
       </Route>
-      <Route exact path="/add-habit">
-        <AddHabit />
-      </Route>
-      <Route exact path="/habits">
-        <Habits />
-      </Route>
-      <Route exact path="/edit-habit/:id">
-        <EditHabit />
-      </Route>
-      <Route exact path="/add-group">
-        <AddGroup />
-      </Route>
-      <Route exact path="/groups">
-        <Groups />
-      </Route>
-
-      <Route exact path="/group/:id">
-        <GroupDetails />
-      </Route>
-
-      <Route exact path="/edit-group/:id">
-        <EditGroup />
-      </Route>
-
-      <Route exact path="/group-activities/:id">
-        <GroupActivities />
-      </Route>
-
-      <Route exact path="/add-activite">
-        <AddActivite />
-      </Route>
-
-      <Route exact path="/edit-activite/:id">
-        <EditActivite />
-      </Route>
-
-      <Route exact path="/add-goal">
-        <AddGoal />
-      </Route>
-      <Route exact path="/group-goals/:id">
-        <GroupGoals />
-      </Route>
-      <Route exact path="/edit-goal/:id">
-        <EditGoal />
-      </Route>
-      <Route exact path="/profile">
-        <Profile />
-      </Route>
-      <Route exact path="/search">
-        <Search />
-      </Route>
+      <Providers>
+        <Route exact path="/home">
+          <Home />
+        </Route>
+        <Route exact path="/add-habit">
+          <AddHabit />
+        </Route>
+        <Route exact path="/habits">
+          <Habits />
+        </Route>
+        <Route exact path="/edit-habit/:id">
+          <EditHabit />
+        </Route>
+        <Route exact path="/add-group">
+          <AddGroup />
+        </Route>
+        <Route exact path="/groups">
+          <Groups />
+        </Route>
+        <Route exact path="/group/:id">
+          <GroupDetails />
+        </Route>
+        <Route exact path="/edit-group/:id">
+          <EditGroup />
+        </Route>
+        <Route exact path="/group-activities/:id">
+          <GroupActivities />
+        </Route>
+        <Route exact path="/add-activite">
+          <AddActivite />
+        </Route>
+        <Route exact path="/edit-activite/:id">
+          <EditActivite />
+        </Route>
+        <Route exact path="/add-goal">
+          <AddGoal />
+        </Route>
+        <Route exact path="/group-goals/:id">
+          <GroupGoals />
+        </Route>
+        <Route exact path="/edit-goal/:id">
+          <EditGoal />
+        </Route>
+        <Route exact path="/profile">
+          <Profile />
+        </Route>
+        <Route exact path="/search">
+          <Search />
+        </Route>
+        <Route exact path="/edit-profile">
+          <EditProfile />
+        </Route>
+      </Providers>
     </Switch>
   );
 };

@@ -6,6 +6,10 @@ export const MenuContainer = styled(AppBar)`
   top: auto !important;
   bottom: 0 !important;
   background-color: ${COLORS.foreground} !important;
+  @media (min-width: 1024px) {
+    top: 0 !important;
+    bottom: auto !important;
+  }
 `;
 
 export const MenuHomeButton = styled(Fab)`
@@ -16,6 +20,10 @@ export const MenuHomeButton = styled(Fab)`
   right: 0;
   margin: 0 0px !important;
   background-color: ${COLORS.highlight} !important;
+  @media (min-width: 1024px) {
+    top: 0px !important;
+    bottom: auto !important;
+  }
 `;
 
 export const MenuIconsWrap = styled(Toolbar)`

@@ -24,7 +24,11 @@ const UserProvider = ({ children }) => {
       .catch((e) => console.log(e));
   }, [user_id, token]);
 
-  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 export default UserProvider;

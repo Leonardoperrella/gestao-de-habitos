@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Typography, InputBase, Toolbar } from "@material-ui/core";
+import { InputBase, Toolbar } from "@material-ui/core";
 import { COLORS, FONTS } from "../../style";
 
 export const SearchTitle = styled.h1`

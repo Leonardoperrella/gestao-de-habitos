@@ -12,11 +12,21 @@ import FormUserInput from "../../components/FormUserInput";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
 
+import { toast } from "react-toastify";
+import Notification from "../../components/Notification";
+toast.configure();
+
 const EditGroup = () => {
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
+
+  const notify = () =>
+    toast("Successfully saved!", {
+      autoClose: 2000,
+      hideProgressBar: true,
+    });
 
   const schema = yup.object().shape({
     name: yup.string().required("Field Required"),
@@ -24,15 +34,13 @@ const EditGroup = () => {
     category: yup.string().required("Field Required"),
   });
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, setValue, getValues } = useForm({
     resolver: yupResolver(schema),
   });
 
   const params = useParams();
   const [groupError, setGroupError] = useState({});
-  const [inputName, setInputName] = useState("");
-  const [inputDescription, setInputDescription] = useState("");
-  const [inputCategory, setInputCategory] = useState("");
+  const [group, setGroup] = useState({});
 
   const getGroup = async () => {
     await api
@@ -40,9 +48,13 @@ const EditGroup = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        setInputName(response.data.name);
-        setInputDescription(response.data.description);
-        setInputCategory(response.data.category);
+        setValue("name", response.data.name);
+        setValue("description", response.data.description);
+
+        const categoryValid = response.data.category.split("/")[1];
+        setValue("category", categoryValid);
+
+        setGroup(getValues());
       })
       .catch((e) => {
         console.log(e.response);
@@ -64,7 +76,10 @@ const EditGroup = () => {
       })
       .then((response) => {})
       .catch((e) => setGroupError(e.response));
+    notify();
   };
+
+  const { name, description, category } = group;
 
   return (
     <GlobalContainer>
@@ -74,13 +89,13 @@ const EditGroup = () => {
           handleSubmit={handleSubmit(handleForm)}
           name="Group"
           subscribePath={`/groups/${params.id}/subscribe/`}
+          idParams={params.id}
         >
           <FormUserInput
             name="name"
             inputRef={register}
             error={errors.name}
-            value={inputName}
-            setInputValue={setInputName}
+            value={name}
           >
             Name
           </FormUserInput>
@@ -88,8 +103,7 @@ const EditGroup = () => {
             name="description"
             inputRef={register}
             error={errors.description}
-            value={inputDescription}
-            setInputValue={setInputDescription}
+            value={description}
           >
             Description
           </FormUserInput>
@@ -97,12 +111,12 @@ const EditGroup = () => {
             name="category"
             inputRef={register}
             error={errors.category}
-            value={inputCategory}
-            setInputValue={setInputCategory}
+            value={category}
           >
             Category
           </FormUserInput>
         </FormEdit>
+        <Notification />
       </GlobalWrap>
       <Menu></Menu>
     </GlobalContainer>

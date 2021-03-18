@@ -9,7 +9,7 @@ export const BackGroundImageStyled = styled.div`
 
   @media (min-width: 1024px) {
     position: absolute;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     z-index: -1;
     background-size: cover;
