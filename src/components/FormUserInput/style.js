@@ -1,10 +1,23 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const Label = styled.label``;
+
+export const animationInput = keyframes`
+  from{
+    opacity:0;
+    transform: translateY(-30px);
+  }
+  to{
+    opacity:initial;
+    transform: initial;
+  }
+`;
 
 export const ContainerInput = styled.div`
   position: relative;
   margin: 1rem 0 1.7rem 0;
+
+  animation: ${animationInput} 0.3s forwards;
 `;
 
 export const Input = styled.input`
