@@ -11,7 +11,7 @@ import api from "../../services/api";
 import { useState, useEffect } from "react";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
 import "react-toastify/dist/ReactToastify.css";
@@ -29,29 +29,38 @@ let howMuchAchieved = [
   { value: 100, content: "100%" },
 ];
 
+const markSelectedOptions = (data) => {
+  difficulty.map((option) => {
+    if (option.value === data.difficulty) {
+      option.selected = true;
+    }
+  });
+  howMuchAchieved.map((option) => {
+    if (option.value === data.how_much_achieved) {
+      option.selected = true;
+    }
+  });
+};
+
 toast.configure();
 
-const EditHabit = () => {
+const EditGoal = () => {
   const params = useParams();
-  const [goalError, setGoalError] = useState({});
-  const [selectedHabit, setSelectedHabit] = useState({});
-  const [inputTitle, setInputTitle] = useState("");
-  const [selectDifficulty] = useState(selectedHabit.difficulty);
-  const [selecthowMuchAchieved] = useState(selectedHabit.howMuchAchieved);
-  console.log(useLocation());
-  const {
-    state: { group },
-  } = useLocation();
+
+  const [selectedGoal, setSelectedGoal] = useState({});
+  const [group, setGroup] = useState("");
 
   const notify = () =>
-    toast("Salvo com sucesso!", {
+    toast("Saved successfully!", {
       position: "top-right",
-      autoClose: 2000,
+      autoClose: 5000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
+      rtl: false,
+      newestOnTop: false,
     });
 
   const [token] = useState(() => {
@@ -61,8 +70,9 @@ const EditHabit = () => {
 
   useEffect(() => {
     api.get(`/goals/${params.id}/`).then((response) => {
-      setSelectedHabit(response.data);
-      setInputTitle(response.data.title);
+      setSelectedGoal(response.data);
+      setValue("title", response.data.title);
+      setGroup(response.data.group);
     });
   }, []);
 
@@ -72,7 +82,7 @@ const EditHabit = () => {
     how_much_achieved: yup.number(),
   });
 
-  const { register, handleSubmit, errors, reset } = useForm({
+  const { register, handleSubmit, errors, setValue } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -83,11 +93,14 @@ const EditHabit = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => console.log(response))
-      .catch((e) => setGoalError(e.response));
+      .catch((e) => console.log(e));
 
     notify();
   };
 
+  markSelectedOptions(selectedGoal);
+  const { title } = selectedGoal;
+  console.log(difficulty);
   return (
     <GlobalContainer>
       <BackGroundImage image={Background} />
@@ -102,8 +115,7 @@ const EditHabit = () => {
             name="title"
             inputRef={register}
             error={errors.title}
-            value={inputTitle}
-            setInputValue={setInputTitle}
+            value={title}
           >
             title
           </FormUserInput>
@@ -111,15 +123,13 @@ const EditHabit = () => {
             name="difficulty"
             inputRef={register}
             error={errors.difficulty}
-            value={selectDifficulty}
           >
             {difficulty}
           </FormActionSelect>
           <FormActionSelect
-            name="how_much_achieved"
+            name="Frequency"
             inputRef={register}
             error={errors.how_much_achieved}
-            value={selecthowMuchAchieved}
           >
             {howMuchAchieved}
           </FormActionSelect>
@@ -135,12 +145,10 @@ const EditHabit = () => {
           draggable
           pauseOnHover
           className=".Toastify__progress-bar--dark .Toastify__toast--dark"
-        >
-          TESTE
-        </Notification>
+        />
       </GlobalWrap>
       <Menu></Menu>
     </GlobalContainer>
   );
 };
-export default EditHabit;
+export default EditGoal;

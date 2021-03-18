@@ -34,6 +34,24 @@ let frequency = [
   { value: "Weekend", content: "Weekend" },
 ];
 
+const markSelectedOptions = (data) => {
+  category.map((option) => {
+    if (option.value === data.category) {
+      option.selected = true;
+    }
+  });
+  difficulty.map((option) => {
+    if (option.value === data.difficulty) {
+      option.selected = true;
+    }
+  });
+  frequency.map((option) => {
+    if (option.value === data.frequency) {
+      option.selected = true;
+    }
+  });
+};
+
 toast.configure();
 
 const EditHabit = () => {
@@ -73,7 +91,6 @@ const EditHabit = () => {
     api.get(`/habits/${params.id}/`).then((response) => {
       setSelectedHabit(response.data);
       setValue("title", response.data.title);
-      console.log(response.data);
     });
   }, []);
 
@@ -85,10 +102,8 @@ const EditHabit = () => {
       .then((response) => console.log(response));
 
     notify();
-
-    //history.push("/home");
   };
-
+  markSelectedOptions(selectedHabit);
   const { title } = selectedHabit;
 
   return (
@@ -100,6 +115,7 @@ const EditHabit = () => {
           name="Habit"
           id={params.id}
           origin="/habits"
+          deletePath={`/habits/${params.id}/`}
         >
           <FormUserInput
             name="title"
@@ -113,7 +129,6 @@ const EditHabit = () => {
             name="category"
             inputRef={register}
             error={errors.category}
-            value={selectedHabit.category}
           >
             {category}
           </FormActionSelect>
@@ -121,7 +136,6 @@ const EditHabit = () => {
             name="difficulty"
             inputRef={register}
             error={errors.difficulty}
-            value={selectedHabit.difficulty}
           >
             {difficulty}
           </FormActionSelect>
@@ -129,7 +143,6 @@ const EditHabit = () => {
             name="frequency"
             inputRef={register}
             error={errors.frequency}
-            value={selectedHabit.frequency}
           >
             {frequency}
           </FormActionSelect>

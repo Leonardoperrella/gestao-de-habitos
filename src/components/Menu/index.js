@@ -1,3 +1,4 @@
+import React from "react";
 import {
   MenuContainer,
   MenuHomeButton,
@@ -8,9 +9,11 @@ import {
 import { Search, Favorite, Group, Person } from "@material-ui/icons/";
 import Habitorant from "../../Images/Habitorant.png";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../../providers/UserProvider";
 
 const Menu = () => {
   const history = useHistory();
+  const { group: idGroup } = React.useContext(UserContext);
 
   const handleNavigation = (path) => {
     history.push(path);
@@ -29,7 +32,7 @@ const Menu = () => {
         <MenuIcon
           edge="start"
           aria-label="open drawer"
-          onClick={() => handleNavigation("/groups")}
+          onClick={() => handleNavigation(`/group/${idGroup}`)}
         >
           <Group />
         </MenuIcon>

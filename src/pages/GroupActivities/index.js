@@ -5,7 +5,6 @@ import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import api from "../../services/api";
 import CardActivite from "../../components/CardActivite";
-import { GroupActivitieTitle } from "./style";
 
 const GroupActivities = () => {
   const [activities, setActivities] = useState([]);
@@ -21,15 +20,11 @@ const GroupActivities = () => {
   }, []);
 
   return (
-    <GlobalContainer>
-      <GlobalWrap>
-        <GroupActivitieTitle>Activities</GroupActivitieTitle>
-        {activities?.map(({ title, id, group }) => (
-          <CardActivite key={id} title={title} id={id} group={group} />
-        ))}
-      </GlobalWrap>
-      <Menu></Menu>
-    </GlobalContainer>
+    <>
+      {activities?.map(({ title, id }) => (
+        <CardActivite key={id} title={title} id={id} />
+      ))}
+    </>
   );
 };
 export default GroupActivities;

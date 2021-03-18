@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CardActivite from "../../components/CardActivite";
-import CardGoals from "../../components/CardGoals";
+import { useHistory } from "react-router";
 import GlobalContainer from "../../components/GlobalContainer";
 import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import api from "../../services/api";
 
-import { ButtonTopic, ContainerShow, SetaDrop } from "./style";
+import GroupGoals from "../GroupGoals";
+import GroupActivities from "../GroupActivities";
+
+import GobalLoading from "../../components/GobalLoading";
+
+import { AddIcon, ButtonTopic, ContainerShow, LinkAllGroups } from "./style";
 
 import { ReactComponent as SetaSvg } from "../../svgs/seta-suspensa.svg";
 
@@ -18,7 +22,7 @@ const GroupDetails = () => {
   const [showActivies, setShowActivies] = useState(true);
 
   const { id } = useParams();
-  console.log(id);
+  const history = useHistory();
 
   useEffect(() => {
     const getGroupActivities = async () => {
@@ -37,8 +41,11 @@ const GroupDetails = () => {
   };
 
   const handleShowActivies = () => {
-    console.log("oi");
     setShowActivies(!showActivies);
+  };
+
+  const handleNavigation = (path, id) => {
+    history.push(path, { group: id });
   };
 
   return (
@@ -52,19 +59,10 @@ const GroupDetails = () => {
               Goals
               <SetaSvg />
             </ButtonTopic>
+            <AddIcon onClick={() => handleNavigation("/add-goal", id)} />
             {showGoals && (
               <ContainerShow>
-                {group.goals.map(
-                  ({ id, title, difficulty, achieved, how_much_achieved }) => (
-                    <CardGoals
-                      key={id}
-                      title={title}
-                      difficulty={difficulty}
-                      how_much_achieved={how_much_achieved}
-                      achieved={achieved}
-                    />
-                  )
-                )}
+                <GroupGoals />
               </ContainerShow>
             )}
 
@@ -72,16 +70,15 @@ const GroupDetails = () => {
               Activities
               <SetaSvg />
             </ButtonTopic>
+            <AddIcon onClick={() => handleNavigation("/add-activite", id)} />
             {showActivies && (
               <ContainerShow>
-                {group.activities.map(({ id, title, realization_time }) => (
-                  <CardActivite key={id} id={id} title={title} />
-                ))}
+                <GroupActivities />
               </ContainerShow>
             )}
           </>
         ) : (
-          "Grupo não encontrado"
+          <GobalLoading />
         )}
       </GlobalWrap>
       <Menu></Menu>

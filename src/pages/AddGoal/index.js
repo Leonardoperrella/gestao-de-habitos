@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../services/api";
 import * as yup from "yup";
@@ -11,15 +12,33 @@ import Background from "../../Images/BackgroundAddGoal.jpg";
 import Menu from "../../components/Menu";
 import FormActionSelect from "../../components/FormActionSelect";
 import FormAction from "../../components/FormAction";
+import { toast } from "react-toastify";
+import Notification from "../../components/Notification";
+
+toast.configure();
 
 const AddHabit = () => {
   const [goalError, setGoalError] = useState({});
   const [inputTitle, setInputTitle] = useState("");
+  const {
+    state: { group },
+  } = useLocation();
 
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
+
+  const notify = () =>
+    toast("Added successfully!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const difficulty = [
     { value: "Easy", content: "Easy" },
@@ -37,7 +56,7 @@ const AddHabit = () => {
   });
 
   const handleForm = (data) => {
-    data = { ...data, how_much_achieved: 0, group: 11 };
+    data = { ...data, how_much_achieved: 0, group: group };
     api
       .post("/goals/", data, {
         headers: { Authorization: `Bearer ${token}` },
@@ -47,6 +66,8 @@ const AddHabit = () => {
         reset();
       })
       .catch((e) => setGoalError(e.response));
+
+    notify();
   };
 
   return (
@@ -54,7 +75,7 @@ const AddHabit = () => {
       <GlobalContainer>
         <BackGroundImage image={Background} />
         <GlobalWrap>
-          <FormAction handleSubmit={handleSubmit(handleForm)} title="Add Habit">
+          <FormAction handleSubmit={handleSubmit(handleForm)} name="Goal">
             <FormUserInput
               name="title"
               inputRef={register}
@@ -72,6 +93,18 @@ const AddHabit = () => {
               {difficulty}
             </FormActionSelect>
           </FormAction>
+          <Notification
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            className=".Toastify__progress-bar--dark .Toastify__toast--dark"
+          />
         </GlobalWrap>
       </GlobalContainer>
       <Menu />

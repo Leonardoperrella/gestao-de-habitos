@@ -6,8 +6,6 @@ import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import api from "../../services/api";
 
-import { GroupGoalsTitle } from "./style";
-
 const GroupGoals = () => {
   const [goals, setGoals] = useState([]);
   const state = useParams();
@@ -26,25 +24,18 @@ const GroupGoals = () => {
   });
 
   return (
-    <GlobalContainer>
-      <GlobalWrap>
-        <GroupGoalsTitle>Group Goals</GroupGoalsTitle>
-        {goals?.map(
-          ({ title, difficulty, how_much_achieved, achieved, group, id }) => (
-            <CardGoals
-              key={id}
-              id={id}
-              title={title}
-              difficulty={difficulty}
-              how_much_achieved={how_much_achieved}
-              achieved={achieved}
-              group={group}
-            />
-          )
-        )}
-      </GlobalWrap>
-      <Menu></Menu>
-    </GlobalContainer>
+    <>
+      {goals?.map(({ title, difficulty, how_much_achieved, achieved, id }) => (
+        <CardGoals
+          key={id}
+          id={id}
+          title={title}
+          difficulty={difficulty}
+          how_much_achieved={how_much_achieved}
+          achieved={achieved}
+        />
+      ))}
+    </>
   );
 };
 export default GroupGoals;
