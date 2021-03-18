@@ -79,6 +79,14 @@ const EditGoal = () => {
     });
   }, [params.id, setValue]);
 
+  useEffect(() => {
+    api.get(`/goals/${params.id}/`).then((response) => {
+      setSelectedGoal(response.data);
+      setValue("title", response.data.title);
+      setGroup(response.data.group);
+    });
+  }, [params.id, setValue]);
+
   const handleForm = (data) => {
     data = { ...data, group: group };
     api
@@ -93,7 +101,6 @@ const EditGoal = () => {
 
   markSelectedOptions(selectedGoal);
   const { title } = selectedGoal;
-  console.log(difficulty);
   return (
     <GlobalContainer>
       <BackGroundImage image={Background} />

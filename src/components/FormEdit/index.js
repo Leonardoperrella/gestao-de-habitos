@@ -18,6 +18,7 @@ const FormEdit = ({
   children,
   handleSubmit,
   name,
+  origin,
   deletePath,
   subscribePath,
   idParams,
@@ -71,7 +72,7 @@ const FormEdit = ({
         <FormModalConfirmDelete show={showModal}>
           <h1>Delete?</h1>
 
-          <button onClick={() => handleDelete()}>Yes</button>
+          <button onClick={() => handleDelete(deletePath)}>Yes</button>
           <button onClick={() => handleDeleteModal()}>No</button>
         </FormModalConfirmDelete>
         <FormEditBackButtonIcon onClick={() => history.goBack()} />
