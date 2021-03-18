@@ -34,6 +34,11 @@ const Profile = () => {
     history.push(path);
   };
 
+  const handleLogOut = (path) => {
+    localStorage.clear();
+    history.push(path);
+  };
+
   return (
     <>
       <GlobalContainer>
@@ -50,6 +55,11 @@ const Profile = () => {
           <ProfileText>{user.username}</ProfileText>
           <ProfileSubTitle sub>Email</ProfileSubTitle>
           <ProfileText>{user.email}</ProfileText>
+          <GroupsTitleWrap>
+            <GroupsButton onClick={() => handleLogOut("/")}>
+              Log Out
+            </GroupsButton>
+          </GroupsTitleWrap>
         </GlobalWrap>
       </GlobalContainer>
       <Menu />
