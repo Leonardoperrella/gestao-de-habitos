@@ -29,14 +29,9 @@ const AddGroup = () => {
   });
 
   const notify = () =>
-    toast("Added successfully!", {
-      position: "top-right",
+    toast("Successfully added!", {
       autoClose: 2000,
       hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
     });
 
   const schema = yup.object().shape({
@@ -86,18 +81,7 @@ const AddGroup = () => {
               Name
             </FormUserInput>
           </FormAction>
-          <Notification
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            className=".Toastify__progress-bar--dark .Toastify__toast--dark"
-          />
+          <Notification />
         </GlobalWrap>
       </GlobalContainer>
       <Menu />

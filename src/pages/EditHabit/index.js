@@ -61,14 +61,9 @@ const EditHabit = () => {
   const [selectedHabit, setSelectedHabit] = useState({});
 
   const notify = () =>
-    toast("Salvo com sucesso!", {
-      position: "top-right",
+    toast("Successfully saved!", {
       autoClose: 2000,
       hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
     });
 
   const [token] = useState(() => {
@@ -149,20 +144,7 @@ const EditHabit = () => {
             {frequency}
           </FormActionSelect>
         </FormEdit>
-        <Notification
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          className=".Toastify__progress-bar--dark .Toastify__toast--dark"
-        >
-          TESTE
-        </Notification>
+        <Notification />
       </GlobalWrap>
       <Menu></Menu>
     </GlobalContainer>
