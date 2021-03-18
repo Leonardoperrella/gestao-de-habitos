@@ -6,6 +6,7 @@ export const HabitItem = styled.div`
   width: 300px;
   height: 192px;
   margin: 10px;
+  padding: 5px 0;
 
   background-color: #ff4654;
   border-radius: 5px;
@@ -44,4 +45,5 @@ export const IconEdit = styled(AiFillEdit)`
   height: 27px;
   width: 115px;
   position: absolute;
+  left: 230px;
 `;
