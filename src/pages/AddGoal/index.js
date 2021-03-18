@@ -18,7 +18,6 @@ import Notification from "../../components/Notification";
 toast.configure();
 
 const AddHabit = () => {
-  const [goalError, setGoalError] = useState({});
   const [inputTitle, setInputTitle] = useState("");
   const {
     state: { group },
@@ -65,7 +64,7 @@ const AddHabit = () => {
         console.log(response);
         reset();
       })
-      .catch((e) => setGoalError(e.response));
+      .catch((e) => console.log(e.response));
 
     notify();
   };

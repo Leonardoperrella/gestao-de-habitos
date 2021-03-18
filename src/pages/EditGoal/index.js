@@ -46,7 +46,7 @@ toast.configure();
 
 const EditGoal = () => {
   const params = useParams();
-  const [goalError, setGoalError] = useState({});
+
   const [selectedGoal, setSelectedGoal] = useState({});
   const [group, setGroup] = useState("");
 
@@ -93,7 +93,7 @@ const EditGoal = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => console.log(response))
-      .catch((e) => setGoalError(e.response));
+      .catch((e) => console.log(e));
 
     notify();
   };
