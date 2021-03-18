@@ -12,11 +12,21 @@ import FormUserInput from "../../components/FormUserInput";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
 
+import { toast } from "react-toastify";
+import Notification from "../../components/Notification";
+toast.configure();
+
 const EditGroup = () => {
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
+
+  const notify = () =>
+    toast("Successfully saved!", {
+      autoClose: 2000,
+      hideProgressBar: true,
+    });
 
   const schema = yup.object().shape({
     name: yup.string().required("Field Required"),
@@ -66,6 +76,7 @@ const EditGroup = () => {
       })
       .then((response) => {})
       .catch((e) => setGroupError(e.response));
+    notify();
   };
 
   const { name, description, category } = group;
@@ -104,6 +115,7 @@ const EditGroup = () => {
             Category
           </FormUserInput>
         </FormEdit>
+        <Notification />
       </GlobalWrap>
       <Menu></Menu>
     </GlobalContainer>

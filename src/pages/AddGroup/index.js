@@ -11,6 +11,11 @@ import Background from "../../Images/BackgroundAddGroup.jpg";
 import Menu from "../../components/Menu";
 import FormAction from "../../components/FormAction";
 
+import { toast } from "react-toastify";
+import Notification from "../../components/Notification";
+
+toast.configure();
+
 const AddGroup = () => {
   const [groupError, setGroupError] = useState({});
   const [inputName, setInputName] = useState("");
@@ -21,6 +26,12 @@ const AddGroup = () => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
+
+  const notify = () =>
+    toast("Successfully added!", {
+      autoClose: 2000,
+      hideProgressBar: true,
+    });
 
   const schema = yup.object().shape({
     name: yup.string().required("Field Required"),
@@ -45,6 +56,7 @@ const AddGroup = () => {
         reset();
       })
       .catch((e) => setGroupError(e.response));
+    notify();
   };
 
   const { name, description, category } = getValues();
@@ -80,6 +92,7 @@ const AddGroup = () => {
               Category
             </FormUserInput>
           </FormAction>
+          <Notification />
         </GlobalWrap>
       </GlobalContainer>
       <Menu />

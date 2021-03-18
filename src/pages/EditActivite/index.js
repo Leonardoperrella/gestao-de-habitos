@@ -25,13 +25,8 @@ const EditActivite = () => {
 
   const notify = () =>
     toast("Successfully saved!", {
-      position: "top-right",
       autoClose: 2000,
       hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
     });
 
   const schema = yup.object().shape({
@@ -111,18 +106,7 @@ const EditActivite = () => {
             Title
           </FormUserInput>
         </FormEdit>
-        <Notification
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          className=".Toastify__progress-bar--dark .Toastify__toast--dark"
-        />
+        <Notification />
       </GlobalWrap>
       <Menu></Menu>
     </GlobalContainer>
