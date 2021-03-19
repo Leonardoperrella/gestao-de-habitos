@@ -12,8 +12,6 @@ const CardHabit = ({
 }) => {
   const history = useHistory();
 
-  console.log(id);
-
   const handleHistory = (id) => {
     history.push(`/edit-habit/${id}/`);
   };
