@@ -55,3 +55,13 @@ export const AddIcon = styled(IoIosAddCircle)`
     cursor: pointer;
   }
 `;
+
+export const ContainerNotificaiton = styled.div`
+  margin: 174px 0px;
+  font-family: ${FONTS.normal};
+
+  @media (min-width: 1024px) {
+    margin-top: 110px;
+    font-size: 2rem;
+  }
+`;
