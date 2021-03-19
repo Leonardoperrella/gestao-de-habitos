@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const GlobalContainerStyled = styled.div`
-  max-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   min-height: 100vh;

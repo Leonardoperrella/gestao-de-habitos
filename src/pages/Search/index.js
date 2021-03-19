@@ -1,7 +1,7 @@
 import GlobalContainer from "../../components/GlobalContainer";
 import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
-import { SearchBar, SearchInput, SearchTitle } from "./style";
+import { SearchBar, SearchInput, SearchTitle, SearchContainer } from "./style";
 import SearchIcon from "@material-ui/icons/Search";
 import { useState, useEffect } from "react";
 import api from "../../services/api";
@@ -99,15 +99,16 @@ const Search = () => {
     <>
       <GlobalContainer>
         <SearchTitle>Search</SearchTitle>
-        <GlobalWrap>
-          <SearchBar>
-            <SearchIcon />
-            <SearchInput
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search something…"
-            />
-          </SearchBar>
+
+        <SearchBar>
+          <SearchIcon />
+          <SearchInput
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search something…"
+          />
+        </SearchBar>
+        <SearchContainer>
           {searchedItens.map(
             ({
               id,
@@ -129,7 +130,7 @@ const Search = () => {
               />
             )
           )}
-        </GlobalWrap>
+        </SearchContainer>
       </GlobalContainer>
       <Menu />
     </>
