@@ -7,7 +7,6 @@ export const GlobalnWrapStyled = styled.div`
   align-items: center;
   padding-bottom: 150px;
   text-align: center;
-  margin: 6rem 0;
 
   h1 {
     text-transform: uppercase;
@@ -17,13 +16,13 @@ export const GlobalnWrapStyled = styled.div`
   }
 
   @media (min-width: 1024px) {
+    margin: 160px 0;
     max-width: 50%;
     min-width: 400px;
     position: absolute;
     border-radius: 10px;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translatex(-50%);
     background-color: white;
     background: rgba(255, 255, 255, 0.9);
     padding: 50px 30px;
