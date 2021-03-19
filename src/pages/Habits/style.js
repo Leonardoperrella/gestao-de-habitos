@@ -6,7 +6,7 @@ export const HabitsTitleWrap = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 40px;
   @media (min-width: 1024px) {
     flex-direction: row;
     flex-wrap: wrap;

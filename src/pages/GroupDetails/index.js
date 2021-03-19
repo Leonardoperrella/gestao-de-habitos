@@ -9,11 +9,12 @@ import api from "../../services/api";
 import GroupGoals from "../GroupGoals";
 import GroupActivities from "../GroupActivities";
 
-import GobalLoading from "../../components/GobalLoading";
-
 import { AddIcon, ButtonTopic, ContainerShow } from "./style";
 
 import { ReactComponent as SetaSvg } from "../../svgs/seta-suspensa.svg";
+import BackGroundImage from "../../components/BackGroundImage";
+
+import Background from "../../Images/BackgrounGroupDetails.jpg";
 
 const GroupDetails = () => {
   const [group, setGroup] = useState({});
@@ -34,7 +35,7 @@ const GroupDetails = () => {
     };
 
     getGroupActivities();
-  }, []);
+  }, [id]);
 
   const handleShowGoals = () => {
     setShowGoals(!showGoals);
@@ -51,6 +52,8 @@ const GroupDetails = () => {
 
   return (
     <GlobalContainer>
+      <BackGroundImage image={Background} />
+
       <GlobalWrap>
         {showGroup ? (
           <>
