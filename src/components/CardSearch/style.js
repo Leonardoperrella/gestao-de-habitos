@@ -4,18 +4,29 @@ import { COLORS, FONTS } from "../../style";
 
 export const CardSearchContainer = styled(Card)`
   background-color: ${COLORS.highlight} !important;
-  width: 270px;
-  margin: 20px;
+  width: 300px;
+  height: 290px;
+  margin: 10px;
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  cursor: pointer;
 
   h1 {
     font-family: ${FONTS.normal};
     margin: 0;
-    font-size: 30px;
+    font-size: 25px;
     color: ${COLORS.text};
+    padding: 5px;
+  }
+  p {
+    margin: 0;
+    font-size: 1.1rem;
   }
   p:nth-of-type(1) {
     color: ${COLORS.textHighlight};
     font-weight: 700;
-    margin-bottom: 0;
+    font-size: 1.25rem;
   }
 `;
