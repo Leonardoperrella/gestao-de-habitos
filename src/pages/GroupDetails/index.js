@@ -23,8 +23,8 @@ import {
 
 import { ReactComponent as SetaSvg } from "../../svgs/seta-suspensa.svg";
 import BackGroundImage from "../../components/BackGroundImage";
-
 import Background from "../../Images/BackgrounGroupDetails.jpg";
+import MenuTollTip from "../../components/MenuTollTip";
 
 const GroupDetails = () => {
   const [group, setGroup] = useState({});
@@ -110,7 +110,7 @@ const GroupDetails = () => {
           </ContainerNotificaiton>
         </>
       )}
-
+      <MenuTollTip />
       <Menu />
     </GlobalContainer>
   );

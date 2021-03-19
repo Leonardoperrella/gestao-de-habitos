@@ -7,6 +7,7 @@ import api from "../../services/api";
 import CardSearch from "../../components/CardSearch";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgrounGroupDetails.jpg";
+import MenuTollTip from "../../components/MenuTollTip";
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -135,6 +136,7 @@ const Search = () => {
           )}
         </SearchContainer>
       </GlobalContainer>
+      <MenuTollTip />
       <Menu />
     </>
   );

@@ -12,6 +12,7 @@ import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
 import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
+import MenuTollTip from "../../components/MenuTollTip";
 
 toast.configure();
 
@@ -94,7 +95,8 @@ const EditProfile = () => {
         </FormEditProfile>
         <Notification />
       </GlobalWrap>
-      <Menu></Menu>
+      <MenuTollTip />
+      <Menu />
     </GlobalContainer>
   );
 };
