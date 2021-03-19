@@ -35,6 +35,13 @@ export const HabitsTitle = styled.h1`
   margin: 20px;
 `;
 
+export const HabitSubTitle = styled.h5`
+  font-family: ${FONTS.normal};
+  color: ${COLORS.gray} !important;
+  margin: 20px;
+  transform: translateY(-83px) !important;
+`;
+
 export const HabitsButton = styled(Button)`
   background-color: ${COLORS.highlight} !important;
   color: ${COLORS.textHighlight} !important;
