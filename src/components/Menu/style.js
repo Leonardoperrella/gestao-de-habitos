@@ -2,7 +2,6 @@ import styled, { keyframes } from "styled-components";
 import { AppBar, Fab, IconButton, Toolbar } from "@material-ui/core";
 import { COLORS } from "../../style";
 
-
 export const MenuContainer = styled(AppBar)`
   top: auto !important;
   bottom: 0 !important;
@@ -57,6 +56,10 @@ export const MenuHomeButton = styled(Fab)`
 export const MenuIconsWrap = styled(Toolbar)`
   justify-content: space-between;
 
+  button:first-child {
+    display: none !important;
+  }
+
   @media (min-width: 1024px) {
     top: 0px !important;
     bottom: auto !important;
@@ -64,6 +67,10 @@ export const MenuIconsWrap = styled(Toolbar)`
     width: 100%;
 
     padding-top: 55px;
+
+    button:first-child {
+      display: block !important;
+    }
   }
 `;
 

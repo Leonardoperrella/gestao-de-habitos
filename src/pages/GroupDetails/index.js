@@ -12,6 +12,9 @@ import GroupActivities from "../GroupActivities";
 import { AddIcon, ButtonTopic, ContainerShow } from "./style";
 
 import { ReactComponent as SetaSvg } from "../../svgs/seta-suspensa.svg";
+import BackGroundImage from "../../components/BackGroundImage";
+
+import Background from "../../Images/BackgrounGroupDetails.jpg";
 
 const GroupDetails = () => {
   const [group, setGroup] = useState({});
@@ -49,6 +52,8 @@ const GroupDetails = () => {
 
   return (
     <GlobalContainer>
+      <BackGroundImage image={Background} />
+
       <GlobalWrap>
         {showGroup ? (
           <>
