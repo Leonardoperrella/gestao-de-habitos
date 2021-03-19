@@ -14,6 +14,7 @@ import {
 import { useHistory } from "react-router";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgrounGroupDetails.jpg";
+import MenuTollTip from "../../components/MenuTollTip";
 
 const Habits = () => {
   const history = useHistory();
@@ -87,7 +88,8 @@ const Habits = () => {
           </HabitsTitleWrap>
         )}
       </HabitsWrap>
-      <Menu></Menu>
+      <MenuTollTip />
+      <Menu />
     </GlobalContainer>
   );
 };
