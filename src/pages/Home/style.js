@@ -54,10 +54,5 @@ export const Notification = styled.p`
 export const ButtonAllGroups = styled(Button)`
   color: ${COLORS.textHighlight} !important;
   background-color: ${COLORS.highlight} !important;
-  opacity: 0.5;
-
-  &:hover {
-    opacity: 1;
-    cursor: pointer;
-  }
+  transform: translatey(20px);
 `;

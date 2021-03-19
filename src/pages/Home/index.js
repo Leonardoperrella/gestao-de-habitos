@@ -15,7 +15,6 @@ import {
   ButtonAllGroups,
   SubTitle,
   Notification,
-  DivButtonAllHabit,
 } from "./style";
 import { UserContext } from "../../providers/UserProvider";
 
@@ -57,20 +56,7 @@ const Home = () => {
         </HomeHabitWrap>
       </HomeContainer>
 
-      {showGroup ? (
-        <CarrosselHabit />
-      ) : (
-        <DivButtonAllHabit>
-          <Notification>You don't have tasks to do!</Notification>
-          <ButtonAllGroups
-            variant="contained"
-            onClick={() => handleNavigation("/add-habit")}
-            disableElevation
-          >
-            Add habit
-          </ButtonAllGroups>
-        </DivButtonAllHabit>
-      )}
+      <CarrosselHabit handleNavigation={handleNavigation} />
 
       <HomeContainer>
         <HomeGroupWrap>
