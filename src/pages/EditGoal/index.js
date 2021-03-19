@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
 import "react-toastify/dist/ReactToastify.css";
+import MenuTollTip from "../../components/MenuTollTip";
 
 let difficulty = [
   { value: "Easy", content: "Easy" },
@@ -137,7 +138,8 @@ const EditGoal = () => {
         </FormEdit>
         <Notification />
       </GlobalWrap>
-      <Menu></Menu>
+      <MenuTollTip />
+      <Menu />
     </GlobalContainer>
   );
 };

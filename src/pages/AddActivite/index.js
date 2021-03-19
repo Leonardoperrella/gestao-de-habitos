@@ -14,6 +14,7 @@ import FormAction from "../../components/FormAction";
 
 import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
+import MenuTollTip from "../../components/MenuTollTip";
 
 toast.configure();
 
@@ -85,6 +86,7 @@ const AddGroup = () => {
           <Notification />
         </GlobalWrap>
       </GlobalContainer>
+      <MenuTollTip />
       <Menu />
     </>
   );

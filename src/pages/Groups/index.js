@@ -10,6 +10,7 @@ import {
 import GlobalContainer from "../../components/GlobalContainer";
 import Menu from "../../components/Menu";
 import CardGroup from "../../components/CardGroup";
+import MenuTollTip from "../../components/MenuTollTip";
 
 const Groups = () => {
   const [groups, setGroups] = useState([]);
@@ -74,7 +75,8 @@ const Groups = () => {
           />
         ))}
       </GroupsWrap>
-      <Menu></Menu>
+      <MenuTollTip />
+      <Menu />
     </GlobalContainer>
   );
 };

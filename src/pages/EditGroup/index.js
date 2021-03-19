@@ -14,6 +14,8 @@ import Background from "../../Images/BackgroundEditHabit.jpg";
 
 import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
+import MenuTollTip from "../../components/MenuTollTip";
+
 toast.configure();
 
 const EditGroup = () => {
@@ -118,7 +120,8 @@ const EditGroup = () => {
         </FormEdit>
         <Notification />
       </GlobalWrap>
-      <Menu></Menu>
+      <MenuTollTip />
+      <Menu />
     </GlobalContainer>
   );
 };

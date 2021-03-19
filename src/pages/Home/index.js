@@ -21,6 +21,7 @@ import GlobalContainer from "../../components/GlobalContainer";
 import BackgroundImage from "../../components/BackGroundImage";
 import GlobalWrap from "../../components/GlobalWrap";
 import Background from "../../Images/BackgroundHome.jpg";
+import MenuTollTip from "../../components/MenuTollTip";
 
 const Home = () => {
   const [group, setGroup] = React.useState({});
@@ -105,6 +106,7 @@ const Home = () => {
           </HomeContainer>
         </GlobalWrap>
       </GlobalContainer>
+      <MenuTollTip />
       <Menu />
     </>
   );
