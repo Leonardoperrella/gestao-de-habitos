@@ -12,6 +12,7 @@ import Habitorant from "../../Images/Habitorant.png";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../providers/UserProvider";
 import { ReactComponent as Arrow } from "../../svgs/double-down-arrows.svg";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
 
 const MenuTollTip = () => {
   const history = useHistory();
@@ -34,16 +35,16 @@ const MenuTollTip = () => {
           <MenuIcon
             edge="start"
             aria-label="open drawer"
-            onClick={() => handleNavigation("/habits")}
+            onClick={() => handleNavigation("/add-habit")}
           >
             <Favorite />
           </MenuIcon>
           <MenuIcon
             edge="start"
             aria-label="open drawer"
-            onClick={() => handleNavigation(`/group/${idGroup}`)}
+            onClick={() => handleNavigation(`/add-group`)}
           >
-            <Group />
+            <AiOutlineUsergroupAdd />
           </MenuIcon>
           <MenuHomeButton onClick={() => handleNavigation("/home")}>
             <MenuHomeLogo src={Habitorant} />
