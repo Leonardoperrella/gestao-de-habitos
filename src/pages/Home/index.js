@@ -1,16 +1,24 @@
 import React from "react";
+
 import { useHistory } from "react-router";
 import CarrosselHabit from "../../components/CarroselHabit";
 import Menu from "../../components/Menu";
 import CardGroup from "../../components/CardGroup";
 import api from "../../services/api";
+
+import { HabitsButton } from "../Habits/style";
+
 import {
   HomeContainer,
   HomeTitle,
   HomeHabitWrap,
   HomeGroupWrap,
   Group,
-  LinkAllGroups,
+  ButtonAllGroups,
+  DivButtonAllGroups,
+  SubTitle,
+  Notification,
+  DivButtonAllHabit,
 } from "./style";
 import { UserContext } from "../../providers/UserProvider";
 
@@ -43,23 +51,44 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <>
       <HomeContainer>
         <HomeTitle>Home</HomeTitle>
 
         <HomeHabitWrap>
-          <HomeTitle small>To do</HomeTitle>
+          <SubTitle>To do</SubTitle>
         </HomeHabitWrap>
       </HomeContainer>
 
-      <CarrosselHabit />
+      {showGroup ? (
+        <CarrosselHabit />
+      ) : (
+        <DivButtonAllHabit>
+          <Notification>You don't have tasks to do!</Notification>
+          <ButtonAllGroups
+            variant="contained"
+            onClick={() => handleNavigation("/add-habit")}
+            disableElevation
+          >
+            Add habit
+          </ButtonAllGroups>
+        </DivButtonAllHabit>
+      )}
 
       <HomeContainer>
         <HomeGroupWrap>
-          <HomeTitle small>Group</HomeTitle>
-          <LinkAllGroups onClick={() => handleNavigation("/groups")}>
-            See all groups
-          </LinkAllGroups>
+          <SubTitle>Group</SubTitle>
+
+          <DivButtonAllGroups>
+            <ButtonAllGroups
+              variant="contained"
+              onClick={() => handleNavigation("/groups")}
+              disableElevation
+            >
+              See all groups
+            </ButtonAllGroups>
+          </DivButtonAllGroups>
+
           <Group>
             {showGroup ? (
               <CardGroup
@@ -70,13 +99,14 @@ const Home = () => {
                 details={true}
               />
             ) : (
-              <HomeTitle small>Group not found</HomeTitle>
+              <Notification>You are not subscribed in any groups!</Notification>
             )}
           </Group>
         </HomeGroupWrap>
       </HomeContainer>
+
       <Menu />
-    </div>
+    </>
   );
 };
 

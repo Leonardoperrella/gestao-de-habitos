@@ -9,9 +9,16 @@ import api from "../../services/api";
 import GroupGoals from "../GroupGoals";
 import GroupActivities from "../GroupActivities";
 
+import { ButtonAllGroups } from "../Home/style";
+
 import GobalLoading from "../../components/GobalLoading";
 
-import { AddIcon, ButtonTopic, ContainerShow } from "./style";
+import {
+  AddIcon,
+  ButtonTopic,
+  ContainerShow,
+  ContainerNotificaiton,
+} from "./style";
 
 import { ReactComponent as SetaSvg } from "../../svgs/seta-suspensa.svg";
 
@@ -79,10 +86,23 @@ const GroupDetails = () => {
             )}
           </>
         ) : (
-          "Você não esta inscrito em nenhum grupo"
+          <>
+            <ContainerNotificaiton>
+              <h2>OPS!</h2>
+              <h3>You are not subscribed in any groups!</h3>
+
+              <ButtonAllGroups
+                variant="contained"
+                onClick={() => handleNavigation("/groups")}
+                disableElevation
+              >
+                See all groups
+              </ButtonAllGroups>
+            </ContainerNotificaiton>
+          </>
         )}
       </GlobalWrap>
-      <Menu></Menu>
+      <Menu />
     </GlobalContainer>
   );
 };
