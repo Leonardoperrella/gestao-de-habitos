@@ -1,5 +1,4 @@
 import GlobalContainer from "../../components/GlobalContainer";
-import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import { SearchBar, SearchInput, SearchTitle, SearchContainer } from "./style";
 import SearchIcon from "@material-ui/icons/Search";
@@ -60,6 +59,7 @@ const Search = () => {
 
   useEffect(() => {
     getSearchedItens();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   const getSearchedItens = () => {
@@ -72,8 +72,8 @@ const Search = () => {
     console.log(regExp);
     setSearchedItens(
       allItens.filter(
+        // eslint-disable-next-line array-callback-return
         ({ title, name, description, frequency, category, difficulty }) => {
-          // regExp.test(title || name)
           if (
             regExp.test(title || name) ||
             regExp.test(description) ||
