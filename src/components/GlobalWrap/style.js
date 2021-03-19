@@ -26,5 +26,7 @@ export const GlobalnWrapStyled = styled.div`
     height: auto;
     background-color: white;
     padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 3rem 0;
   }
 `;

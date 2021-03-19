@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { AppBar, Fab, IconButton, Toolbar } from "@material-ui/core";
 import { COLORS } from "../../style";
 
@@ -9,6 +9,22 @@ export const MenuContainer = styled(AppBar)`
   @media (min-width: 1024px) {
     top: 0 !important;
     bottom: auto !important;
+    width: 60px !important;
+    align-items: center;
+    box-shadow: none !important;
+    border-radius: 20px;
+
+    position: absolute;
+    top: 4rem !important;
+    left: 2rem !important;
+    overflow: hidden;
+
+    transition: 0.8s !important;
+    max-height: 65px !important;
+
+    &:hover {
+      max-height: 500px !important;
+    }
   }
 `;
 
@@ -23,11 +39,32 @@ export const MenuHomeButton = styled(Fab)`
   @media (min-width: 1024px) {
     top: 0px !important;
     bottom: auto !important;
+
+    position: absolute !important;
+    top: 5px !important;
+    left: calc(50% - 29px) !important;
+
+    /* transition: transform 0.5s ease-in-out; */
+    /* transform: rotate(-360deg); */
+
+    &:hover {
+      transition: transform 0.5s ease-in-out;
+      transform: rotate(360deg);
+    }
   }
 `;
 
 export const MenuIconsWrap = styled(Toolbar)`
   justify-content: space-between;
+
+  @media (min-width: 1024px) {
+    top: 0px !important;
+    bottom: auto !important;
+    flex-direction: column;
+    width: 100%;
+
+    padding-top: 55px;
+  }
 `;
 
 export const MenuIcon = styled(IconButton)`

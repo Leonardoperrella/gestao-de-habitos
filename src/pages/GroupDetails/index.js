@@ -9,8 +9,6 @@ import api from "../../services/api";
 import GroupGoals from "../GroupGoals";
 import GroupActivities from "../GroupActivities";
 
-import GobalLoading from "../../components/GobalLoading";
-
 import { AddIcon, ButtonTopic, ContainerShow } from "./style";
 
 import { ReactComponent as SetaSvg } from "../../svgs/seta-suspensa.svg";
@@ -34,7 +32,7 @@ const GroupDetails = () => {
     };
 
     getGroupActivities();
-  }, []);
+  }, [id]);
 
   const handleShowGoals = () => {
     setShowGoals(!showGoals);

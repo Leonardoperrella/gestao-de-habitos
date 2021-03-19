@@ -22,7 +22,7 @@ const Menu = () => {
   };
 
   return (
-    <MenuContainer>
+    <MenuContainer active={true}>
       <MenuIconsWrap>
         <MenuIcon
           edge="start"
