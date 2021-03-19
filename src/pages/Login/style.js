@@ -23,13 +23,14 @@ export const ContainerLogin = styled(GlobalnWrapStyled)`
   @media (min-width: 1024px) {
     position: absolute;
     top: 0;
-    right: -300px !important;
+    right: -0px !important;
 
     border-radius: 0;
     transform: initial;
     padding: 0px;
     width: 550px;
     background-color: rgba(255,255,255,.9);
-    height: 100%;
+    height: 100vh!important;
+    max-height: 100vh!important;
   }
 `;

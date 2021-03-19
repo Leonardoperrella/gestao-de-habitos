@@ -35,7 +35,7 @@ export const HomeGroupWrap = styled.div`
 export const HomeHabitWrap = styled.div``;
 
 export const Group = styled.div`
-  padding: 0rem 0 10rem 0;
+  padding: 0rem 0 0rem 0;
   text-align: center;
   div {
     max-width: 300px;
