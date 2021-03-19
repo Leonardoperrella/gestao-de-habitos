@@ -11,13 +11,30 @@ export const SearchBar = styled(Toolbar)`
   background-color: ${COLORS.highlight};
   width: 70vw;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
+  margin: 50px 0px 20px 0px;
 `;
 
 export const SearchInput = styled(InputBase)`
-  background-color: ${COLORS.foreground};
+  background-color: transparent;
   border-radius: 5px;
-  padding: 5px 5px 5px 10px;
+  padding: 10px 0;
   margin-left: 10px;
   font-weight: 700;
+  font-size: 1.25rem !important;
+`;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1020px;
+
+  @media (min-width: 1040px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    padding: 10px;
+  }
 `;
