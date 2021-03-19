@@ -6,8 +6,6 @@ import Menu from "../../components/Menu";
 import CardGroup from "../../components/CardGroup";
 import api from "../../services/api";
 
-import { HabitsButton } from "../Habits/style";
-
 import {
   HomeContainer,
   HomeTitle,
@@ -15,7 +13,6 @@ import {
   HomeGroupWrap,
   Group,
   ButtonAllGroups,
-  DivButtonAllGroups,
   SubTitle,
   Notification,
   DivButtonAllHabit,
@@ -79,27 +76,37 @@ const Home = () => {
         <HomeGroupWrap>
           <SubTitle>Group</SubTitle>
 
-          <DivButtonAllGroups>
-            <ButtonAllGroups
-              variant="contained"
-              onClick={() => handleNavigation("/groups")}
-              disableElevation
-            >
-              See all groups
-            </ButtonAllGroups>
-          </DivButtonAllGroups>
-
           <Group>
             {showGroup ? (
-              <CardGroup
-                id={id}
-                name={name}
-                description={description}
-                category={category}
-                details={true}
-              />
+              <>
+                <CardGroup
+                  id={id}
+                  name={name}
+                  description={description}
+                  category={category}
+                  details={true}
+                />
+                <ButtonAllGroups
+                  variant="contained"
+                  onClick={() => handleNavigation("/groups")}
+                  disableElevation
+                >
+                  See all groups
+                </ButtonAllGroups>
+              </>
             ) : (
-              <Notification>You are not subscribed in any groups!</Notification>
+              <>
+                <Notification>
+                  You are not subscribed in any groups!
+                </Notification>
+                <ButtonAllGroups
+                  variant="contained"
+                  onClick={() => handleNavigation("/groups")}
+                  disableElevation
+                >
+                  See all groups
+                </ButtonAllGroups>
+              </>
             )}
           </Group>
         </HomeGroupWrap>

@@ -10,6 +10,7 @@ import { Search, Favorite, Group, Person } from "@material-ui/icons/";
 import Habitorant from "../../Images/Habitorant.png";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../providers/UserProvider";
+import { ReactComponent as Arrow } from "../../svgs/double-down-arrows.svg";
 
 const Menu = () => {
   const history = useHistory();
@@ -22,8 +23,12 @@ const Menu = () => {
   };
 
   return (
-    <MenuContainer>
+    <MenuContainer active={true}>
       <MenuIconsWrap>
+        <MenuIcon>
+          <Arrow />
+        </MenuIcon>
+
         <MenuIcon
           edge="start"
           aria-label="open drawer"

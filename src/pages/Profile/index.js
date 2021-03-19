@@ -48,12 +48,18 @@ const Profile = () => {
               Edit Profile
             </GroupsButton>
           </GroupsTitleWrap>
+
           <ProfileTitle>Profile</ProfileTitle>
           <ProfileIcon />
+
           <ProfileSubTitle>Username</ProfileSubTitle>
+
           <ProfileText>{user.username}</ProfileText>
+
           <ProfileSubTitle sub>Email</ProfileSubTitle>
+
           <ProfileText>{user.email}</ProfileText>
+
           <GroupsTitleWrap>
             <GroupsButton onClick={() => handleLogOut("/")}>
               Log Out

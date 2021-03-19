@@ -11,8 +11,6 @@ import GroupActivities from "../GroupActivities";
 
 import { ButtonAllGroups } from "../Home/style";
 
-import GobalLoading from "../../components/GobalLoading";
-
 import {
   AddIcon,
   ButtonTopic,
@@ -21,6 +19,9 @@ import {
 } from "./style";
 
 import { ReactComponent as SetaSvg } from "../../svgs/seta-suspensa.svg";
+import BackGroundImage from "../../components/BackGroundImage";
+
+import Background from "../../Images/BackgrounGroupDetails.jpg";
 
 const GroupDetails = () => {
   const [group, setGroup] = useState({});
@@ -41,7 +42,7 @@ const GroupDetails = () => {
     };
 
     getGroupActivities();
-  }, []);
+  }, [id]);
 
   const handleShowGoals = () => {
     setShowGoals(!showGoals);
@@ -58,6 +59,8 @@ const GroupDetails = () => {
 
   return (
     <GlobalContainer>
+      <BackGroundImage image={Background} />
+
       <GlobalWrap>
         {showGroup ? (
           <>

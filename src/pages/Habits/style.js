@@ -6,7 +6,7 @@ export const HabitsTitleWrap = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 40px;
   @media (min-width: 1024px) {
     flex-direction: row;
     flex-wrap: wrap;
@@ -33,6 +33,13 @@ export const HabitsWrap = styled.div`
 export const HabitsTitle = styled.h1`
   font-family: ${FONTS.normal};
   margin: 20px;
+`;
+
+export const HabitSubTitle = styled.h5`
+  font-family: ${FONTS.normal};
+  color: ${COLORS.gray} !important;
+  margin: 20px;
+  transform: translateY(-83px) !important;
 `;
 
 export const HabitsButton = styled(Button)`

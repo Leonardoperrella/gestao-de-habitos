@@ -1,6 +1,8 @@
 import { CardSearchContainer } from "./style";
+import { useHistory } from "react-router-dom";
 
 const CardSearch = ({
+  id,
   title,
   name,
   description,
@@ -8,8 +10,16 @@ const CardSearch = ({
   category,
   difficulty,
 }) => {
+  const history = useHistory();
+
+  const handleNavigation = () => {
+    const path =
+      (title && `/edit-habit/${id}/`) || (name && `/edit-group/${id}/`);
+    history.push(path);
+  };
+
   return (
-    <CardSearchContainer>
+    <CardSearchContainer onClick={handleNavigation}>
       <p>{(title && "Habit") || (name && "Group")}</p>
       <h1>{title || name}</h1>
       <p>

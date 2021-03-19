@@ -38,11 +38,6 @@ export const Group = styled.div`
   }
 `;
 
-export const DivButtonAllGroups = styled.div`
-  text-align-last: center;
-  transform: translatey(230px);
-`;
-
 export const DivButtonAllHabit = styled.div`
   text-align-last: center;
   transform: translatey(20px);
