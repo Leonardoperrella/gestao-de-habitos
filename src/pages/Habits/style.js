@@ -6,13 +6,14 @@ export const HabitsTitleWrap = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 10px;
   @media (min-width: 1024px) {
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: flex-start;
     padding: 50px;
+    width: 90%;
   }
 `;
 
@@ -32,7 +33,17 @@ export const HabitsWrap = styled.div`
 
 export const HabitsTitle = styled.h1`
   font-family: ${FONTS.normal};
-  margin: 20px;
+  margin: 30px;
+  @media (min-width: 1024px) {
+    margin: 0px;
+    font-size: 4rem;
+    color: ${COLORS.textHighlight};
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    padding: 50px;
+  }
 `;
 
 export const HabitSubTitle = styled.p`
@@ -52,5 +63,8 @@ export const HabitsButton = styled(Button)`
 
   @media (min-width: 1024px) {
     margin-top: 23px !important;
+    padding: 35px 60px !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
   }
 `;

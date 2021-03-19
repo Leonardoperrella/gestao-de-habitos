@@ -11,13 +11,13 @@ export const CardSearchContainer = styled(Card)`
   padding: 10px;
   flex-direction: column;
   justify-content: space-evenly;
+  color: ${COLORS.textHighlight} !important;
   cursor: pointer;
 
   h1 {
     font-family: ${FONTS.normal};
     margin: 0;
     font-size: 25px;
-    color: ${COLORS.text};
     padding: 5px;
   }
   p {
@@ -25,7 +25,7 @@ export const CardSearchContainer = styled(Card)`
     font-size: 1.1rem;
   }
   p:nth-of-type(1) {
-    color: ${COLORS.textHighlight};
+    color: ${COLORS.text};
     font-weight: 700;
     font-size: 1.25rem;
   }

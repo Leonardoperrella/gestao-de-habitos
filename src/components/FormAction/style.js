@@ -8,6 +8,10 @@ export const FormActionWrap = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: -30px;
+
+  @media (min-width: 1024px) {
+    margin-top: -65px;
+  }
 `;
 
 export const FormActionTitle = styled.h1`
@@ -28,6 +32,7 @@ export const FormActionButton = styled.button`
   margin: 5px 0;
   font-weight: 700;
   text-transform: uppercase;
+  cursor: pointer;
 `;
 
 export const FormActionTextWrap = styled.div`
@@ -45,6 +50,11 @@ export const FormActionBackButtonWrap = styled.button`
   position: relative;
   left: -125px;
   top: 26px;
+  cursor: pointer;
+
+  @media (min-width: 1024px) {
+    top: -9px;
+  }
 `;
 
 export const FormActionBackButtonIcon = styled(ArrowBackIcon)`

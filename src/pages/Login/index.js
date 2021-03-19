@@ -30,6 +30,7 @@ const Login = () => {
     toast(error, {
       autoClose: 2000,
       hideProgressBar: true,
+      position: "top-center",
     });
 
   const { username, password } = getValues();

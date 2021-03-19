@@ -9,6 +9,11 @@ export const FormEditWrap = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: -30px;
+  padding: 10px;
+
+  @media (min-width: 1024px) {
+    margin-top: -88px;
+  }
 `;
 
 export const FormEditTitle = styled.h1`
@@ -23,6 +28,7 @@ export const FormEditButton = styled.button`
   outline: none;
   border: 0;
   height: 70px;
+  cursor: pointer;
   background-color: ${({ isRemovable }) =>
     isRemovable ? COLORS.dark : COLORS.highlight};
   color: ${COLORS.textHighlight};
@@ -45,7 +51,12 @@ export const FormEditBackButtonWrap = styled.button`
   margin: 0 !important;
   position: relative;
   left: -125px;
-  top: 26px;
+  top: 36px;
+  cursor: pointer;
+
+  @media (min-width: 1024px) {
+    top: -21px;
+  }
 `;
 
 export const FormEditBackButtonIcon = styled(ArrowBackIcon)`

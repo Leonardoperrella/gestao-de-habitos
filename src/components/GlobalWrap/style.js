@@ -12,21 +12,19 @@ export const GlobalnWrapStyled = styled.div`
     color: #252525;
     text-align: center;
     font-size: 3rem;
-    margin: 2.4rem auto 1rem auto;
-    font-family: Tungsten;
   }
 
   @media (min-width: 1024px) {
+    max-width: 50%;
+    max-height: 60%;
+    min-width: 400px;
     position: absolute;
     border-radius: 10px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50vw;
-    height: auto;
     background-color: white;
-    padding: 20px;
     background: rgba(255, 255, 255, 0.9);
-    padding: 3rem 0;
+    padding: 50px 30px;
   }
 `;

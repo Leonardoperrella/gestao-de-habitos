@@ -43,10 +43,10 @@ const Profile = () => {
       <GlobalContainer>
         <BackGroundImage image={Background} />
         <GlobalWrap>
-          <ProfileWrap>
-            <ProfileTitle>Profile</ProfileTitle>
-            <ProfileIcon />
+          <ProfileTitle>Profile</ProfileTitle>
 
+          <ProfileIcon />
+          <ProfileWrap>
             <ProfileSubTitle>Username</ProfileSubTitle>
 
             <ProfileText>{user.username}</ProfileText>
@@ -54,14 +54,11 @@ const Profile = () => {
             <ProfileSubTitle sub>Email</ProfileSubTitle>
 
             <ProfileText>{user.email}</ProfileText>
-
-            <GroupsButton onClick={() => handleNavigation("/edit-profile")}>
-              Edit Profile
-            </GroupsButton>
-            <GroupsButton onClick={() => handleLogOut("/")}>
-              Log Out
-            </GroupsButton>
           </ProfileWrap>
+          <GroupsButton onClick={() => handleNavigation("/edit-profile")}>
+            Edit Profile
+          </GroupsButton>
+          <GroupsButton onClick={() => handleLogOut("/")}>Log Out</GroupsButton>
         </GlobalWrap>
       </GlobalContainer>
       <Menu />

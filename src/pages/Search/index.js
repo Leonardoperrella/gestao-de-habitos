@@ -5,6 +5,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import { useState, useEffect } from "react";
 import api from "../../services/api";
 import CardSearch from "../../components/CardSearch";
+import BackGroundImage from "../../components/BackGroundImage";
+import Background from "../../Images/BackgrounGroupDetails.jpg";
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -98,6 +100,7 @@ const Search = () => {
   return (
     <>
       <GlobalContainer>
+        <BackGroundImage image={Background} />
         <SearchTitle>Search</SearchTitle>
 
         <SearchBar>

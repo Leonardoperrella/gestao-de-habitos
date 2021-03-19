@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 
 export const ContainerCarrosel = styled.div`
   width: 100%;
+  max-width: 100vw;
   margin: 0 auto;
   text-align: -webkit-center;
 `;

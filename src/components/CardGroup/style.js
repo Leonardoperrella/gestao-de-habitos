@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const GroupItem = styled.div`
   border: 1px solid #000;
-  width: 90%;
+  width: 100%;
   max-width: 600px;
+  min-width: 300px;
   margin: 0 auto;
 
   background-color: #ff4654;
