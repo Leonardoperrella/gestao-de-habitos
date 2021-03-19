@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
 import "react-toastify/dist/ReactToastify.css";
+import MenuTollTip from "../../components/MenuTollTip";
 
 let category = [
   { value: "Aim", content: "Aim" },
@@ -167,7 +168,8 @@ const EditHabit = () => {
         </FormEdit>
         <Notification />
       </GlobalWrap>
-      <Menu></Menu>
+      <MenuTollTip />
+      <Menu />
     </GlobalContainer>
   );
 };

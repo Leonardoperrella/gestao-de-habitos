@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import api from "../../services/api";
 import jwt_decode from "jwt-decode";
 import { useHistory } from "react-router";
+import MenuTollTip from "../../components/MenuTollTip";
 
 const Profile = () => {
   const [token] = useState(() => {
@@ -61,6 +62,7 @@ const Profile = () => {
           <GroupsButton onClick={() => handleLogOut("/")}>Log Out</GroupsButton>
         </GlobalWrap>
       </GlobalContainer>
+      <MenuTollTip />
       <Menu />
     </>
   );

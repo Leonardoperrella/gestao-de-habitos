@@ -10,6 +10,7 @@ export const SearchTitle = styled.h1`
   @media (min-width: 1040px) {
     color: ${COLORS.textHighlight};
     font-size: 3rem;
+    padding-top: 70px;
   }
 `;
 
