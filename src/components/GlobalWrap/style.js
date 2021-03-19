@@ -7,7 +7,7 @@ export const GlobalnWrapStyled = styled.div`
   align-items: center;
   padding-bottom: 150px;
   text-align: center;
-  margin: 12rem 0;
+  margin: 6rem 0;
 
   h1 {
     text-transform: uppercase;

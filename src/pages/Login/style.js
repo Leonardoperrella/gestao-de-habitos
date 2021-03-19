@@ -21,16 +21,17 @@ export const FooterLogin = styled.footer`
 
 export const ContainerLogin = styled(GlobalnWrapStyled)`
   @media (min-width: 1024px) {
-    position: absolute;
+    position: fixed;
     top: 0;
+    margin: 0;
     right: -0px !important;
 
     border-radius: 0;
     transform: initial;
     padding: 0px;
     width: 550px;
-    background-color: rgba(255,255,255,.9);
-    height: 100vh!important;
-    max-height: 100vh!important;
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 100vh !important;
+    max-height: 100vh !important;
   }
 `;
