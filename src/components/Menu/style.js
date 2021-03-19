@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { AppBar, Fab, IconButton, Toolbar } from "@material-ui/core";
 import { COLORS } from "../../style";
 

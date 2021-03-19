@@ -35,11 +35,14 @@ export const HabitsTitle = styled.h1`
   margin: 20px;
 `;
 
-export const HabitSubTitle = styled.h5`
+export const HabitSubTitle = styled.p`
+  font-size: 18px;
+  font-weight: 400;
+  color: ${COLORS.gray};
   font-family: ${FONTS.normal};
-  color: ${COLORS.gray} !important;
+  text-align: center;
   margin: 20px;
-  transform: translateY(-83px) !important;
+  transform: translateY(-30px) !important;
 `;
 
 export const HabitsButton = styled(Button)`

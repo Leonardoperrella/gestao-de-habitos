@@ -1,5 +1,10 @@
 import React from "react";
-import { ContainerCarrosel } from "./style";
+import {
+  ContainerCarrosel,
+  ButtonAllGroups,
+  Notification,
+  DivButtonAllHabit,
+} from "./style";
 import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
@@ -8,7 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 import api from "../../services/api";
 import CardHabit from "../CardHabit";
 
-const CarrosselHabit = () => {
+const CarrosselHabit = ({ handleNavigation }) => {
   const [habits, setHabits] = React.useState([]);
   const token = JSON.parse(localStorage.getItem("token"));
 
@@ -40,33 +45,46 @@ const CarrosselHabit = () => {
   return (
     <ContainerCarrosel>
       <Slider {...settings}>
-        {habits
-          .filter((habit) => habit.how_much_achieved !== 100)
-          .map(
-            (
-              {
-                id,
-                title,
-                category,
-                difficulty,
-                frequency,
-                completed,
-                how_much_achieved,
-              },
-              key
-            ) => (
-              <CardHabit
-                title={title}
-                category={category}
-                difficulty={difficulty}
-                frequency={frequency}
-                completed={completed}
-                how_much_achieved={how_much_achieved}
-                key={key}
-                id={id}
-              />
+        {habits.length > 0 ? (
+          habits
+            .filter((habit) => habit.how_much_achieved !== 100)
+            .map(
+              (
+                {
+                  id,
+                  title,
+                  category,
+                  difficulty,
+                  frequency,
+                  completed,
+                  how_much_achieved,
+                },
+                key
+              ) => (
+                <CardHabit
+                  title={title}
+                  category={category}
+                  difficulty={difficulty}
+                  frequency={frequency}
+                  completed={completed}
+                  how_much_achieved={how_much_achieved}
+                  key={key}
+                  id={id}
+                />
+              )
             )
-          )}
+        ) : (
+          <DivButtonAllHabit>
+            <Notification>You don't have tasks to do!</Notification>
+            <ButtonAllGroups
+              variant="contained"
+              onClick={() => handleNavigation("/add-habit")}
+              disableElevation
+            >
+              Add habit
+            </ButtonAllGroups>
+          </DivButtonAllHabit>
+        )}
       </Slider>
     </ContainerCarrosel>
   );
