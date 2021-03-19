@@ -22,40 +22,42 @@ export const ProfileText = styled.p`
   font-weight: 700;
 `;
 
-export const GroupsTitleWrap = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-top: 30px;
-  @media (min-width: 1024px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    padding: 50px 50px 0 50px;
-  }
-`;
-
-export const GroupsWrap = styled.div`
+export const ProfileWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   @media (min-width: 1024px) {
-    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-    padding: 20px 50px 50px 50px;
+    justify-content: center !important;
+    align-items: center !important;
   }
-`;
-
-export const GroupsTitle = styled.h1`
-  font-family: ${FONTS.normal};
-  margin: 20px;
 `;
 
 export const GroupsButton = styled(Button)`
   background-color: ${COLORS.highlight} !important;
   color: ${COLORS.textHighlight} !important;
   height: 40px;
+`;
+
+export const ProfilePerfilContainer = styled.div`
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between !important;
+    align-items: center !important;
+    height: 300px;
+  }
+`;
+
+export const ProfileInfoContainer = styled.div`
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between !important;
+    align-items: center !important;
+    height: 350px;
+  }
 `;
