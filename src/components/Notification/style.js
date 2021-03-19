@@ -12,6 +12,10 @@ export const NoticiationContainer = styled(ToastContainer).attrs({
   width: 100%;
   margin-top: 5vh;
 
+  @media (min-width: 1024px) {
+    margin-top: 0vh;
+  }
+
   /* .toast is passed to toastClassName */
   .toast {
     background-color: ${COLORS.highlight};

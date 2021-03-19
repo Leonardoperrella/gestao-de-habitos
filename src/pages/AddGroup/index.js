@@ -26,6 +26,7 @@ const AddGroup = () => {
     toast("Successfully added!", {
       autoClose: 2000,
       hideProgressBar: true,
+      position: "top-center",
     });
 
   const schema = yup.object().shape({
