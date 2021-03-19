@@ -109,8 +109,17 @@ const Search = () => {
             />
           </SearchBar>
           {searchedItens.map(
-            ({ title, name, description, frequency, category, difficulty }) => (
+            ({
+              id,
+              title,
+              name,
+              description,
+              frequency,
+              category,
+              difficulty,
+            }) => (
               <CardSearch
+                id={id}
                 title={title}
                 name={name}
                 description={description}
