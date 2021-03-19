@@ -12,6 +12,8 @@ import {
   HabitsButton,
 } from "./style";
 import { useHistory } from "react-router";
+import BackGroundImage from "../../components/BackGroundImage";
+import Background from "../../Images/BackgrounGroupDetails.jpg";
 
 const Habits = () => {
   const history = useHistory();
@@ -45,6 +47,7 @@ const Habits = () => {
 
   return (
     <GlobalContainer>
+      <BackGroundImage image={Background} />
       <HabitsTitleWrap>
         <HabitsTitle>Habits</HabitsTitle>
         <HabitsButton onClick={() => handleNavigation("/add-habit")}>

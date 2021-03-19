@@ -17,6 +17,10 @@ import {
   Notification,
 } from "./style";
 import { UserContext } from "../../providers/UserProvider";
+import GlobalContainer from "../../components/GlobalContainer";
+import BackgroundImage from "../../components/BackGroundImage";
+import GlobalWrap from "../../components/GlobalWrap";
+import Background from "../../Images/BackgroundHome.jpg";
 
 const Home = () => {
   const [group, setGroup] = React.useState({});
@@ -48,56 +52,59 @@ const Home = () => {
 
   return (
     <>
-      <HomeContainer>
-        <HomeTitle>Home</HomeTitle>
+      <GlobalContainer>
+        <BackgroundImage image={Background} />
+        <GlobalWrap>
+          <HomeContainer>
+            <HomeTitle>Home</HomeTitle>
 
-        <HomeHabitWrap>
-          <SubTitle>To do</SubTitle>
-        </HomeHabitWrap>
-      </HomeContainer>
+            <HomeHabitWrap>
+              <SubTitle>To do</SubTitle>
+            </HomeHabitWrap>
+          </HomeContainer>
+          <CarrosselHabit handleNavigation={handleNavigation} />
 
-      <CarrosselHabit handleNavigation={handleNavigation} />
+          <HomeContainer>
+            <HomeGroupWrap>
+              <SubTitle>Group</SubTitle>
 
-      <HomeContainer>
-        <HomeGroupWrap>
-          <SubTitle>Group</SubTitle>
-
-          <Group>
-            {showGroup ? (
-              <>
-                <CardGroup
-                  id={id}
-                  name={name}
-                  description={description}
-                  category={category}
-                  details={true}
-                />
-                <ButtonAllGroups
-                  variant="contained"
-                  onClick={() => handleNavigation("/groups")}
-                  disableElevation
-                >
-                  See all groups
-                </ButtonAllGroups>
-              </>
-            ) : (
-              <>
-                <Notification>
-                  You are not subscribed in any groups!
-                </Notification>
-                <ButtonAllGroups
-                  variant="contained"
-                  onClick={() => handleNavigation("/groups")}
-                  disableElevation
-                >
-                  See all groups
-                </ButtonAllGroups>
-              </>
-            )}
-          </Group>
-        </HomeGroupWrap>
-      </HomeContainer>
-
+              <Group>
+                {showGroup ? (
+                  <>
+                    <CardGroup
+                      id={id}
+                      name={name}
+                      description={description}
+                      category={category}
+                      details={true}
+                    />
+                    <ButtonAllGroups
+                      variant="contained"
+                      onClick={() => handleNavigation("/groups")}
+                      disableElevation
+                    >
+                      See all groups
+                    </ButtonAllGroups>
+                  </>
+                ) : (
+                  <>
+                    <Notification>
+                      You are not subscribed in any groups!
+                    </Notification>
+                    <ButtonAllGroups
+                      variant="contained"
+                      onClick={() => handleNavigation("/groups")}
+                      disableElevation
+                    >
+                      See all groups
+                    </ButtonAllGroups>
+                  </>
+                )}
+              </Group>
+            </HomeGroupWrap>
+          </HomeContainer>
+        </GlobalWrap>
+      </GlobalContainer>
       <Menu />
     </>
   );

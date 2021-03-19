@@ -29,6 +29,7 @@ export const FormEditButton = styled.button`
   margin: 5px 0;
   font-weight: 700;
   text-transform: uppercase;
+  cursor: pointer;
 `;
 
 export const FormEditTextWrap = styled.div`
@@ -46,6 +47,7 @@ export const FormEditBackButtonWrap = styled.button`
   position: relative;
   left: -125px;
   top: 26px;
+  cursor: pointer;
 `;
 
 export const FormEditBackButtonIcon = styled(ArrowBackIcon)`

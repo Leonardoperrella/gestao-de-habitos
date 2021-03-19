@@ -8,7 +8,7 @@ import {
   ProfileTitle,
   ProfileText,
   ProfileSubTitle,
-  GroupsTitleWrap,
+  ProfileWrap,
   GroupsButton,
 } from "./style";
 import { useState, useEffect } from "react";
@@ -43,28 +43,22 @@ const Profile = () => {
       <GlobalContainer>
         <BackGroundImage image={Background} />
         <GlobalWrap>
-          <GroupsTitleWrap>
-            <GroupsButton onClick={() => handleNavigation("/edit-profile")}>
-              Edit Profile
-            </GroupsButton>
-          </GroupsTitleWrap>
-
           <ProfileTitle>Profile</ProfileTitle>
+
           <ProfileIcon />
+          <ProfileWrap>
+            <ProfileSubTitle>Username</ProfileSubTitle>
 
-          <ProfileSubTitle>Username</ProfileSubTitle>
+            <ProfileText>{user.username}</ProfileText>
 
-          <ProfileText>{user.username}</ProfileText>
+            <ProfileSubTitle sub>Email</ProfileSubTitle>
 
-          <ProfileSubTitle sub>Email</ProfileSubTitle>
-
-          <ProfileText>{user.email}</ProfileText>
-
-          <GroupsTitleWrap>
-            <GroupsButton onClick={() => handleLogOut("/")}>
-              Log Out
-            </GroupsButton>
-          </GroupsTitleWrap>
+            <ProfileText>{user.email}</ProfileText>
+          </ProfileWrap>
+          <GroupsButton onClick={() => handleNavigation("/edit-profile")}>
+            Edit Profile
+          </GroupsButton>
+          <GroupsButton onClick={() => handleLogOut("/")}>Log Out</GroupsButton>
         </GlobalWrap>
       </GlobalContainer>
       <Menu />

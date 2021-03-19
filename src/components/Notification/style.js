@@ -10,10 +10,10 @@ export const NoticiationContainer = styled(ToastContainer).attrs({
 })`
   /* .toast-container */
   width: 100%;
-  margin-top: 5vh;
+  margin-top: 10vh;
 
   @media (min-width: 1024px) {
-    margin-top: 0vh;
+    margin-top: -10vh;
   }
 
   /* .toast is passed to toastClassName */

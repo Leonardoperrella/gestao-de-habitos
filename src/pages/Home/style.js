@@ -3,16 +3,20 @@ import { FONTS, COLORS } from "../../style";
 import Button from "@material-ui/core/Button";
 
 export const HomeContainer = styled.div`
-  margin-top: 4rem;
+  margin-top: -30px;
 `;
 
 export const HomeTitle = styled.h1`
   font-family: ${FONTS.normal};
-  font-weight: 800;
+  font-weight: 500;
   text-align-last: center;
+  font-family: ${FONTS.normal} !important;
+  font-size: 2rem !important;
+  margin-top: 40px;
 
   @media (min-width: 1024px) {
-    font-size: 40px;
+    font-size: 35px !important;
+    margin-top: 13px;
   }
 `;
 
@@ -25,7 +29,9 @@ export const SubTitle = styled.div`
   }
 `;
 
-export const HomeGroupWrap = styled.div``;
+export const HomeGroupWrap = styled.div`
+  margin: 60px 0;
+`;
 export const HomeHabitWrap = styled.div``;
 
 export const Group = styled.div`

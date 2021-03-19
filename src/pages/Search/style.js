@@ -5,6 +5,11 @@ import { COLORS, FONTS } from "../../style";
 export const SearchTitle = styled.h1`
   font-family: ${FONTS.normal};
   font-size: 2rem;
+
+  @media (min-width: 1040px) {
+    color: ${COLORS.textHighlight};
+    font-size: 3rem;
+  }
 `;
 
 export const SearchBar = styled(Toolbar)`
@@ -12,7 +17,7 @@ export const SearchBar = styled(Toolbar)`
   width: 70vw;
   border-radius: 5px;
   padding: 10px;
-  margin: 50px 0px 20px 0px;
+  margin: 20px 0px 20px 0px;
 `;
 
 export const SearchInput = styled(InputBase)`

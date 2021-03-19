@@ -16,6 +16,9 @@ import {
   ButtonTopic,
   ContainerShow,
   ContainerNotificaiton,
+  GroupWrap,
+  GroupShowContainer,
+  GroupTitle,
 } from "./style";
 
 import { ReactComponent as SetaSvg } from "../../svgs/seta-suspensa.svg";
@@ -61,50 +64,53 @@ const GroupDetails = () => {
     <GlobalContainer>
       <BackGroundImage image={Background} />
 
-      <GlobalWrap>
-        {showGroup ? (
-          <>
-            <h1>{group.name}</h1>
+      {showGroup ? (
+        <>
+          <GroupTitle>{group.name}</GroupTitle>
+          <GroupWrap>
+            <GroupShowContainer>
+              <ButtonTopic onClick={handleShowActivies} showItem={showActivies}>
+                Activities
+                <SetaSvg />
+              </ButtonTopic>
+              <AddIcon onClick={() => handleNavigation("/add-activite", id)} />
+              {showActivies && (
+                <ContainerShow>
+                  <GroupActivities />
+                </ContainerShow>
+              )}
+            </GroupShowContainer>
+            <GroupShowContainer>
+              <ButtonTopic onClick={handleShowGoals} showItem={showGoals}>
+                Goals
+                <SetaSvg />
+              </ButtonTopic>
+              <AddIcon onClick={() => handleNavigation("/add-goal", id)} />
+              {showGoals && (
+                <ContainerShow>
+                  <GroupGoals />
+                </ContainerShow>
+              )}
+            </GroupShowContainer>
+          </GroupWrap>
+        </>
+      ) : (
+        <>
+          <ContainerNotificaiton>
+            <h2>OPS!</h2>
+            <h3>You are not subscribed in any groups!</h3>
 
-            <ButtonTopic onClick={handleShowGoals} showItem={showGoals}>
-              Goals
-              <SetaSvg />
-            </ButtonTopic>
-            <AddIcon onClick={() => handleNavigation("/add-goal", id)} />
-            {showGoals && (
-              <ContainerShow>
-                <GroupGoals />
-              </ContainerShow>
-            )}
+            <ButtonAllGroups
+              variant="contained"
+              onClick={() => handleNavigation("/groups")}
+              disableElevation
+            >
+              See all groups
+            </ButtonAllGroups>
+          </ContainerNotificaiton>
+        </>
+      )}
 
-            <ButtonTopic onClick={handleShowActivies} showItem={showActivies}>
-              Activities
-              <SetaSvg />
-            </ButtonTopic>
-            <AddIcon onClick={() => handleNavigation("/add-activite", id)} />
-            {showActivies && (
-              <ContainerShow>
-                <GroupActivities />
-              </ContainerShow>
-            )}
-          </>
-        ) : (
-          <>
-            <ContainerNotificaiton>
-              <h2>OPS!</h2>
-              <h3>You are not subscribed in any groups!</h3>
-
-              <ButtonAllGroups
-                variant="contained"
-                onClick={() => handleNavigation("/groups")}
-                disableElevation
-              >
-                See all groups
-              </ButtonAllGroups>
-            </ContainerNotificaiton>
-          </>
-        )}
-      </GlobalWrap>
       <Menu />
     </GlobalContainer>
   );
