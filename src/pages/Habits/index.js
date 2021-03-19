@@ -6,6 +6,7 @@ import { useHabits } from "../../providers/Habits";
 import CardHabit from "../../components/CardHabit";
 import {
   HabitsTitle,
+  HabitSubTitle,
   HabitsWrap,
   HabitsTitleWrap,
   HabitsButton,
@@ -31,7 +32,7 @@ const Habits = () => {
   };
 
   useEffect(getUserHabits);
-  
+
   localStorage.setItem("habits", JSON.stringify(habits));
 
   const handleNavigation = (path) => {
@@ -51,30 +52,36 @@ const Habits = () => {
         </HabitsButton>
       </HabitsTitleWrap>
       <HabitsWrap>
-        {habits.map(
-          (
-            {
-              id,
-              title,
-              category,
-              difficulty,
-              frequency,
-              completed,
-              how_much_achieved,
-            },
-            key
-          ) => (
-            <CardHabit
-              title={title}
-              category={category}
-              difficulty={difficulty}
-              frequency={frequency}
-              completed={completed}
-              how_much_achieved={how_much_achieved}
-              key={key}
-              id={id}
-            />
+        {habits.length > 0 ? (
+          habits.map(
+            (
+              {
+                id,
+                title,
+                category,
+                difficulty,
+                frequency,
+                completed,
+                how_much_achieved,
+              },
+              key
+            ) => (
+              <CardHabit
+                title={title}
+                category={category}
+                difficulty={difficulty}
+                frequency={frequency}
+                completed={completed}
+                how_much_achieved={how_much_achieved}
+                key={key}
+                id={id}
+              />
+            )
           )
+        ) : (
+          <HabitsTitleWrap>
+            <HabitSubTitle>You don't have any habits yet.</HabitSubTitle>
+          </HabitsTitleWrap>
         )}
       </HabitsWrap>
       <Menu></Menu>
