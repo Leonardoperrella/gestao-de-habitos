@@ -5,6 +5,7 @@ import { COLORS, FONTS } from "../../style";
 export const SearchTitle = styled.h1`
   font-family: ${FONTS.normal};
   font-size: 2rem;
+  margin-top: 7rem;
 
   @media (min-width: 1040px) {
     color: ${COLORS.textHighlight};
