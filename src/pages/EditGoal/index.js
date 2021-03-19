@@ -54,6 +54,7 @@ const EditGoal = () => {
     toast("Successfully saved!", {
       autoClose: 2000,
       hideProgressBar: true,
+      position: "top-center",
     });
 
   const [token] = useState(() => {
