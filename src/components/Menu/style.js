@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { AppBar, Fab, IconButton, Toolbar } from "@material-ui/core";
 import { COLORS } from "../../style";
 
+
 export const MenuContainer = styled(AppBar)`
   top: auto !important;
   bottom: 0 !important;
@@ -16,11 +17,11 @@ export const MenuContainer = styled(AppBar)`
 
     position: absolute;
     top: 4rem !important;
-    left: 2rem !important;
+    right: 2rem !important;
     overflow: hidden;
 
     transition: 0.8s !important;
-    max-height: 65px !important;
+    max-height: 105px !important;
 
     &:hover {
       max-height: 500px !important;
@@ -33,7 +34,6 @@ export const MenuHomeButton = styled(Fab)`
   z-index: 1;
   top: -30px;
   left: 0;
-  right: 0;
   margin: 0 0px !important;
   background-color: ${COLORS.highlight} !important;
   @media (min-width: 1024px) {
