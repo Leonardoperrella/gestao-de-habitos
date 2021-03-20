@@ -30,7 +30,11 @@ const Search = () => {
         const pageGroups = response.data.results;
 
         if (pageGroups.length > 0) {
-          setGroups([...groups, pageGroups]);
+          const data = pageGroups.map((group) => {
+            return { ...group, category: group.category.split("/")[1] };
+          });
+          console.log(data);
+          setGroups([...groups, data]);
         }
         if (!response.data.next) {
           setNextPage(response.data.next);
@@ -90,13 +94,6 @@ const Search = () => {
       )
     );
   };
-
-  // const handleSearch = (e) => {
-  //   console.log(e.target.value);
-  //   setSearch(e.target.value);
-  //   getSearchedItens();
-  // };
-  console.log(searchedItens);
 
   return (
     <>

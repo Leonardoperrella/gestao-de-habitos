@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router";
 import GlobalContainer from "../../components/GlobalContainer";
-import GlobalWrap from "../../components/GlobalWrap";
 import Menu from "../../components/Menu";
 import api from "../../services/api";
 
@@ -80,7 +79,7 @@ const GroupDetails = () => {
                 </ContainerShow>
               )}
             </GroupShowContainer>
-            <GroupShowContainer>
+            <GroupShowContainer goals>
               <ButtonTopic onClick={handleShowGoals} showItem={showGoals}>
                 Goals
                 <SetaSvg />

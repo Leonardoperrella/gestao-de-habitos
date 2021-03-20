@@ -21,6 +21,7 @@ export const HabitsWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 0 0 150px 0;
 
   @media (min-width: 1024px) {
     flex-direction: row;

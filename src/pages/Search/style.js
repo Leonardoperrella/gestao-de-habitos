@@ -36,6 +36,7 @@ export const SearchContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   max-width: 1020px;
+  padding: 0 0 150px;
 
   @media (min-width: 1040px) {
     flex-direction: row;

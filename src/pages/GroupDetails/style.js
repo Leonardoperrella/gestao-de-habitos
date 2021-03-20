@@ -89,6 +89,7 @@ export const GroupShowContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: 10px 20px;
+  padding: ${({ goals }) => goals && "0 0 150px 0"};
 `;
 
 export const GroupTitle = styled.h1`

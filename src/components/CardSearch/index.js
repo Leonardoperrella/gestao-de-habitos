@@ -23,7 +23,7 @@ const CardSearch = ({
       <p>{(title && "Habit") || (name && "Group")}</p>
       <h1>{title || name}</h1>
       <p>
-        {category} - {difficulty}
+        {category} {difficulty && `- ${difficulty}`}
       </p>
       <p>{description}</p>
       <p>{frequency}</p>
