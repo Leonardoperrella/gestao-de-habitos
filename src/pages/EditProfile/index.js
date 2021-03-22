@@ -41,7 +41,7 @@ const EditProfile = () => {
     email: yup.string().email().required("Field Required"),
   });
 
-  const { register, handleSubmit, errors, setValue, getValues } = useForm({
+  const { register, handleSubmit, errors, setValue } = useForm({
     resolver: yupResolver(schema),
   });
 

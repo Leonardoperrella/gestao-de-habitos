@@ -112,6 +112,7 @@ const EditHabit = () => {
 
   useEffect(() => {
     getHabits();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id, setValue]);
 
   const handleForm = (data) => {
