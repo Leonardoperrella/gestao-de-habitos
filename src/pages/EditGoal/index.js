@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
 import "react-toastify/dist/ReactToastify.css";
 import MenuTollTip from "../../components/MenuTollTip";
+import GlobalLoading from "../../components/GobalLoading";
 
 let difficulty = [
   { value: "Easy", content: "Easy" },
@@ -62,7 +63,7 @@ const EditGoal = () => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
-
+  const [isLoading, setIsLoading] = useState(true);
   const schema = yup.object().shape({
     title: yup.string().required("Field Required"),
     difficulty: yup.string(),
@@ -73,12 +74,21 @@ const EditGoal = () => {
     resolver: yupResolver(schema),
   });
 
+  const getGoals = async () => {
+    await api
+      .get(`/goals/${params.id}/`)
+      .then((response) => {
+        setSelectedGoal(response.data);
+        setValue("title", response.data.title);
+        setGroup(response.data.group);
+      })
+      .catch((e) => console.log(e.response));
+
+    setIsLoading(false);
+  };
+
   useEffect(() => {
-    api.get(`/goals/${params.id}/`).then((response) => {
-      setSelectedGoal(response.data);
-      setValue("title", response.data.title);
-      setGroup(response.data.group);
-    });
+    getGoals();
   }, [params.id, setValue]);
 
   useEffect(() => {
@@ -107,35 +117,39 @@ const EditGoal = () => {
     <GlobalContainer>
       <BackGroundImage image={Background} />
       <GlobalWrap>
-        <FormEdit
-          handleSubmit={handleSubmit(handleForm)}
-          name="Goal"
-          id={params.id}
-          deletePath={`/goals/${params.id}/`}
-        >
-          <FormUserInput
-            name="title"
-            inputRef={register}
-            error={errors.title}
-            value={title}
+        {!isLoading ? (
+          <FormEdit
+            handleSubmit={handleSubmit(handleForm)}
+            name="Goal"
+            id={params.id}
+            deletePath={`/goals/${params.id}/`}
           >
-            title
-          </FormUserInput>
-          <FormActionSelect
-            name="difficulty"
-            inputRef={register}
-            error={errors.difficulty}
-          >
-            {difficulty}
-          </FormActionSelect>
-          <FormActionSelect
-            name="how_much_achieved"
-            inputRef={register}
-            error={errors.how_much_achieved}
-          >
-            {howMuchAchieved}
-          </FormActionSelect>
-        </FormEdit>
+            <FormUserInput
+              name="title"
+              inputRef={register}
+              error={errors.title}
+              value={title}
+            >
+              title
+            </FormUserInput>
+            <FormActionSelect
+              name="difficulty"
+              inputRef={register}
+              error={errors.difficulty}
+            >
+              {difficulty}
+            </FormActionSelect>
+            <FormActionSelect
+              name="how_much_achieved"
+              inputRef={register}
+              error={errors.how_much_achieved}
+            >
+              {howMuchAchieved}
+            </FormActionSelect>
+          </FormEdit>
+        ) : (
+          <GlobalLoading />
+        )}
         <Notification />
       </GlobalWrap>
       <MenuTollTip />

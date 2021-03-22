@@ -11,10 +11,10 @@ import FormEdit from "../../components/FormEdit";
 import FormUserInput from "../../components/FormUserInput";
 import BackGroundImage from "../../components/BackGroundImage";
 import Background from "../../Images/BackgroundEditHabit.jpg";
-
 import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
 import MenuTollTip from "../../components/MenuTollTip";
+import GlobalLoading from "../../components/GobalLoading";
 
 toast.configure();
 
@@ -23,7 +23,7 @@ const EditActivite = () => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
   });
-
+  const [isLoading, setIsLoading] = useState(true);
   const notify = () =>
     toast("Successfully saved!", {
       autoClose: 2000,
@@ -50,13 +50,14 @@ const EditActivite = () => {
       })
       .then((response) => {
         console.log(response.data);
+        setYupValues(response.data);
         setValue("title", response.data.title);
         setGroup(response.data.group);
-        setYupValues(getValues());
       })
       .catch((e) => {
         console.log(e.response);
       });
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -93,20 +94,24 @@ const EditActivite = () => {
     <GlobalContainer>
       <BackGroundImage image={Background} />
       <GlobalWrap>
-        <FormEdit
-          handleSubmit={handleSubmit(handleForm)}
-          name="Activite"
-          deletePath={`/activities/${params.id}/`}
-        >
-          <FormUserInput
-            name="title"
-            inputRef={register}
-            error={errors.title}
-            value={title}
+        {!isLoading ? (
+          <FormEdit
+            handleSubmit={handleSubmit(handleForm)}
+            name="Activite"
+            deletePath={`/activities/${params.id}/`}
           >
-            Title
-          </FormUserInput>
-        </FormEdit>
+            <FormUserInput
+              name="title"
+              inputRef={register}
+              error={errors.title}
+              value={title}
+            >
+              Title
+            </FormUserInput>
+          </FormEdit>
+        ) : (
+          <GlobalLoading />
+        )}
         <Notification />
       </GlobalWrap>
       <MenuTollTip />

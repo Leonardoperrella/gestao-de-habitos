@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
 import "react-toastify/dist/ReactToastify.css";
 import MenuTollTip from "../../components/MenuTollTip";
+import GobalLoading from "../../components/GobalLoading";
 
 let category = [
   { value: "Aim", content: "Aim" },
@@ -72,6 +73,7 @@ const EditHabit = () => {
   const params = useParams();
 
   const [selectedHabit, setSelectedHabit] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   const notify = () =>
     toast("Successfully saved!", {
@@ -97,11 +99,19 @@ const EditHabit = () => {
     resolver: yupResolver(schema),
   });
 
+  const getHabits = async () => {
+    await api
+      .get(`/habits/${params.id}/`)
+      .then((response) => {
+        setSelectedHabit(response.data);
+        setValue("title", response.data.title);
+      })
+      .catch((e) => console.log(e.response));
+    setIsLoading(false);
+  };
+
   useEffect(() => {
-    api.get(`/habits/${params.id}/`).then((response) => {
-      setSelectedHabit(response.data);
-      setValue("title", response.data.title);
-    });
+    getHabits();
   }, [params.id, setValue]);
 
   const handleForm = (data) => {
@@ -122,50 +132,54 @@ const EditHabit = () => {
     <GlobalContainer>
       <BackGroundImage image={Background} />
       <GlobalWrap>
-        <FormEdit
-          handleSubmit={handleSubmit(handleForm)}
-          name="Habit"
-          id={params.id}
-          origin="/habits"
-          deletePath={`/habits/${params.id}/`}
-        >
-          <FormUserInput
-            name="title"
-            inputRef={register}
-            error={errors.title}
-            value={title}
+        {!isLoading ? (
+          <FormEdit
+            handleSubmit={handleSubmit(handleForm)}
+            name="Habit"
+            id={params.id}
+            origin="/habits"
+            deletePath={`/habits/${params.id}/`}
           >
-            title
-          </FormUserInput>
-          <FormActionSelect
-            name="category"
-            inputRef={register}
-            error={errors.category}
-          >
-            {category}
-          </FormActionSelect>
-          <FormActionSelect
-            name="difficulty"
-            inputRef={register}
-            error={errors.difficulty}
-          >
-            {difficulty}
-          </FormActionSelect>
-          <FormActionSelect
-            name="frequency"
-            inputRef={register}
-            error={errors.frequency}
-          >
-            {frequency}
-          </FormActionSelect>
-          <FormActionSelect
-            name="how_much_achieved"
-            inputRef={register}
-            error={errors.how_much_achieved}
-          >
-            {howMuchAchieved}
-          </FormActionSelect>
-        </FormEdit>
+            <FormUserInput
+              name="title"
+              inputRef={register}
+              error={errors.title}
+              value={title}
+            >
+              title
+            </FormUserInput>
+            <FormActionSelect
+              name="category"
+              inputRef={register}
+              error={errors.category}
+            >
+              {category}
+            </FormActionSelect>
+            <FormActionSelect
+              name="difficulty"
+              inputRef={register}
+              error={errors.difficulty}
+            >
+              {difficulty}
+            </FormActionSelect>
+            <FormActionSelect
+              name="frequency"
+              inputRef={register}
+              error={errors.frequency}
+            >
+              {frequency}
+            </FormActionSelect>
+            <FormActionSelect
+              name="how_much_achieved"
+              inputRef={register}
+              error={errors.how_much_achieved}
+            >
+              {howMuchAchieved}
+            </FormActionSelect>
+          </FormEdit>
+        ) : (
+          <GobalLoading />
+        )}
         <Notification />
       </GlobalWrap>
       <MenuTollTip />

@@ -13,6 +13,7 @@ import Background from "../../Images/BackgroundEditHabit.jpg";
 import { toast } from "react-toastify";
 import Notification from "../../components/Notification";
 import MenuTollTip from "../../components/MenuTollTip";
+import GlobalLoading from "../../components/GobalLoading";
 
 toast.configure();
 
@@ -26,6 +27,8 @@ const EditProfile = () => {
     const sessionId = localStorage.getItem("user_id") || "";
     return JSON.parse(sessionId);
   });
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const notify = () =>
     toast("Successfully saved!", {
@@ -51,12 +54,13 @@ const EditProfile = () => {
       })
       .then((response) => {
         console.log(response.data);
+        setYupValues(response.data);
         setValue("email", response.data.email);
-        setYupValues(getValues());
       })
       .catch((e) => {
         console.log(e.response);
       });
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -83,16 +87,23 @@ const EditProfile = () => {
     <GlobalContainer>
       <BackGroundImage image={Background} />
       <GlobalWrap>
-        <FormEditProfile handleSubmit={handleSubmit(handleForm)} name="Profile">
-          <FormUserInput
-            name="email"
-            inputRef={register}
-            error={errors.email}
-            value={email}
+        {!isLoading ? (
+          <FormEditProfile
+            handleSubmit={handleSubmit(handleForm)}
+            name="Profile"
           >
-            Email
-          </FormUserInput>
-        </FormEditProfile>
+            <FormUserInput
+              name="email"
+              inputRef={register}
+              error={errors.email}
+              value={email}
+            >
+              Email
+            </FormUserInput>
+          </FormEditProfile>
+        ) : (
+          <GlobalLoading />
+        )}
         <Notification />
       </GlobalWrap>
       <MenuTollTip />

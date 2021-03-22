@@ -11,11 +11,12 @@ import GlobalContainer from "../../components/GlobalContainer";
 import Menu from "../../components/Menu";
 import CardGroup from "../../components/CardGroup";
 import MenuTollTip from "../../components/MenuTollTip";
+import GlobalLoading from "../../components/GobalLoading";
 
 const Groups = () => {
   const [groups, setGroups] = useState([]);
   const [nextPage, setNextPage] = useState("1");
-
+  const [isLoading, setIsLoading] = useState(true);
   const [token] = useState(() => {
     const sessionToken = localStorage.getItem("token") || "";
     return JSON.parse(sessionToken);
@@ -47,6 +48,8 @@ const Groups = () => {
   useEffect(() => {
     if (!!nextPage) {
       getUserGroups(nextPage);
+    } else {
+      setIsLoading(false);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,15 +68,21 @@ const Groups = () => {
         </GroupsButton>
       </GroupsTitleWrap>
       <GroupsWrap>
-        {groups.flat().map(({ id, name, description, category }) => (
-          <CardGroup
-            key={id}
-            id={id}
-            name={name}
-            description={description}
-            category={category}
-          />
-        ))}
+        {!isLoading ? (
+          groups
+            .flat()
+            .map(({ id, name, description, category }) => (
+              <CardGroup
+                key={id}
+                id={id}
+                name={name}
+                description={description}
+                category={category}
+              />
+            ))
+        ) : (
+          <GlobalLoading />
+        )}
       </GroupsWrap>
       <MenuTollTip />
       <Menu />

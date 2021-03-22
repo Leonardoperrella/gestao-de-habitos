@@ -49,6 +49,7 @@ const FormUserInput = ({
           ref={inputRef}
           error={error}
           name={name}
+          defaultValue={value}
         />
       </Label>
       {error && <MessageError>{error.message}</MessageError>}
